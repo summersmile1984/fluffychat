@@ -40,7 +40,9 @@ class SignInViewModel extends ValueNotifier<SignInState> {
             .toList() ??
         [];
     final splitted = filterText.split('.');
-    if (splitted.length >= 2 && !splitted.any((part) => part.isEmpty)) {
+    if (AppConfig.allowOtherHomeservers &&
+        splitted.length >= 2 &&
+        !splitted.any((part) => part.isEmpty)) {
       if (!filteredPublicHomeservers.any(
         (homeserver) => homeserver.name == filterText,
       )) {
@@ -58,6 +60,16 @@ class SignInViewModel extends ValueNotifier<SignInState> {
       name: AppSettings.defaultHomeserver.value,
     );
     try {
+      if (!AppConfig.allowOtherHomeservers) {
+        value = value.copyWith(
+          selectedHomeserver: defaultHomeserverData,
+          publicHomeservers: AsyncSnapshot.withData(ConnectionState.done, [
+            defaultHomeserverData,
+          ]),
+        );
+        _filterHomeservers();
+        return;
+      }
       final client = await matrixService.getLoginClient();
       final response = await client.httpClient.get(AppConfig.homeserverList);
       final json = jsonDecode(response.body) as Map<String, dynamic>;

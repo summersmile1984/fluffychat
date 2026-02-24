@@ -451,12 +451,17 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                       await client.encryption!.crossSigning
                                           .isCached();
                                   if (!allCached) {
-                                    await client
-                                        .encryption!
-                                        .ssss
-                                        .onSecretStored
-                                        .stream
-                                        .first;
+                                    try {
+                                      await client
+                                          .encryption!
+                                          .ssss
+                                          .onSecretStored
+                                          .stream
+                                          .first
+                                          .timeout(const Duration(seconds: 10));
+                                    } catch (e) {
+                                      Logs().w('Timeout or error waiting for secret to be stored: $e');
+                                    }
                                   }
                                   return;
                                 },

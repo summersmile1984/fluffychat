@@ -49,7 +49,7 @@ class SignInPage extends StatelessWidget {
                     SelectableText(
                       signUp
                           ? L10n.of(context).signUpGreeting
-                          : L10n.of(context).signInGreeting,
+                          : '',
                       textAlign: .center,
                     ),
                     TextField(
@@ -92,12 +92,7 @@ class SignInPage extends StatelessWidget {
                           return RadioListTile.adaptive(
                             value: server,
                             radioScaleFactor: 2,
-                            secondary: IconButton(
-                              icon: const Icon(Icons.link_outlined),
-                              onPressed: () => launchUrlString(
-                                server.homepage ?? 'https://${server.name}',
-                              ),
-                            ),
+                            // link button removed
                             title: Row(
                               spacing: 4,
                               children: [
@@ -165,7 +160,7 @@ class SignInPage extends StatelessWidget {
                                         .toList(),
                                   ),
                                 Text(
-                                  server.description ?? 'A matrix homeserver',
+                                  '',
                                 ),
                               ],
                             ),

@@ -85,6 +85,7 @@ dependencies:
   webrtc_interface: ^1.3.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_native_splash: ^2.4.7
   flutter_test:
@@ -102,7 +103,7 @@ import_sorter:
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#000000"
-  image: "assets/info-logo.png"
+  image: "assets/turning_agent_icon.png"
 
 flutter:
   generate: true
@@ -117,3 +118,23 @@ flutter:
 # 2. Always link an (upstream?) issue
 # 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/turning_agent_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  adaptive_icon_background: "#311B92"
+  adaptive_icon_foreground: "assets/turning_agent_icon.png"
+  web:
+    generate: true
+    image_path: "assets/turning_agent_icon.png"
+    background_color: "#hex_color"
+    theme_color: "#hex_color"
+  windows:
+    generate: true
+    image_path: "assets/turning_agent_icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/turning_agent_icon.png"

@@ -113,35 +113,35 @@ class IntroPage extends StatelessWidget {
                         mainAxisSize: .min,
                         crossAxisAlignment: .stretch,
                         children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: theme.colorScheme.secondary,
-                              foregroundColor: theme.colorScheme.onSecondary,
-                            ),
-                            onPressed: () => context.go(
-                              '${GoRouterState.of(context).uri.path}/sign_up',
-                            ),
-                            child: Text(L10n.of(context).createNewAccount),
-                          ),
-                          SizedBox(height: 16),
+                          // ElevatedButton(
+                          //   style: ElevatedButton.styleFrom(
+                          //     backgroundColor: theme.colorScheme.secondary,
+                          //     foregroundColor: theme.colorScheme.onSecondary,
+                          //   ),
+                          //   onPressed: () => context.go(
+                          //     '${GoRouterState.of(context).uri.path}/sign_up',
+                          //   ),
+                          //   child: Text(L10n.of(context).createNewAccount),
+                          // ),
+                          // SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () => context.go(
                               '${GoRouterState.of(context).uri.path}/sign_in',
                             ),
                             child: Text(L10n.of(context).signIn),
                           ),
-                          TextButton(
-                            onPressed: () async {
-                              final client = await Matrix.of(
-                                context,
-                              ).getLoginClient();
-                              context.go(
-                                '${GoRouterState.of(context).uri.path}/login',
-                                extra: client,
-                              );
-                            },
-                            child: Text(L10n.of(context).loginWithMatrixId),
-                          ),
+                          // TextButton(
+                          //   onPressed: () async {
+                          //     final client = await Matrix.of(
+                          //       context,
+                          //     ).getLoginClient();
+                          //     context.go(
+                          //       '${GoRouterState.of(context).uri.path}/login',
+                          //       extra: client,
+                          //     );
+                          //   },
+                          //   child: Text(L10n.of(context).loginWithMatrixId),
+                          // ),
                         ],
                       ),
                     ),
