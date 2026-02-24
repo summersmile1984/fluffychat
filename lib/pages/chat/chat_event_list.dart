@@ -79,7 +79,10 @@ class ChatEventList extends StatelessWidget {
               }
               return Column(
                 mainAxisSize: .min,
-                children: [SeenByRow(controller), TypingIndicators(controller)],
+                children: [
+                  SeenByRow(event: events.first),
+                  TypingIndicators(controller),
+                ],
               );
             }
 
@@ -152,8 +155,7 @@ class ChatEventList extends StatelessWidget {
                 highlightMarker:
                     controller.scrollToEventIdMarker == event.eventId,
                 onSelect: controller.onSelectMessage,
-                scrollToEventId: (String eventId) =>
-                    controller.scrollToEventId(eventId),
+                scrollToEventId: controller.scrollToEventId,
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 selected: controller.selectedEvents.any(
                   (e) => e.eventId == event.eventId,
@@ -161,7 +163,7 @@ class ChatEventList extends StatelessWidget {
                 singleSelected:
                     controller.selectedEvents.singleOrNull?.eventId ==
                     event.eventId,
-                onEdit: () => controller.editSelectedEventAction(),
+                onEdit: controller.editSelectedEventAction,
                 timeline: timeline,
                 displayReadMarker:
                     i > 0 && controller.readMarkerEventId == event.eventId,

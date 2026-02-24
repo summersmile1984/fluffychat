@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:matrix/encryption/utils/key_verification.dart';
+import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -38,21 +38,15 @@ class DevicesSettingsController extends State<DevicesSettings> {
     super.initState();
   }
 
-  void _checkChatBackup() async {
+  Future<void> _checkChatBackup() async {
     final client = Matrix.of(context).client;
-    if (client.encryption?.keyManager.enabled == true) {
-      if (await client.encryption?.keyManager.isCached() == false ||
-          await client.encryption?.crossSigning.isCached() == false ||
-          client.isUnknownSession && !mounted) {
-        setState(() {
-          chatBackupEnabled = false;
-        });
-        return;
-      }
-    }
+    final state = await client.getCryptoIdentityState();
+    setState(() {
+      chatBackupEnabled = state.initialized && !state.connected;
+    });
   }
 
-  void removeDevicesAction(List<Device> devices) async {
+  Future<void> removeDevicesAction(List<Device> devices) async {
     final client = Matrix.of(context).client;
 
     final wellKnown = await client.getWellknown();
@@ -90,7 +84,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
     reload();
   }
 
-  void renameDeviceAction(Device device) async {
+  Future<void> renameDeviceAction(Device device) async {
     final displayName = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changeDeviceName,
@@ -110,7 +104,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
     }
   }
 
-  void verifyDeviceAction(Device device) async {
+  Future<void> verifyDeviceAction(Device device) async {
     final consent = await showOkCancelAlertDialog(
       context: context,
       title: L10n.of(context).verifyOtherDevice,
@@ -135,7 +129,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
     await KeyVerificationDialog(request: req).show(context);
   }
 
-  void blockDeviceAction(Device device) async {
+  Future<void> blockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!
@@ -147,7 +141,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
     setState(() {});
   }
 
-  void unblockDeviceAction(Device device) async {
+  Future<void> unblockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!

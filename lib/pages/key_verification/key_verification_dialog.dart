@@ -120,7 +120,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         final textEditingController = TextEditingController();
         String input;
         body = Container(
-          margin: const EdgeInsets.only(left: 8.0, right: 8.0),
+          margin: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             mainAxisSize: .min,
             children: <Widget>[
@@ -248,7 +248,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         } else {
           title = Text(L10n.of(context).compareNumbersMatch);
           final numbers = widget.request.sasNumbers;
-          final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
+          final numbstr = '${numbers.first}-${numbers[1]}-${numbers[2]}';
           compareWidget = TextSpan(
             text: numbstr,
             style: const TextStyle(fontSize: 40),

@@ -35,7 +35,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   final _supportsVideoPlayer =
       !PlatformInfos.isWindows && !PlatformInfos.isLinux;
 
-  void _downloadAction() async {
+  Future<void> _downloadAction() async {
     if (!_supportsVideoPlayer) {
       widget.event.saveFile(context);
       return;
@@ -43,7 +43,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
     try {
       final fileSize = widget.event.content
-          .tryGetMap<String, dynamic>('info')
+          .tryGetMap<String, Object?>('info')
           ?.tryGet<int>('size');
       final videoFile = await widget.event.downloadAndDecryptAttachment(
         onDownloadProgress: fileSize == null
@@ -82,10 +82,6 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
       await videoPlayerController.initialize();
 
-      final infoMap = widget.event.content.tryGetMap<String, Object?>('info');
-      final videoWidth = infoMap?.tryGet<int>('w') ?? 400;
-      final videoHeight = infoMap?.tryGet<int>('h') ?? 300;
-
       // Create a ChewieController on top.
       setState(() {
         _chewieController = ChewieController(
@@ -94,7 +90,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
           autoPlay: true,
           autoInitialize: true,
           looping: true,
-          aspectRatio: videoHeight == 0 ? null : videoWidth / videoHeight,
+          aspectRatio: _videoPlayerController?.value.aspectRatio,
         );
       });
     } on IOException catch (e) {

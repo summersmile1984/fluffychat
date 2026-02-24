@@ -15,7 +15,6 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
@@ -61,7 +60,7 @@ class _SpaceViewState extends State<SpaceView> {
     super.initState();
   }
 
-  void _loadHierarchy() async {
+  Future<void> _loadHierarchy() async {
     final matrix = Matrix.of(context);
     final room = matrix.client.getRoomById(widget.spaceId);
     if (room == null) return;
@@ -128,25 +127,26 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void _joinChildRoom(SpaceRoomsChunk$2 item) async {
+  Future<void> _joinChildRoom(SpaceRoomsChunk$2 item) async {
     final client = Matrix.of(context).client;
     final space = client.getRoomById(widget.spaceId);
-
-    final joined = await showAdaptiveDialog<bool>(
+    final via = space?.spaceChildren
+        .firstWhereOrNull((child) => child.roomId == item.roomId)
+        ?.via;
+    final roomResult = await showFutureLoadingDialog(
       context: context,
-      builder: (_) => PublicRoomDialog(
-        chunk: item,
-        via: space?.spaceChildren
-            .firstWhereOrNull((child) => child.roomId == item.roomId)
-            ?.via,
-      ),
+      future: () async {
+        final waitForRoom = client.waitForRoomInSync(item.roomId, join: true);
+        await client.joinRoom(item.roomId, via: via);
+        await waitForRoom;
+        return client.getRoomById(item.roomId)!;
+      },
     );
-    if (mounted && joined == true) {
-      setState(() {});
-    }
+    final room = roomResult.result;
+    if (room != null) widget.onChatTab(room);
   }
 
-  void _onSpaceAction(SpaceActions action) async {
+  Future<void> _onSpaceAction(SpaceActions action) async {
     final space = Matrix.of(context).client.getRoomById(widget.spaceId);
 
     switch (action) {
@@ -184,7 +184,7 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void _addChatOrSubspace(AddRoomType roomType) async {
+  Future<void> _addChatOrSubspace(AddRoomType roomType) async {
     final names = await showTextInputDialog(
       context: context,
       title: roomType == AddRoomType.subspace
@@ -261,7 +261,10 @@ class _SpaceViewState extends State<SpaceView> {
     _loadHierarchy();
   }
 
-  void _showSpaceChildEditMenu(BuildContext posContext, String roomId) async {
+  Future<void> _showSpaceChildEditMenu(
+    BuildContext posContext,
+    String roomId,
+  ) async {
     final overlay =
         Overlay.of(posContext).context.findRenderObject() as RenderBox;
 
@@ -403,8 +406,11 @@ class _SpaceViewState extends State<SpaceView> {
             size: avatarSize,
             mxContent: room?.avatar,
             name: displayname,
-            border: BorderSide(width: 1, color: theme.dividerColor),
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+            shapeBorder: RoundedSuperellipseBorder(
+              side: BorderSide(width: 1, color: theme.dividerColor),
+              borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
+            ),
+            borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
           ),
           title: Text(
             displayname,
@@ -594,12 +600,13 @@ class _SpaceViewState extends State<SpaceView> {
                                 visualDensity: const VisualDensity(
                                   vertical: -0.5,
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
+                                contentPadding: EdgeInsets.only(
+                                  left: 8,
+                                  right: joinedRoom == null ? 0 : 8,
                                 ),
                                 onTap: joinedRoom != null
                                     ? () => widget.onChatTab(joinedRoom!)
-                                    : () => _joinChildRoom(item),
+                                    : null,
                                 onLongPress: isAdmin
                                     ? () => _showSpaceChildEditMenu(
                                         context,
@@ -637,11 +644,18 @@ class _SpaceViewState extends State<SpaceView> {
                                         textColor:
                                             item.name?.darkColor ??
                                             theme.colorScheme.onSurface,
-                                        border: item.roomType == 'm.space'
-                                            ? BorderSide(
-                                                color: theme
-                                                    .colorScheme
-                                                    .surfaceContainerHighest,
+                                        shapeBorder: item.roomType == 'm.space'
+                                            ? RoundedSuperellipseBorder(
+                                                side: BorderSide(
+                                                  color: theme
+                                                      .colorScheme
+                                                      .surfaceContainerHighest,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      AppConfig.borderRadius /
+                                                          4,
+                                                    ),
                                               )
                                             : null,
                                         borderRadius: item.roomType == 'm.space'
@@ -665,7 +679,10 @@ class _SpaceViewState extends State<SpaceView> {
                                     if (joinedRoom != null)
                                       UnreadBubble(room: joinedRoom)
                                     else
-                                      const Icon(Icons.chevron_right_outlined),
+                                      TextButton(
+                                        onPressed: () => _joinChildRoom(item),
+                                        child: Text(L10n.of(context).join),
+                                      ),
                                   ],
                                 ),
                               ),

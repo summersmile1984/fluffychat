@@ -18,6 +18,7 @@ abstract class AppConfig {
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
   static const double borderRadius = 18.0;
+  static const double spaceBorderRadius = 11.0;
   static const double columnWidth = 360.0;
 
   static const String website = 'https://fluffy.chat';
@@ -30,7 +31,7 @@ abstract class AppConfig {
   static const String howDoIGetStickersTutorial =
       'https://fluffy.chat/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appOpenUrlScheme = 'chat.fluffy';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
@@ -49,8 +50,8 @@ abstract class AppConfig {
 
   static final Uri homeserverList = Uri(
     scheme: 'https',
-    host: 'servers.joinmatrix.org',
-    path: 'servers.json',
+    host: 'raw.githubusercontent.com',
+    path: 'krille-chan/fluffychat/refs/heads/main/recommended_homeservers.json',
   );
 
   static final Uri privacyUrl = Uri(

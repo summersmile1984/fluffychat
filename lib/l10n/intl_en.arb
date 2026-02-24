@@ -3496,5 +3496,8 @@
   "signUpGreeting": "Turning Agent is decentralized! Select a server where you want to create your account and let's go!",
   "signInGreeting": "You already have an account in Matrix? Welcome back! Select your homeserver and sign in.",
   "appIntro": "欢迎体验图灵智能体平台",
-  "theProcessWasCanceled": "The process was canceled."
+  "theProcessWasCanceled": "The process was canceled.",
+  "join": "Join",
+  "searchOrEnterHomeserverAddress": "Search or enter homeserver address",
+  "matrixId": "Matrix ID"
 }

@@ -15,21 +15,21 @@ class ErrorReporter {
   const ErrorReporter(this.context, [this.message]);
 
   static const Set<String> ingoredTypes = {
-    "IOException",
-    "ClientException",
-    "SocketException",
-    "TlsException",
-    "HandshakeException",
+    'IOException',
+    'ClientException',
+    'SocketException',
+    'TlsException',
+    'HandshakeException',
   };
 
-  void onErrorCallback(Object error, [StackTrace? stackTrace]) {
+  Future<void> onErrorCallback(Object error, [StackTrace? stackTrace]) async {
     if (ingoredTypes.contains(error.runtimeType.toString())) return;
     Logs().e(message ?? 'Error caught', error, stackTrace);
     final text = '$error\n${stackTrace ?? ''}';
     return _onErrorCallback(text);
   }
 
-  void _onErrorCallback(String text) async {
+  Future<void> _onErrorCallback(String text) async {
     await showAdaptiveDialog(
       context: context!,
       builder: (context) => AlertDialog.adaptive(

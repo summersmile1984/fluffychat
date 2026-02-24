@@ -24,10 +24,10 @@ class QrCodeViewer extends StatelessWidget {
 
   const QrCodeViewer({required this.content, super.key});
 
-  void _save(BuildContext context) async {
+  Future<void> _save(BuildContext context) async {
     final imageResult = await showFutureLoadingDialog(
       context: context,
-      future: () async {
+      future: () {
         final inviteLink = 'https://matrix.to/#/$content';
         final image = QRImage(inviteLink, size: 256, radius: 1).generate();
         return compute(encodePng, image);

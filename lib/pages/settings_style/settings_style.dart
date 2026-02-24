@@ -19,14 +19,14 @@ class SettingsStyle extends StatefulWidget {
 }
 
 class SettingsStyleController extends State<SettingsStyle> {
-  void setChatColor(Color? color) async {
+  void setChatColor(Color? color) {
     AppSettings.colorSchemeSeedInt.setItem(
       color?.toARGB32() ?? AppSettings.colorSchemeSeedInt.defaultValue,
     );
     ThemeController.of(context).setPrimaryColor(color);
   }
 
-  void setWallpaper() async {
+  Future<void> setWallpaper() async {
     final client = Matrix.of(context).client;
     final picked = await selectFiles(context, type: FileType.image);
     final pickedFile = picked.firstOrNull;
@@ -53,7 +53,7 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   double? _wallpaperOpacity;
 
-  void saveWallpaperOpacity(double opacity) async {
+  Future<void> saveWallpaperOpacity(double opacity) async {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -80,7 +80,7 @@ class SettingsStyleController extends State<SettingsStyle> {
       0.5;
   double? _wallpaperBlur;
 
-  void saveWallpaperBlur(double blur) async {
+  Future<void> saveWallpaperBlur(double blur) async {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -153,7 +153,7 @@ class SettingsStyleController extends State<SettingsStyle> {
     setState(() {});
   }
 
-  void changeFontSizeFactor(double d) async {
+  Future<void> changeFontSizeFactor(double d) async {
     await AppSettings.fontSizeFactor.setItem(d);
     setState(() {});
   }

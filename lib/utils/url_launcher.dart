@@ -27,7 +27,7 @@ class UrlLauncher {
 
   const UrlLauncher(this.context, this.url, [this.name]);
 
-  void launchUrl() async {
+  Future<void> launchUrl() async {
     if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
         url!.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url![0]) ||
@@ -66,7 +66,7 @@ class UrlLauncher {
             .split(';')
             .first
             .split(',')
-            .map((s) => double.tryParse(s))
+            .map(double.tryParse)
             .toList();
         if (latlong.length == 2 &&
             latlong.first != null &&
@@ -117,7 +117,7 @@ class UrlLauncher {
     );
   }
 
-  void openMatrixToUrl() async {
+  Future<void> openMatrixToUrl() async {
     final matrix = Matrix.of(context);
     final url = this.url!.replaceFirst(
       AppConfig.deepLinkPrefix,
@@ -154,12 +154,12 @@ class UrlLauncher {
           context: context,
           future: () => matrix.client.getRoomIdByAlias(roomIdOrAlias),
         );
-        if (response.error != null) {
-          return; // nothing to do, the alias doesn't exist
+        final result = response.result;
+        if (result != null) {
+          roomId = result.roomId;
+          servers.addAll(result.servers!);
+          room = matrix.client.getRoomById(roomId!);
         }
-        roomId = response.result!.roomId;
-        servers.addAll(response.result!.servers!);
-        room = matrix.client.getRoomById(roomId!);
       }
       servers.addAll(identityParts.via);
       if (room != null) {

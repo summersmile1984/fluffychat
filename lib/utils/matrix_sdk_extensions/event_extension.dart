@@ -26,13 +26,13 @@ extension LocalizedBody on Event {
         },
       );
 
-  void saveFile(BuildContext context) async {
+  Future<void> saveFile(BuildContext context) async {
     final matrixFile = await _getFile(context);
 
     matrixFile.result?.save(context);
   }
 
-  void shareFile(BuildContext context) async {
+  Future<void> shareFile(BuildContext context) async {
     final matrixFile = await _getFile(context);
     inspect(matrixFile);
 
@@ -59,7 +59,7 @@ extension LocalizedBody on Event {
           (content['url'] is String));
 
   String? get sizeString => content
-      .tryGetMap<String, dynamic>('info')
+      .tryGetMap<String, Object?>('info')
       ?.tryGet<int>('size')
       ?.sizeString;
 }

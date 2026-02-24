@@ -13,6 +13,7 @@ Future<void> ssoLoginFlow(
   BuildContext context,
   bool signUp,
 ) async {
+  Logs().i('Starting legacy SSO Flow...');
   final redirectUrl = kIsWeb
       ? Uri.parse(
           html.window.location.href,
@@ -32,7 +33,7 @@ Future<void> ssoLoginFlow(
   final urlScheme =
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
       ? Uri.parse(redirectUrl).scheme
-      : "http://localhost:3001";
+      : 'http://localhost:3001';
   final result = await FlutterWebAuth2.authenticate(
     url: url.toString(),
     callbackUrlScheme: urlScheme,
