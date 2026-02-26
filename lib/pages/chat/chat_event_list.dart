@@ -17,11 +17,13 @@ import 'package:fluffychat/utils/platform_infos.dart';
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
   final bool ignoreThread;
+  final AutoScrollController? scrollControllerOverride;
 
   const ChatEventList({
     super.key,
     required this.controller,
     this.ignoreThread = false,
+    this.scrollControllerOverride,
   });
 
   @override
@@ -183,7 +185,8 @@ class ChatEventList extends StatelessWidget {
                 nextEvent: nextEvent,
                 previousEvent: previousEvent,
                 wallpaperMode: hasWallpaper,
-                scrollController: controller.scrollController,
+                scrollController:
+                    scrollControllerOverride ?? controller.scrollController,
                 colors: colors,
                 isCollapsed: isCollapsed,
                 enterThread: (ignoreThread ||

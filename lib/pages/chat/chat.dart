@@ -110,6 +110,7 @@ class ChatController extends State<ChatPageWithRoom>
   String get roomId => widget.room.id;
 
   final AutoScrollController scrollController = AutoScrollController();
+  final AutoScrollController threadScrollController = AutoScrollController();
 
   late final FocusNode inputFocus;
 
@@ -248,13 +249,21 @@ class ChatController extends State<ChatPageWithRoom>
     if (!mounted) {
       return;
     }
-    if (!scrollController.hasClients) return;
-    if (timeline?.allowNewEvent == false ||
-        scrollController.position.pixels > 0 && _scrolledUp == false) {
-      setState(() => _scrolledUp = true);
-    } else if (scrollController.position.pixels <= 0 && _scrolledUp == true) {
-      setState(() => _scrolledUp = false);
-      setReadMarker();
+    var isScrolledUp = false;
+    if (scrollController.hasClients && scrollController.position.pixels > 0) {
+      isScrolledUp = true;
+    }
+    if (threadScrollController.hasClients && threadScrollController.position.pixels > 0) {
+      isScrolledUp = true;
+    }
+
+    if (timeline?.allowNewEvent == false || isScrolledUp) {
+      if (!_scrolledUp) setState(() => _scrolledUp = true);
+    } else {
+      if (_scrolledUp) {
+        setState(() => _scrolledUp = false);
+        setReadMarker();
+      }
     }
   }
 
@@ -351,7 +360,9 @@ class ChatController extends State<ChatPageWithRoom>
   void initState() {
     inputFocus = FocusNode(onKeyEvent: _customEnterKeyHandling);
 
+    threadInputFocus = FocusNode();
     scrollController.addListener(_updateScrollController);
+    threadScrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
 
     _loadDraft();
@@ -551,10 +562,23 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
+    scrollController.dispose();
+    threadScrollController.dispose();
+    threadSendController.dispose();
+    threadInputFocus.dispose();
     super.dispose();
   }
 
   TextEditingController sendController = TextEditingController();
+
+  // ---- Thread-specific input state (independent from main chat) ----
+  TextEditingController threadSendController = TextEditingController();
+  late final FocusNode threadInputFocus;
+  Event? threadReplyEvent;
+  Event? threadEditEvent;
+  bool threadShowEmojiPicker = false;
+  String threadPendingText = '';
+  bool _threadInputTextIsEmpty = true;
 
   void setSendingClient(Client c) {
     // first cancel typing with the old sending client
@@ -624,6 +648,122 @@ class ChatController extends State<ChatPageWithRoom>
       editEvent = null;
       pendingText = '';
     });
+  }
+
+  // ---- Thread-specific send/input methods ----
+
+  Future<void> threadSend() async {
+    if (threadSendController.text.trim().isEmpty) return;
+    if (activeThreadId == null) return;
+
+    var parseCommands = true;
+    final commandMatch =
+        RegExp(r'^\/(\w+)').firstMatch(threadSendController.text);
+    if (commandMatch != null &&
+        !sendingClient.commands.keys
+            .contains(commandMatch[1]!.toLowerCase())) {
+      final l10n = L10n.of(context);
+      final dialogResult = await showOkCancelAlertDialog(
+        context: context,
+        title: l10n.commandInvalid,
+        message: l10n.commandMissing(commandMatch[0]!),
+        okLabel: l10n.sendAsText,
+        cancelLabel: l10n.cancel,
+      );
+      if (dialogResult == OkCancelResult.cancel) return;
+      parseCommands = false;
+    }
+
+    // ignore: unawaited_futures
+    room.sendTextEvent(
+      threadSendController.text,
+      inReplyTo: threadReplyEvent,
+      editEventId: threadEditEvent?.eventId,
+      parseCommands: parseCommands,
+      threadRootEventId: activeThreadId,
+    );
+    threadSendController.value = TextEditingValue(
+      text: threadPendingText,
+      selection: const TextSelection.collapsed(offset: 0),
+    );
+
+    setState(() {
+      threadSendController.text = threadPendingText;
+      _threadInputTextIsEmpty = threadPendingText.isEmpty;
+      threadReplyEvent = null;
+      threadEditEvent = null;
+      threadPendingText = '';
+    });
+  }
+
+  void threadReplyAction({Event? replyTo}) {
+    setState(() {
+      threadReplyEvent = replyTo ?? selectedEvents.first;
+      selectedEvents.clear();
+    });
+    threadInputFocus.requestFocus();
+  }
+
+  void cancelThreadReplyEventAction() => setState(() {
+    if (threadEditEvent != null) {
+      threadSendController.text = threadPendingText;
+      threadPendingText = '';
+    }
+    threadReplyEvent = null;
+    threadEditEvent = null;
+  });
+
+  void threadEmojiPickerAction() {
+    if (threadShowEmojiPicker) {
+      threadInputFocus.requestFocus();
+    } else {
+      threadInputFocus.unfocus();
+    }
+    setState(() => threadShowEmojiPicker = !threadShowEmojiPicker);
+  }
+
+  void threadHideEmojiPicker() {
+    setState(() => threadShowEmojiPicker = false);
+  }
+
+  void onThreadEmojiSelected(_, Emoji? emoji) {
+    _threadTypeEmoji(emoji);
+    onThreadInputBarChanged(threadSendController.text);
+  }
+
+  void _threadTypeEmoji(Emoji? emoji) {
+    if (emoji == null) return;
+    final text = threadSendController.text;
+    final selection = threadSendController.selection;
+    final newText = threadSendController.text.isEmpty
+        ? emoji.emoji
+        : text.replaceRange(selection.start, selection.end, emoji.emoji);
+    threadSendController.value = TextEditingValue(
+      text: newText,
+      selection: TextSelection.collapsed(
+        offset: selection.baseOffset + emoji.emoji.length,
+      ),
+    );
+  }
+
+  void threadEmojiPickerBackspace() {
+    threadSendController
+      ..text = threadSendController.text.characters.skipLast(1).toString()
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: threadSendController.text.length),
+      );
+  }
+
+  void onThreadInputBarChanged(String text) {
+    if (_threadInputTextIsEmpty != text.isEmpty) {
+      setState(() {
+        _threadInputTextIsEmpty = text.isEmpty;
+      });
+    }
+  }
+
+  void onThreadInputBarSubmitted(String _) {
+    threadSend();
   }
 
   Future<void> sendFileAction({FileType type = FileType.any}) async {
