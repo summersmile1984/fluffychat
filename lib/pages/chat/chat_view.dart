@@ -44,23 +44,30 @@ class ChatView extends StatelessWidget {
         exceptionContext: ExceptionContext.joinRoom,
       );
     }
-    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    final bottomSheetPadding = isColumnMode ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
     final accountConfig = Matrix.of(context).client.applicationAccountConfig;
+
+    // In desktop column mode, the thread is shown in a side panel,
+    // so the main ChatView should NOT switch to thread mode.
+    final isDesktopThreadMode =
+        isColumnMode && controller.activeThreadId != null;
 
     return PopScope(
       canPop:
           controller.selectedEvents.isEmpty &&
           !controller.showEmojiPicker &&
-          controller.activeThreadId == null,
+          (isDesktopThreadMode || controller.activeThreadId == null),
       onPopInvokedWithResult: (pop, _) async {
         if (pop) return;
         if (controller.selectedEvents.isNotEmpty) {
           controller.clearSelectedEvents();
         } else if (controller.showEmojiPicker) {
           controller.emojiPickerAction();
-        } else if (controller.activeThreadId != null) {
+        } else if (!isDesktopThreadMode &&
+            controller.activeThreadId != null) {
           controller.closeThread();
         }
       },
@@ -73,14 +80,17 @@ class ChatView extends StatelessWidget {
           builder: (BuildContext context, snapshot) {
             var appbarBottomHeight = 0.0;
             final activeThreadId = controller.activeThreadId;
-            if (activeThreadId != null) {
+            // In desktop mode, thread UI is in side panel, not here
+            final showThreadInAppBar =
+                activeThreadId != null && !isDesktopThreadMode;
+            if (showThreadInAppBar) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             if (controller.room.pinnedEventIds.isNotEmpty &&
-                activeThreadId == null) {
+                !showThreadInAppBar) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            if (scrollUpBannerEventId != null && activeThreadId == null) {
+            if (scrollUpBannerEventId != null && !showThreadInAppBar) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             return Scaffold(
@@ -91,7 +101,7 @@ class ChatView extends StatelessWidget {
                       : theme.colorScheme.onTertiaryContainer,
                 ),
                 backgroundColor: controller.selectedEvents.isEmpty
-                    ? controller.activeThreadId != null
+                    ? showThreadInAppBar
                           ? theme.colorScheme.secondaryContainer
                           : null
                     : theme.colorScheme.tertiaryContainer,
@@ -103,14 +113,14 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context).close,
                         color: theme.colorScheme.onTertiaryContainer,
                       )
-                    : activeThreadId != null
+                    : showThreadInAppBar
                     ? IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: controller.closeThread,
                         tooltip: L10n.of(context).backToMainChat,
                         color: theme.colorScheme.onSecondaryContainer,
                       )
-                    : FluffyThemes.isColumnMode(context)
+                    : isColumnMode
                     ? null
                     : StreamBuilder<Object>(
                         stream: Matrix.of(context).client.onSync.stream.where(
@@ -122,7 +132,7 @@ class ChatView extends StatelessWidget {
                           child: const Center(child: BackButton()),
                         ),
                       ),
-                titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
+                titleSpacing: isColumnMode ? 24 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: [
                   if (controller.selectMode) ...[
@@ -242,7 +252,7 @@ class ChatView extends StatelessWidget {
                     mainAxisSize: .min,
                     children: [
                       PinnedEvents(controller),
-                      if (activeThreadId != null)
+                      if (showThreadInAppBar)
                         SizedBox(
                           height: ChatAppBarListTile.fixedHeight,
                           child: Center(
@@ -262,7 +272,7 @@ class ChatView extends StatelessWidget {
                           ),
                         ),
                       if (scrollUpBannerEventId != null &&
-                          activeThreadId == null)
+                          !showThreadInAppBar)
                         ChatAppBarListTile(
                           leading: IconButton(
                             color: theme.colorScheme.onSurfaceVariant,
@@ -332,7 +342,10 @@ class ChatView extends StatelessWidget {
                           Expanded(
                             child: GestureDetector(
                               onTap: controller.clearSingleSelectedEvent,
-                              child: ChatEventList(controller: controller),
+                              child: ChatEventList(
+                                controller: controller,
+                                ignoreThread: isDesktopThreadMode,
+                              ),
                             ),
                           ),
                           if (controller.showScrollDownButton)

@@ -39,6 +39,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
+import 'chat_thread_panel.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 
@@ -1378,33 +1379,48 @@ class ChatController extends State<ChatPageWithRoom>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    final showThreadPanel = isColumnMode && activeThreadId != null;
     return Row(
       children: [
         Expanded(child: ChatView(this)),
-        ValueListenableBuilder(
-          valueListenable: _displayChatDetailsColumn,
-          builder: (context, displayChatDetailsColumn, _) =>
-              !FluffyThemes.isThreeColumnMode(context) ||
-                  room.membership != Membership.join ||
-                  !displayChatDetailsColumn
-              ? const SizedBox(height: double.infinity, width: 0)
-              : Container(
-                  width: FluffyThemes.columnWidth,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      left: BorderSide(width: 1, color: theme.dividerColor),
+        // Thread side panel (takes priority over chat details)
+        if (showThreadPanel)
+          Container(
+            width: FluffyThemes.columnWidth,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(width: 1, color: theme.dividerColor),
+              ),
+            ),
+            child: ChatThreadPanel(controller: this),
+          )
+        else
+          ValueListenableBuilder(
+            valueListenable: _displayChatDetailsColumn,
+            builder: (context, displayChatDetailsColumn, _) =>
+                !FluffyThemes.isThreeColumnMode(context) ||
+                    room.membership != Membership.join ||
+                    !displayChatDetailsColumn
+                ? const SizedBox(height: double.infinity, width: 0)
+                : Container(
+                    width: FluffyThemes.columnWidth,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        left: BorderSide(width: 1, color: theme.dividerColor),
+                      ),
+                    ),
+                    child: ChatDetails(
+                      roomId: roomId,
+                      embeddedCloseButton: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: toggleDisplayChatDetailsColumn,
+                      ),
                     ),
                   ),
-                  child: ChatDetails(
-                    roomId: roomId,
-                    embeddedCloseButton: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: toggleDisplayChatDetailsColumn,
-                    ),
-                  ),
-                ),
-        ),
+          ),
       ],
     );
   }

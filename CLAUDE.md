@@ -50,7 +50,7 @@
 
 ```bash
 # 远端配置
-# origin  → 你自己的 Fork 仓库
+# origin  → https://github.com/summersmile1984/fluffychat
 # upstream → https://github.com/krille-chan/fluffychat.git (官方)
 
 # 同步官方更新
@@ -72,3 +72,12 @@ flutter run -d macos          # 运行 macOS 桌面版
 flutter run -d chrome          # 运行 Web 版
 flutter build apk --debug     # 构建 Android Debug APK
 ```
+
+## 规划文档（plan/ 目录）
+
+| 文档 | 内容 |
+|------|------|
+| `plan/white_label_analysis.md` | 白牌改造深度分析（7 层），含所有 FluffyChat 品牌残留的定位和优先级清单 |
+| `plan/a2ui_integration_plan.md` | A2UI 自定义消息格式接入方案（两种实现路径） |
+| `plan/architecture_overview.md` | 项目整体架构分析（四层结构、核心依赖） |
+| `plan/fork_workflow_guide.md` | Fork 与上游合并工作流指南 |

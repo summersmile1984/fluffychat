@@ -16,8 +16,13 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
+  final bool ignoreThread;
 
-  const ChatEventList({super.key, required this.controller});
+  const ChatEventList({
+    super.key,
+    required this.controller,
+    this.ignoreThread = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +37,13 @@ class ChatEventList extends StatelessWidget {
 
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
+    // When ignoreThread is true (main view on desktop with thread panel),
+    // show all messages (no thread filtering)
+    final effectiveThreadId =
+        ignoreThread ? null : controller.activeThreadId;
+
     final events = timeline.events.filterByVisibleInGui(
-      threadId: controller.activeThreadId,
+      threadId: effectiveThreadId,
     );
     final animateInEventIndex = controller.animateInEventIndex;
 
@@ -88,16 +98,19 @@ class ChatEventList extends StatelessWidget {
 
             // Request history button or progress indicator:
             if (i == events.length + 1) {
-              if (controller.activeThreadId != null ||
-                  !timeline.canRequestHistory) {
+              if (!timeline.canRequestHistory) {
                 return const SizedBox.shrink();
               }
               return Builder(
                 builder: (context) {
-                  final visibleIndex = timeline.events.lastIndexWhere(
-                    (event) => !event.isCollapsedState && event.isVisibleInGui,
+                  // Use thread-filtered events so threshold is correct in thread mode
+                  final visibleEvents = timeline.events.filterByVisibleInGui(
+                    threadId: controller.activeThreadId,
                   );
-                  if (visibleIndex > timeline.events.length - 50) {
+                  final visibleIndex = visibleEvents.lastIndexWhere(
+                    (event) => !event.isCollapsedState,
+                  );
+                  if (visibleIndex > visibleEvents.length - 50) {
                     WidgetsBinding.instance.addPostFrameCallback(
                       controller.requestHistory,
                     );
@@ -173,7 +186,8 @@ class ChatEventList extends StatelessWidget {
                 scrollController: controller.scrollController,
                 colors: colors,
                 isCollapsed: isCollapsed,
-                enterThread: controller.activeThreadId == null
+                enterThread: (ignoreThread ||
+                        controller.activeThreadId == null)
                     ? controller.enterThread
                     : null,
                 onExpand: canExpand
