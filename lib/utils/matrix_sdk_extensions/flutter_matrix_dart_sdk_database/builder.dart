@@ -63,6 +63,13 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   Directory? fileStorageLocation;
   try {
     fileStorageLocation = await getTemporaryDirectory();
+    // Ensure the cache subdirectory for this client exists.
+    // The Matrix SDK appends clientName as a subdirectory inside this path,
+    // but doesn't create it, causing PathNotFoundException on storeFile.
+    final cacheSubDir = Directory(join(fileStorageLocation.path, clientName));
+    if (!await cacheSubDir.exists()) {
+      await cacheSubDir.create(recursive: true);
+    }
   } on MissingPlatformDirectoryException catch (_) {
     Logs().w(
       'No temporary directory for file cache available on this platform.',

@@ -26,8 +26,14 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
+import 'url_preview.dart';
 
 class MessageContent extends StatelessWidget {
+  static final _urlRegex = RegExp(
+    r'https?://[^\s<>\])"]+',
+    caseSensitive: false,
+  );
+
   final Event event;
   final Color textColor;
   final Color linkColor;
@@ -261,31 +267,46 @@ class MessageContent extends StatelessWidget {
                 event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 3;
+            final urlMatch = _urlRegex.firstMatch(event.body);
+            final previewUrl = urlMatch?.group(0);
+            final showPreview = previewUrl != null;
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: HtmlMessage(
-                html: html,
-                textColor: textColor,
-                room: event.room,
-                fontSize:
-                    AppSettings.fontSizeFactor.value *
-                    AppConfig.messageFontSize *
-                    (bigEmotes ? 5 : 1),
-                limitHeight: !selected,
-                linkStyle: TextStyle(
-                  color: linkColor,
-                  fontSize:
-                      AppSettings.fontSizeFactor.value *
-                      AppConfig.messageFontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor: linkColor,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                eventId: event.eventId,
-                checkboxCheckedEvents: event.aggregatedEvents(
-                  timeline,
-                  EventCheckboxRoomExtension.relationshipType,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HtmlMessage(
+                    html: html,
+                    textColor: textColor,
+                    room: event.room,
+                    fontSize:
+                        AppSettings.fontSizeFactor.value *
+                        AppConfig.messageFontSize *
+                        (bigEmotes ? 5 : 1),
+                    limitHeight: !selected,
+                    linkStyle: TextStyle(
+                      color: linkColor,
+                      fontSize:
+                          AppSettings.fontSizeFactor.value *
+                          AppConfig.messageFontSize,
+                      decoration: TextDecoration.underline,
+                      decorationColor: linkColor,
+                    ),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                    eventId: event.eventId,
+                    checkboxCheckedEvents: event.aggregatedEvents(
+                      timeline,
+                      EventCheckboxRoomExtension.relationshipType,
+                    ),
+                  ),
+                  if (showPreview)
+                    UrlPreviewWidget(
+                      url: previewUrl,
+                      client: event.room.client,
+                    ),
+                ],
               ),
             );
         }

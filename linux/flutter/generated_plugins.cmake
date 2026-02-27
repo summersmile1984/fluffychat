@@ -15,6 +15,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   record_linux
   screen_retriever_linux
   sqlcipher_flutter_libs
+  syncfusion_pdfviewer_linux
   url_launcher_linux
   webcrypto
   window_manager

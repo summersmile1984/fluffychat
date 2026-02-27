@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -105,6 +104,11 @@ class _MxcImageState extends State<MxcImage> {
           _imageData = data.bytes;
         });
         return;
+      } else {
+        Logs().w(
+          'MxcImage: downloaded file type ${data.detectFileType.runtimeType} '
+          'is not MatrixImageFile and isThumbnail=${widget.isThumbnail}',
+        );
       }
     }
   }
@@ -115,7 +119,8 @@ class _MxcImageState extends State<MxcImage> {
     }
     try {
       await _load();
-    } on IOException catch (_) {
+    } catch (e, s) {
+      Logs().w('MxcImage: failed to load image', e, s);
       if (!mounted) return;
       await Future.delayed(widget.retryDuration);
       _tryLoad();
