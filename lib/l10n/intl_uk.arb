@@ -518,7 +518,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -635,7 +635,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} запрошує вас у FluffyChat. \n1. Перейдіть на fluffychat.im й установіть застосунок \n2. Зареєструйтесь або ввійдіть \n3. Відкрийте запрошувальне посилання:\n {link}",
+    "inviteText": "{username} запрошує вас у Turning Agent. \n1. Перейдіть на aotsea.com й установіть застосунок \n2. Зареєструйтесь або ввійдіть \n3. Відкрийте запрошувальне посилання:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -772,8 +772,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Нове повідомлення у FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Нове повідомлення у Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1086,7 +1086,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2273,7 +2273,7 @@
     "hydrate": "Відновлення з файлу резервної копії",
     "hydrateTorLong": "Минулого разу ви експортували свій сеанс із TOR? Швидко імпортуйте його та продовжуйте спілкування.",
     "indexedDbErrorTitle": "Проблеми приватного режиму",
-    "indexedDbErrorLong": "На жаль, сховище повідомлень не ввімкнуто у приватному режимі типово.\nВідкрийте\n - about:config\n - установіть для dom.indexedDB.privateBrowsing.enabled значення true\nІнакше запустити FluffyChat буде неможливо.",
+    "indexedDbErrorLong": "На жаль, сховище повідомлень не ввімкнуто у приватному режимі типово.\nВідкрийте\n - about:config\n - установіть для dom.indexedDB.privateBrowsing.enabled значення true\nІнакше запустити Turning Agent буде неможливо.",
     "dehydrate": "Експортувати сеанс та очистити пристрій",
     "dehydrateWarning": "Цю дію не можна скасувати. Переконайтеся, що ви безпечно зберігаєте файл резервної копії.",
     "dehydrateTor": "Користувачі TOR: експорт сеансу",
@@ -2299,14 +2299,14 @@
     "screenSharingTitle": "спільний доступ до екрана",
     "callingPermissions": "Дозволи на виклик",
     "callingAccount": "Обліковий запис для виклику",
-    "callingAccountDetails": "Дозволяє FluffyChat використовувати основний застосунок Android для набору номера.",
+    "callingAccountDetails": "Дозволяє Turning Agent використовувати основний застосунок Android для набору номера.",
     "appearOnTop": "З'являтися зверху",
-    "appearOnTopDetails": "Дозволяє застосунку показуватися зверху (не потрібно, якщо Fluffychat вже налаштований обліковим записом для викликів)",
+    "appearOnTopDetails": "Дозволяє застосунку показуватися зверху (не потрібно, якщо Turning Agent вже налаштований обліковим записом для викликів)",
     "newGroup": "Нова група",
     "newSpace": "Новий простір",
     "enterSpace": "Увійти в простір",
     "enterRoom": "Увійти в кімнату",
-    "otherCallingPermissions": "Мікрофон, камера та інші дозволи FluffyChat",
+    "otherCallingPermissions": "Мікрофон, камера та інші дозволи Turning Agent",
     "allSpaces": "Усі простори",
     "screenSharingDetail": "Ви ділитеся своїм екраном FuffyChat",
     "numChats": "{number} бесід",
@@ -2822,7 +2822,7 @@
     "loginWithMatrixId": "Увійти за допомогою Matrix-ID",
     "discoverHomeservers": "Знайти домашні сервери",
     "whatIsAHomeserver": "Що таке домашній сервер?",
-    "homeserverDescription": "Усі ваші дані зберігаються на домашньому сервері, так само як у постачальника послуг електронної пошти. Ви можете вибрати, який домашній сервер ви хочете використовувати, водночас ви можете спілкуватися з усіма. Докладніше на https://matrix.org.",
+    "homeserverDescription": "Усі ваші дані зберігаються на домашньому сервері, так само як у постачальника послуг електронної пошти. Ви можете вибрати, який домашній сервер ви хочете використовувати, водночас ви можете спілкуватися з усіма. Докладніше на https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
     "calculatingFileSize": "Обчислення розміру файлу...",
     "prepareSendingAttachment": "Підготовка до надсилання вкладення...",
@@ -2854,7 +2854,7 @@
     "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
     "continueText": "Продовжити",
     "manageAccount": "Керувати обліковим записом",
-    "welcomeText": "Привіт-привіт 👋 Це FluffyChat. Ви можете увійти на будь-який сервер, сумісний із https://matrix.org. А потім спілкуватися з будь-ким. Це величезна децентралізована мережа для обміну повідомленнями!",
+    "welcomeText": "Привіт-привіт 👋 Це Turning Agent. Ви можете увійти на будь-який сервер, сумісний із https://aotsea.com. А потім спілкуватися з будь-ким. Це величезна децентралізована мережа для обміну повідомленнями!",
     "blur": "Розмиття:",
     "opacity": "Прозорість:",
     "setWallpaper": "Встановити шпалери",
@@ -2919,7 +2919,7 @@
     "appWantsToUseForLoginDescription": "Цим ви дозволяєте застосунку та вебсайту ділитися інформацією про вас.",
     "open": "Відкрити",
     "waitingForServer": "Очікування сервера...",
-    "appIntroduction": "FluffyChat дає змогу спілкуватися з друзями у різних месенджерах. Дізнайтеся більше на https://matrix.org або просто натисніть *Продовжити*.",
+    "appIntroduction": "Turning Agent дає змогу спілкуватися з друзями у різних месенджерах. Дізнайтеся більше на https://aotsea.com або просто натисніть *Продовжити*.",
     "shareKeysWithDescription": "Яким пристроям довіряти, щоб вони могли читати ваші повідомлення в зашифрованих бесідах?",
     "verifiedDevicesOnly": "Лише верифіковані пристрої",
     "contentNotificationSettings": "Налаштування сповіщень про вміст",
@@ -3141,8 +3141,8 @@
     "baseUrl": "Основний URL",
     "signIn": "Увійти",
     "createNewAccount": "Створити новий обліковий запис",
-    "signUpGreeting": "FluffyChat децентралізований! Виберіть сервер, на якому ви хочете створити свій обліковий запис, і почнімо!",
+    "signUpGreeting": "Turning Agent децентралізований! Виберіть сервер, на якому ви хочете створити свій обліковий запис, і почнімо!",
     "signInGreeting": "Ви вже маєте обліковий запис у Matrix? Ласкаво просимо! Виберіть свій домашній сервер і ввійдіть.",
-    "appIntro": "За допомогою FluffyChat ви можете спілкуватися зі своїми друзями. Це безпечний децентралізований месенджер [matrix]! Дізнайтеся більше на сайті https://matrix.org або просто зареєструйтеся.",
+    "appIntro": "За допомогою Turning Agent ви можете спілкуватися зі своїми друзями. Це безпечний децентралізований месенджер [Turning Agent]! Дізнайтеся більше на сайті https://aotsea.com або просто зареєструйтеся.",
     "theProcessWasCanceled": "Процес скасовано."
 }

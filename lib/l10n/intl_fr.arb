@@ -830,7 +830,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -1002,7 +1002,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} vous a invité·e sur FluffyChat.\n1. Visiter fluffychat.im et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
+    "inviteText": "{username} vous a invité·e sur Turning Agent.\n1. Visiter aotsea.com et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1174,8 +1174,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nouveau message dans FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Nouveau message dans Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1796,7 +1796,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2326,7 +2326,7 @@
     "@recoveryKey": {},
     "recoveryKeyLost": "Clé de récupération perdue ?",
     "@recoveryKeyLost": {},
-    "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter FluffyChat.",
+    "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter Turning Agent.",
     "@indexedDbErrorLong": {},
     "saveKeyManuallyDescription": "Enregistrer cette clé manuellement en déclenchant la boîte de dialogue de partage du système ou le presse-papiers.",
     "@saveKeyManuallyDescription": {},
@@ -2391,13 +2391,13 @@
     "@callingPermissions": {},
     "callingAccount": "Compte d'appel",
     "@callingAccount": {},
-    "callingAccountDetails": "Permet à FluffyChat d'utiliser l'application de numérotation native d'Android.",
+    "callingAccountDetails": "Permet à Turning Agent d'utiliser l'application de numérotation native d'Android.",
     "@callingAccountDetails": {},
     "appearOnTop": "Apparaître en haut",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Fluffychat comme compte d'appel)",
+    "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Turning Agent comme compte d'appel)",
     "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Microphone, caméra et autres autorisations de FluffyChat",
+    "otherCallingPermissions": "Microphone, caméra et autres autorisations de Turning Agent",
     "@otherCallingPermissions": {},
     "newGroup": "Nouveau groupe",
     "@newGroup": {},
@@ -3117,7 +3117,7 @@
             }
         }
     },
-    "homeserverDescription": "Toutes vos données sont stockées sur le serveur de votre fournisseur matrix, comme chez un fournisseur d'e-mails. Vous pouvez choisir le serveur que vous souhaitez utiliser, tout en pouvant communiquer avec tout le monde. Pour en savoir plus, rendez-vous sur https://matrix.org.",
+    "homeserverDescription": "Toutes vos données sont stockées sur le serveur de votre fournisseur matrix, comme chez un fournisseur d'e-mails. Vous pouvez choisir le serveur que vous souhaitez utiliser, tout en pouvant communiquer avec tout le monde. Pour en savoir plus, rendez-vous sur https://aotsea.com.",
     "@homeserverDescription": {},
     "calculatingFileSize": "Calcul en cours...",
     "@calculatingFileSize": {},

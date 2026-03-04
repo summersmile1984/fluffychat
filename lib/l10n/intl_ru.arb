@@ -825,7 +825,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Посетите https://fluffychat.im и установите приложение \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: \n {link}",
+    "inviteText": "{username} пригласил(а) вас в Turning Agent. \n1. Посетите https://aotsea.com и установите приложение \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1160,8 +1160,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Новое сообщение во FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Новое сообщение во Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1195,7 +1195,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать ntfy. С ntfy или другим провайдером единых уведомлений вы можете получать push-уведомления безопасным способом передачи данных. Скачать ntfy можно из F-Droid или из Play Маркета.",
+    "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во Turning Agent мы рекомендуем использовать ntfy. С ntfy или другим провайдером единых уведомлений вы можете получать push-уведомления безопасным способом передачи данных. Скачать ntfy можно из F-Droid или из Play Маркета.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1782,7 +1782,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2256,7 +2256,7 @@
         }
     },
     "dehydrateTor": "Пользователи TOR: Экспорт сеанса",
-    "indexedDbErrorLong": "К сожалению, по умолчанию хранилище сообщений не включено в приватном режиме.\nПожалуйста, посетите\n- about:config\n- установите для dom.indexedDB.privateBrowsing.enabled значение true\nВ противном случае запуск FluffyChat будет невозможен.",
+    "indexedDbErrorLong": "К сожалению, по умолчанию хранилище сообщений не включено в приватном режиме.\nПожалуйста, посетите\n- about:config\n- установите для dom.indexedDB.privateBrowsing.enabled значение true\nВ противном случае запуск Turning Agent будет невозможен.",
     "custom": "Пользовательское",
     "hydrate": "Восстановить из файла резервной копии",
     "hydrateTor": "Пользователи TOR: Импорт экспорта сессии",
@@ -2265,14 +2265,14 @@
     "dehydrate": "Экспорт сеанса и очистка устройства",
     "dehydrateWarning": "Это действие не может быть отменено. Убедитесь, что вы безопасно сохранили файл резервной копии.",
     "indexedDbErrorTitle": "Проблемы с приватным режимом",
-    "otherCallingPermissions": "Микрофон, камера и другие разрешения FluffyChat",
+    "otherCallingPermissions": "Микрофон, камера и другие разрешения Turning Agent",
     "enterSpace": "Войти в пространство",
     "screenSharingDetail": "Вы делитесь своим экраном в FuffyChat",
-    "callingAccountDetails": "Позволяет FluffyChat использовать родное android приложение для звонков.",
+    "callingAccountDetails": "Позволяет Turning Agent использовать родное android приложение для звонков.",
     "newSpace": "Новое пространство",
     "appearOnTop": "Появляться сверху",
     "commandHint_markasdm": "Пометить как комнату личных сообщений",
-    "appearOnTopDetails": "Позволяет приложению отображаться сверху (не требуется, если у вас уже настроен Fluffychat как аккаунт для звонков)",
+    "appearOnTopDetails": "Позволяет приложению отображаться сверху (не требуется, если у вас уже настроен Turning Agent как аккаунт для звонков)",
     "foregroundServiceRunning": "Это уведомление появляется, когда запущена основная служба.",
     "newGroup": "Новая группа",
     "enterRoom": "Войти в комнату",
@@ -2773,7 +2773,7 @@
     "changeTheCanonicalRoomAlias": "Изменить основной общедоступный адрес чата",
     "loginWithMatrixId": "Войти через Matrix ID",
     "whatIsAHomeserver": "Для чего нужен домашний сервер?",
-    "homeserverDescription": "Все ваши данные хранятся на домашнем сервере, прямо как у вашего провайдера электронной почты. Вы можете выбрать, какому серверу вы их доверите, при этом сохраняя возможность общаться со всеми. Узнайте больше на https://matrix.org.",
+    "homeserverDescription": "Все ваши данные хранятся на домашнем сервере, прямо как у вашего провайдера электронной почты. Вы можете выбрать, какому серверу вы их доверите, при этом сохраняя возможность общаться со всеми. Узнайте больше на https://aotsea.com.",
     "discoverHomeservers": "Список домашних серверов",
     "joinedChats": "Вступленные чаты",
     "serverInformation": "Информация о сервере:",
@@ -2789,7 +2789,7 @@
             }
         }
     },
-    "welcomeText": "Привет. Это FluffyChat. Вы можете подписаться на любой сервер, который совместим с https://matrix.org. А потом поболтать с кем нибудь. Это огромная децентрализованная сеть обмена сообщениями!",
+    "welcomeText": "Привет. Это Turning Agent. Вы можете подписаться на любой сервер, который совместим с https://aotsea.com. А потом поболтать с кем нибудь. Это огромная децентрализованная сеть обмена сообщениями!",
     "noContactInformationProvided": "Сервер не предоставляет никакой правдивой контактной информации",
     "aboutHomeserver": "О сервере {homeserver}",
     "@aboutHomeserver": {
@@ -2878,7 +2878,7 @@
     "otherPartyNotLoggedIn": "Другая сторона в настоящее время не вошла в систему и поэтому не может получать сообщения!",
     "open": "Открыть",
     "waitingForServer": "Ожидание сервера...",
-    "appIntroduction": "FluffyChat позволяет вам общаться с друзьями с разными мессенджерами. Узнайте больше на https://matrix.org или просто нажмите *Продолжить*.",
+    "appIntroduction": "Turning Agent позволяет вам общаться с друзьями с разными мессенджерами. Узнайте больше на https://aotsea.com или просто нажмите *Продолжить*.",
     "previous": "Предыдущий",
     "notificationRuleCallDescription": "Уведомляет пользователя про звонки.",
     "notificationRuleEncryptedRoomOneToOne": "Шифрованная комната «Один на один»",

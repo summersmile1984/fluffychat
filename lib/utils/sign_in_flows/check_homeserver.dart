@@ -24,7 +24,13 @@ Future<void> connectToHomeserverFlow(
     final homeserverInput = homeserverData.name!;
     var homeserver = Uri.parse(homeserverInput);
     if (homeserver.scheme.isEmpty) {
-      homeserver = Uri.https(homeserverInput, '');
+      // Use HTTP for localhost/127.0.0.1 (local dev), HTTPS for everything else
+      if (homeserverInput.startsWith('localhost') ||
+          homeserverInput.startsWith('127.0.0.1')) {
+        homeserver = Uri.http(homeserverInput, '');
+      } else {
+        homeserver = Uri.https(homeserverInput, '');
+      }
     }
     final l10n = L10n.of(context);
     final client = await Matrix.of(context).getLoginClient();

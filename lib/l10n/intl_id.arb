@@ -98,7 +98,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} mengundang kamu ke FluffyChat. \n1. Kunjungi fluffychat.im dan instal aplikasi\n2. Daftar atau masuk \n3. Buka tautan undangan: \n {link}",
+    "inviteText": "{username} mengundang kamu ke Turning Agent. \n1. Kunjungi aotsea.com dan instal aplikasi\n2. Daftar atau masuk \n3. Buka tautan undangan: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -247,7 +247,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -988,8 +988,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Pesan baru di FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Pesan baru di Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1396,7 +1396,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2271,7 +2271,7 @@
     },
     "hydrate": "Pulihkan dari file cadangan",
     "indexedDbErrorTitle": "Masalah dengan mode privat",
-    "indexedDbErrorLong": "Penyimpanan pesan sayangnya tidak diaktifkan dalam mode privat secara default.\nMohon kunjungi\n- about:config\n- tetapkan dom.indexedDB.privateBrowsing.enabled ke true\nJika tidak ditetapkan, FluffyChat tidak akan dapat dijalankan.",
+    "indexedDbErrorLong": "Penyimpanan pesan sayangnya tidak diaktifkan dalam mode privat secara default.\nMohon kunjungi\n- about:config\n- tetapkan dom.indexedDB.privateBrowsing.enabled ke true\nJika tidak ditetapkan, Turning Agent tidak akan dapat dijalankan.",
     "dehydrate": "Ekspor sesi dan bersihkan perangkat",
     "dehydrateWarning": "Tindakan ini tidak dapat diurungkan. Pastikan kamu telah menyimpan file cadangan dengan aman.",
     "dehydrateTor": "Pengguna Tor: Ekspor sesi",
@@ -2293,21 +2293,21 @@
     "commandHint_markasdm": "Tandai sebagai ruangan pesan langsung untuk ID Matrix yang ditentukan",
     "commandHint_markasgroup": "Tandai sebagai grup",
     "screenSharingTitle": "membagikan layar",
-    "appearOnTopDetails": "Memperbolehkan aplikasi untuk ditampilkan di atas (tidak dibutuhkan jika kamu memiliki FluffyChat ditetapkan sebagai akun pemanggilan)",
-    "callingAccountDetails": "Memperbolehkan FluffyChat untuk menggunakan aplikasi penelepon Android bawaan.",
+    "appearOnTopDetails": "Memperbolehkan aplikasi untuk ditampilkan di atas (tidak dibutuhkan jika kamu memiliki Turning Agent ditetapkan sebagai akun pemanggilan)",
+    "callingAccountDetails": "Memperbolehkan Turning Agent untuk menggunakan aplikasi penelepon Android bawaan.",
     "noKeyForThisMessage": "Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan.",
     "foregroundServiceRunning": "Notifikasi ini ditampilkan ketika layanan latar depan berjalan.",
     "callingPermissions": "Perizinan panggilan",
     "appearOnTop": "Tampilkan di atas",
     "callingAccount": "Akun pemanggilan",
-    "otherCallingPermissions": "Mikrofon, kamera dan perizinan FluffyChat lainnya",
+    "otherCallingPermissions": "Mikrofon, kamera dan perizinan Turning Agent lainnya",
     "whyIsThisMessageEncrypted": "Mengapa pesan ini tidak bisa dibaca?",
     "newGroup": "Grup baru",
     "newSpace": "Space baru",
     "enterSpace": "Masuk space",
     "enterRoom": "Masuk ruangan",
     "allSpaces": "Semua space",
-    "screenSharingDetail": "Kamu membagikan layarmu di FluffyChat",
+    "screenSharingDetail": "Kamu membagikan layarmu di Turning Agent",
     "numChats": "{number} obrolan",
     "@numChats": {
         "type": "number",
@@ -2848,10 +2848,10 @@
         }
     },
     "chatPermissionsDescription": "Tentukan tingkat kekuasaan yang diperlukan untuk tindakan tertentu dalam chat ini. Tingkat kekuasaan 0, 50 dan 100 biasanya mewakili pengguna, moderator dan admin, tetapi gradasi apa pun dimungkinkan.",
-    "homeserverDescription": "Semua data Anda disimpan di dalam server, seperti halnya penyedia email. Anda dapat memilih homeserver mana yang ingin Anda gunakan, sementara Anda masih dapat berkomunikasi dengan semua orang. Pelajari lebih lanjut di https://matrix.org.",
+    "homeserverDescription": "Semua data Anda disimpan di dalam server, seperti halnya penyedia email. Anda dapat memilih homeserver mana yang ingin Anda gunakan, sementara Anda masih dapat berkomunikasi dengan semua orang. Pelajari lebih lanjut di https://aotsea.com.",
     "oneOfYourDevicesIsNotVerified": "Salah satu perangkat Anda tidak terverifikasi",
     "noticeChatBackupDeviceVerification": "Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis.",
-    "welcomeText": "Halo 👋 Ini FluffyChat. Kamu bisa masuk ke homeserver mana pun, yang kompatibel dengan https://matrix.org. Lalu, chat dengan siapa pun. Ini merupakan jaringan perpesanan besar yang terdesentralisasi!",
+    "welcomeText": "Halo 👋 Ini Turning Agent. Kamu bisa masuk ke homeserver mana pun, yang kompatibel dengan https://aotsea.com. Lalu, chat dengan siapa pun. Ini merupakan jaringan perpesanan besar yang terdesentralisasi!",
     "continueText": "Lanjutkan",
     "aboutHomeserver": "Tentang {homeserver}",
     "@aboutHomeserver": {
@@ -2950,7 +2950,7 @@
     "allDevices": "Semua perangkat",
     "crossVerifiedDevices": "Perangkat terverifikasi silang",
     "waitingForServer": "Menunggu server...",
-    "appIntroduction": "FluffyChat memungkinkanmu untuk mengobrol dengan teman-temanmu di berbagai perpesanan. Pelajari lebih lanjut di https://matrix.org atau ketuk *Lanjutkan* saja.",
+    "appIntroduction": "Turning Agent memungkinkanmu untuk mengobrol dengan teman-temanmu di berbagai perpesanan. Pelajari lebih lanjut di https://aotsea.com atau ketuk *Lanjutkan* saja.",
     "notificationRuleContainsDisplayNameDescription": "Memberi tahu pengguna ketika pesan berisi nama tampilannya.",
     "shareKeysWith": "Bagikan kunci dengan...",
     "synchronizingPleaseWaitCounter": " Sinkronisasi… ({percentage}%)",
@@ -3139,8 +3139,8 @@
     "advancedConfigurations": "Konfigurasi lanjutan",
     "signIn": "Masuk",
     "createNewAccount": "Buat akun baru",
-    "signUpGreeting": "FluffyChat terdesentralisasi! Pilih server tempat Anda ingin membuat akun dan mari kita mulai!",
+    "signUpGreeting": "Turning Agent terdesentralisasi! Pilih server tempat Anda ingin membuat akun dan mari kita mulai!",
     "signInGreeting": "Anda sudah memiliki akun di Matrix? Selamat datang kembali! Pilih homeserver Anda dan masuk.",
-    "appIntro": "Dengan FluffyChat Anda dapat mengobrol dengan teman-teman Anda. Ini adalah messenger [matrix] terdesentralisasi yang aman! Pelajari lebih lanjut di https://matrix.org jika Anda suka atau cukup daftar.",
+    "appIntro": "Dengan Turning Agent Anda dapat mengobrol dengan teman-teman Anda. Ini adalah messenger [Turning Agent] terdesentralisasi yang aman! Pelajari lebih lanjut di https://aotsea.com jika Anda suka atau cukup daftar.",
     "theProcessWasCanceled": "Proses dibatalkan."
 }

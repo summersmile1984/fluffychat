@@ -691,7 +691,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -858,7 +858,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} 邀請您使用 FluffyChat\n1. 安裝 FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：\n{link}",
+    "inviteText": "{username} 邀請您使用 Turning Agent\n1. 安裝 Turning Agent：https://aotsea.com\n2. 登入或註冊\n3. 打開該邀請網址：\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1020,8 +1020,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 來自 FluffyChat 的新訊息",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 來自 Turning Agent 的新訊息",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1536,7 +1536,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2136,7 +2136,7 @@
     },
     "unlockOldMessages": "解鎖舊消息",
     "@unlockOldMessages": {},
-    "callingAccountDetails": "允許 FluffyChat 使用原生 Android 撥號應用程式。",
+    "callingAccountDetails": "允許 Turning Agent 使用原生 Android 撥號應用程式。",
     "@callingAccountDetails": {},
     "noOtherDevicesFound": "未找到其他裝置",
     "@noOtherDevicesFound": {},
@@ -2233,7 +2233,7 @@
     "@enterRoom": {},
     "allSpaces": "所有空間",
     "@allSpaces": {},
-    "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設定為 true\n否則，無法運行 FluffyChat。",
+    "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設定為 true\n否則，無法運行 Turning Agent。",
     "@indexedDbErrorLong": {},
     "youKickedAndBanned": "🙅 您踢出並封鎖了 {user}",
     "@youKickedAndBanned": {
@@ -2739,7 +2739,7 @@
             }
         }
     },
-    "otherCallingPermissions": "麥克風、相機和其他 FluffyChat 權限",
+    "otherCallingPermissions": "麥克風、相機和其他 Turning Agent 權限",
     "@otherCallingPermissions": {},
     "disableEncryptionWarning": "出於安全原因，您不能在之前已加密的聊天室中停用加密。",
     "@disableEncryptionWarning": {},
@@ -2932,7 +2932,7 @@
     "@knock": {},
     "storeInSecureStorageDescription": "將恢復密鑰存儲在此裝置的安全存儲中。",
     "@storeInSecureStorageDescription": {},
-    "appearOnTopDetails": "允許應用程式顯示在最上層（如果您已將 Fluffychat 設定為通話帳戶則不需要）",
+    "appearOnTopDetails": "允許應用程式顯示在最上層（如果您已將 Turning Agent 設定為通話帳戶則不需要）",
     "@appearOnTopDetails": {},
     "whyIsThisMessageEncrypted": "為什麼這條訊息無法讀取？",
     "@whyIsThisMessageEncrypted": {},
@@ -3085,7 +3085,7 @@
     "@changeTheChatPermissions": {},
     "changeTheVisibilityOfChatHistory": "變更過往聊天記錄可見度",
     "@changeTheVisibilityOfChatHistory": {},
-    "homeserverDescription": "您的所有資料都儲存在歸屬伺服器上，就像電子郵件提供商一樣。 您可以選擇要使用的歸屬伺服器，同時您仍然可以與每個人溝通。 請訪問https://matrix.org瞭解更多資訊。",
+    "homeserverDescription": "您的所有資料都儲存在歸屬伺服器上，就像電子郵件提供商一樣。 您可以選擇要使用的歸屬伺服器，同時您仍然可以與每個人溝通。 請訪問https://aotsea.com瞭解更多資訊。",
     "@homeserverDescription": {},
     "sendingAttachment": "附件傳送中…",
     "@sendingAttachment": {},
@@ -3137,7 +3137,7 @@
             }
         }
     },
-    "welcomeText": "嘿，嘿👋這是FluffyChat。 您可以登入任何與https://matrix.org相容的歸屬伺服器後和任何人聊天。 這是一個巨大的去中心化訊息網路！",
+    "welcomeText": "嘿，嘿👋這是Turning Agent。 您可以登入任何與https://aotsea.com相容的歸屬伺服器後和任何人聊天。 這是一個巨大的去中心化訊息網路！",
     "@welcomeText": {},
     "setWallpaper": "設定背景樣式",
     "@setWallpaper": {},
@@ -3235,7 +3235,7 @@
     "@open": {},
     "waitingForServer": "等待伺服器中...",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChat 讓你和你的朋友跨越工具聊天。在 https://matrix.org 了解更多或*繼續*。",
+    "appIntroduction": "Turning Agent 讓你和你的朋友跨越工具聊天。在 https://aotsea.com 了解更多或*繼續*。",
     "@appIntroduction": {},
     "previous": "上一個",
     "@previous": {},

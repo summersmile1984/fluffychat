@@ -830,7 +830,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -1002,7 +1002,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} sizi FluffyChat'e davet etti.\n1. fluffychat.im adresini ziyaret edin ve uygulamayı kurun \n2. Kaydolun veya oturum açın \n3. Davet bağlantısını açın: \n {link}",
+    "inviteText": "{username} sizi Turning Agent'e davet etti.\n1. aotsea.com adresini ziyaret edin ve uygulamayı kurun \n2. Kaydolun veya oturum açın \n3. Davet bağlantısını açın: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1174,8 +1174,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 FluffyChat'te yeni mesaj",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Turning Agent'te yeni mesaj",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1796,7 +1796,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2352,7 +2352,7 @@
     "@dehydrateWarning": {},
     "hydrateTorLong": "TOR'da en son oturumunuzu dışa aktardınız mı? Hızlıca içe aktarın ve sohbete devam edin.",
     "@hydrateTorLong": {},
-    "indexedDbErrorLong": "Mesaj saklama özelliği ne yazık ki öntanımlı olarak gizli modda etkin değildir.\nLütfen\n - about:config sayfasına gidin ve\n - dom.indexedDB.privateBrowsing.enabled seçeneğini true olarak ayarlayın\nAksi takdirde FluffyChat çalıştırılamaz.",
+    "indexedDbErrorLong": "Mesaj saklama özelliği ne yazık ki öntanımlı olarak gizli modda etkin değildir.\nLütfen\n - about:config sayfasına gidin ve\n - dom.indexedDB.privateBrowsing.enabled seçeneğini true olarak ayarlayın\nAksi takdirde Turning Agent çalıştırılamaz.",
     "@indexedDbErrorLong": {},
     "user": "Kullanıcı",
     "@user": {},
@@ -2381,7 +2381,7 @@
     "@screenSharingTitle": {},
     "callingPermissions": "Arama izinleri",
     "@callingPermissions": {},
-    "callingAccountDetails": "FluffyChat'in yerel android telefon uygulamasını kullanmasına izin verir.",
+    "callingAccountDetails": "Turning Agent'in yerel android telefon uygulamasını kullanmasına izin verir.",
     "@callingAccountDetails": {},
     "appearOnTop": "Üstte görün",
     "@appearOnTop": {},
@@ -2391,13 +2391,13 @@
     "@enterRoom": {},
     "allSpaces": "Tüm alanlar",
     "@allSpaces": {},
-    "otherCallingPermissions": "Mikrofon, kamera ve diğer FluffyChat izinleri",
+    "otherCallingPermissions": "Mikrofon, kamera ve diğer Turning Agent izinleri",
     "@otherCallingPermissions": {},
     "foregroundServiceRunning": "Bu bildirim, ön plan hizmeti çalışırken görünür.",
     "@foregroundServiceRunning": {},
     "callingAccount": "Arama hesabı",
     "@callingAccount": {},
-    "appearOnTopDetails": "Uygulamanın üstte görünmesine izin verir (Fluffychat'ı zaten bir arama hesabı olarak ayarladıysanız gerekli değildir)",
+    "appearOnTopDetails": "Uygulamanın üstte görünmesine izin verir (Turning Agent'ı zaten bir arama hesabı olarak ayarladıysanız gerekli değildir)",
     "@appearOnTopDetails": {},
     "newGroup": "Yeni grup",
     "@newGroup": {},
@@ -3077,7 +3077,7 @@
     "@discoverHomeservers": {},
     "whatIsAHomeserver": "Ana sunucu nedir?",
     "@whatIsAHomeserver": {},
-    "homeserverDescription": "Tüm verileriniz tıpkı bir e-posta sağlayıcısı gibi ana sunucuda saklanır. Hangi ana sunucuyu kullanmak istediğinizi seçebilir ve herkesle iletişim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin.",
+    "homeserverDescription": "Tüm verileriniz tıpkı bir e-posta sağlayıcısı gibi ana sunucuda saklanır. Hangi ana sunucuyu kullanmak istediğinizi seçebilir ve herkesle iletişim kurmaya devam edebilirsiniz. https://aotsea.com adresinden daha fazla bilgi edinin.",
     "@homeserverDescription": {},
     "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
     "@doesNotSeemToBeAValidHomeserver": {},
@@ -3176,7 +3176,7 @@
             }
         }
     },
-    "welcomeText": "Hey Hey 👋 Karşınızda FluffyChat. https://matrix.org ile uyumlu herhangi bir homeserver'a giriş yapabilirsiniz. Ve herkesle konuşabilirsiniz. Bu koca bir merkeziyetsiz mesajlaşma ağı!",
+    "welcomeText": "Hey Hey 👋 Karşınızda Turning Agent. https://aotsea.com ile uyumlu herhangi bir homeserver'a giriş yapabilirsiniz. Ve herkesle konuşabilirsiniz. Bu koca bir merkeziyetsiz mesajlaşma ağı!",
     "@welcomeText": {},
     "setCustomPermissionLevel": "Özel izin düzeyi ayarla",
     "@setCustomPermissionLevel": {},

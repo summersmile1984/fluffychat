@@ -548,7 +548,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -680,7 +680,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} meghívta a FluffyChat-be.\n1. Keresse fel a fluffychat.im oldalt, és telepítse az alkalmazást \n2. Regisztráljon vagy jelentkezzen be \n3. Nyissa meg a meghívó linket: \n {link}",
+    "inviteText": "{username} meghívta a Turning Agent-be.\n1. Keresse fel a aotsea.com oldalt, és telepítse az alkalmazást \n2. Regisztráljon vagy jelentkezzen be \n3. Nyissa meg a meghívó linket: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -827,8 +827,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Új FluffyChat üzenet",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Új Turning Agent üzenet",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1204,7 +1204,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2076,7 +2076,7 @@
     "@widgetJitsi": {},
     "messageType": "Üzenet típus",
     "@messageType": {},
-    "indexedDbErrorLong": "Sajnos az üzenet mentés alapból nincs bekapcsolva privát módban.\nKeresse meg a\n - about:config\n - állítsa a dom.indexedDB.privateBrowsing.enabled \"true\"-ra\nMáskülönben nem lehetséges a FluffyChat futtatása.",
+    "indexedDbErrorLong": "Sajnos az üzenet mentés alapból nincs bekapcsolva privát módban.\nKeresse meg a\n - about:config\n - állítsa a dom.indexedDB.privateBrowsing.enabled \"true\"-ra\nMáskülönben nem lehetséges a Turning Agent futtatása.",
     "@indexedDbErrorLong": {},
     "oneClientLoggedOut": "Az egyik kliense kijelentkezett",
     "@oneClientLoggedOut": {},
@@ -2151,7 +2151,7 @@
     },
     "youRejectedTheInvitation": "Visszautasította a meghívást",
     "@youRejectedTheInvitation": {},
-    "otherCallingPermissions": "Mikrofon, kamera, és más egyéb FluffyChat engedélyek",
+    "otherCallingPermissions": "Mikrofon, kamera, és más egyéb Turning Agent engedélyek",
     "@otherCallingPermissions": {},
     "messagesStyle": "Üzenetek:",
     "@messagesStyle": {},
@@ -2163,7 +2163,7 @@
     "@newSpaceDescription": {},
     "chatDescription": "Csevegés leírás",
     "@chatDescription": {},
-    "callingAccountDetails": "Engedélyezés a FluffyChat számára hogy használja a natív android hívás applikációt.",
+    "callingAccountDetails": "Engedélyezés a Turning Agent számára hogy használja a natív android hívás applikációt.",
     "@callingAccountDetails": {},
     "pleaseFollowInstructionsOnWeb": "Kérem, kövesse az instrukciókat az oldalon, és nyomjon a tovább gombra.",
     "@pleaseFollowInstructionsOnWeb": {
@@ -2373,7 +2373,7 @@
             }
         }
     },
-    "appearOnTopDetails": "Engedélyezi az app számára, hogy mindig legfelül jelenjen meg (nem szükséges, ha a FluffyChat hívó fiókként lett beállítva)",
+    "appearOnTopDetails": "Engedélyezi az app számára, hogy mindig legfelül jelenjen meg (nem szükséges, ha a Turning Agent hívó fiókként lett beállítva)",
     "@appearOnTopDetails": {},
     "enterRoom": "Belépés a szobába",
     "@enterRoom": {},
@@ -2636,7 +2636,7 @@
     "@unsupportedAndroidVersionLong": {},
     "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",
     "@storeSecurlyOnThisDevice": {},
-    "screenSharingDetail": "Megosztja a képernyőjét a FluffyChat-ben",
+    "screenSharingDetail": "Megosztja a képernyőjét a Turning Agent-ben",
     "@screenSharingDetail": {},
     "placeCall": "Tér hívás",
     "@placeCall": {},
@@ -3023,7 +3023,7 @@
     "@chatPermissionsDescription": {},
     "whatIsAHomeserver": "Mi az a Matrix-kiszolgáló?",
     "@whatIsAHomeserver": {},
-    "homeserverDescription": "Az összes adata a Mátrix-kiszolgálón tárolódik, pont mint egy e-mail kiszolgálón. Kiválaszthatja melyik Matrix-kiszolgálót akarja használni, miközben tud kommunikálni mindenkivel. Tudjon meg többet a https://matrix.org címen.",
+    "homeserverDescription": "Az összes adata a Mátrix-kiszolgálón tárolódik, pont mint egy e-mail kiszolgálón. Kiválaszthatja melyik Matrix-kiszolgálót akarja használni, miközben tud kommunikálni mindenkivel. Tudjon meg többet a https://aotsea.com címen.",
     "@homeserverDescription": {},
     "userLevel": "{level} - Felhasználó",
     "@userLevel": {
@@ -3226,7 +3226,7 @@
     "@appWantsToUseForLoginDescription": {},
     "waitingForServer": "Várakozás a szerverre...",
     "@waitingForServer": {},
-    "appIntroduction": "A FluffyChat segítségével cseveghet barátaival, akár más üzenetküldő alkalmazásokon keresztül is. Tudjon meg erről többet a https://matrix.org oldalon, vagy nyomjon a \"Folytatás\" gombra.",
+    "appIntroduction": "A Turning Agent segítségével cseveghet barátaival, akár más üzenetküldő alkalmazásokon keresztül is. Tudjon meg erről többet a https://aotsea.com oldalon, vagy nyomjon a \"Folytatás\" gombra.",
     "@appIntroduction": {},
     "open": "Megnyitás",
     "@open": {},
@@ -3314,7 +3314,7 @@
     "@continueText": {},
     "opacity": "Átlátszóság:",
     "@opacity": {},
-    "welcomeText": "Üdv 👋 Ez a FluffyChat. Bejelentkezhet bármely matrix-kiszolgálóhoz amely kompatibilis a https://matrix.org címmel. Ezután cseveghet bárkivel. Így képez egy óriási decentralizált üzenetküldő hálózatot!",
+    "welcomeText": "Üdv 👋 Ez a Turning Agent. Bejelentkezhet bármely matrix-kiszolgálóhoz amely kompatibilis a https://aotsea.com címmel. Ezután cseveghet bárkivel. Így képez egy óriási decentralizált üzenetküldő hálózatot!",
     "@welcomeText": {},
     "addLink": "Hivatkozás hozzáadása",
     "@addLink": {},

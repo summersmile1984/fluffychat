@@ -44,7 +44,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -324,7 +324,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -1282,7 +1282,7 @@
         "placeholders": {}
     },
     "scanQrCode": "Scan cód QR",
-    "inviteText": "Thug {username} cuireadh duit chuig FluffyChat.\n1. Tabhair cuairt ar fluffychat.im agus a shuiteáil an app\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuirí:\n {link}",
+    "inviteText": "Thug {username} cuireadh duit chuig Turning Agent.\n1. Tabhair cuairt ar aotsea.com agus a shuiteáil an app\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuirí:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1331,8 +1331,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Teachtaireacht nua in FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Teachtaireacht nua in Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -2350,9 +2350,9 @@
     "screenSharingDetail": "Tá do scáileán á roinnt agat i FuffyChat",
     "callingPermissions": "Ceadanna a ghlaoch",
     "callingAccount": "Cuntas ag glaoch",
-    "callingAccountDetails": "Ceadaíonn FluffyChat an aip dhiailiú android dúchais a úsáid.",
-    "appearOnTopDetails": "Ceadaíonn sé don aip a bheith ar bharr (ní gá má tá socrú Fluffychat agat cheana féin mar chuntas glao)",
-    "otherCallingPermissions": "Micreafón, ceamara agus ceadanna FluffyChat eile",
+    "callingAccountDetails": "Ceadaíonn Turning Agent an aip dhiailiú android dúchais a úsáid.",
+    "appearOnTopDetails": "Ceadaíonn sé don aip a bheith ar bharr (ní gá má tá socrú Turning Agent agat cheana féin mar chuntas glao)",
+    "otherCallingPermissions": "Micreafón, ceamara agus ceadanna Turning Agent eile",
     "hideUnimportantStateEvents": "Folaigh imeachtaí stáit gan tábhacht",
     "disableEncryptionWarning": "Ar chúiseanna slándála ní féidir leat criptiú a dhíchumasú i gcomhrá, áit ar cumasaíodh é roimhe seo.",
     "sorryThatsNotPossible": "Tá brón orm... nach féidir a dhéanamh",
@@ -2517,7 +2517,7 @@
     "loginWithMatrixId": "Logáil isteach le Matrix-ID",
     "discoverHomeservers": "Faigh amach faoi fhreastalaithe baile",
     "whatIsAHomeserver": "Cad is freastalaí baile ann?",
-    "homeserverDescription": "Stóráiltear do chuid sonraí go léir ar an bhfreastalaí baile, díreach cosúil le soláthraí ríomhphoist. Is féidir leat an freastalaí baile is mian leat a úsáid a roghnú, agus is féidir leat cumarsáid a dhéanamh le gach duine fós. Foghlaim níos mó ag https://matrix.org.",
+    "homeserverDescription": "Stóráiltear do chuid sonraí go léir ar an bhfreastalaí baile, díreach cosúil le soláthraí ríomhphoist. Is féidir leat an freastalaí baile is mian leat a úsáid a roghnú, agus is féidir leat cumarsáid a dhéanamh le gach duine fós. Foghlaim níos mó ag https://aotsea.com.",
     "calculatingFileSize": "Méid an chomhaid á ríomh...",
     "sendingAttachment": "Iatán á sheoladh...",
     "generatingVideoThumbnail": "Mionsamhail físe á cruthú...",
@@ -2547,7 +2547,7 @@
     "oneOfYourDevicesIsNotVerified": "Ní fhíoraítear ceann de do ghléasanna",
     "noticeChatBackupDeviceVerification": "Nóta: Nuair a nascann tú do ghléasanna go léir leis an gcúltaca comhrá, déantar iad a fhíorú go huathoibríoch.",
     "continueText": "Lean ar aghaidh",
-    "welcomeText": "Hey Hey 👋 Is é seo FluffyChat. Is féidir leat síniú isteach in aon fhreastalaí baile, atá comhoiriúnach leis https://matrix.org. Agus ansin comhrá a dhéanamh le duine ar bith. Is líonra teachtaireachtaí díláraithe ollmhór é!",
+    "welcomeText": "Hey Hey 👋 Is é seo Turning Agent. Is féidir leat síniú isteach in aon fhreastalaí baile, atá comhoiriúnach leis https://aotsea.com. Agus ansin comhrá a dhéanamh le duine ar bith. Is líonra teachtaireachtaí díláraithe ollmhór é!",
     "blur": "Doiléirigh:",
     "opacity": "Teimhneacht:",
     "setWallpaper": "Socraigh cúlbhrat",
@@ -2864,7 +2864,7 @@
     "sendReadReceiptsDescription": "Is féidir le rannpháirtithe eile i gcomhrá a fheiceáil nuair a bhíonn teachtaireacht léite agat.",
     "doesNotSeemToBeAValidHomeserver": "Ní cosúil gur freastalaí baile comhoiriúnach é. URL mícheart?",
     "indexedDbErrorTitle": "Saincheisteanna mód príobháideach",
-    "indexedDbErrorLong": "Ar an drochuair níl an stóráil teachtaireachta cumasaithe sa mhód príobháideach de réir réamhshocraithe.\nTabhair cuairt le do thoil\n - faoi: config\n - socraithe dom.indexedDB.privateBrowsing.enabled go fíor\nSeachas sin, ní féidir FluffyChat a rith.",
+    "indexedDbErrorLong": "Ar an drochuair níl an stóráil teachtaireachta cumasaithe sa mhód príobháideach de réir réamhshocraithe.\nTabhair cuairt le do thoil\n - faoi: config\n - socraithe dom.indexedDB.privateBrowsing.enabled go fíor\nSeachas sin, ní féidir Turning Agent a rith.",
     "nextAccount": "An chéad chuntas eile",
     "youJoinedTheChat": "Chuaigh tú isteach sa chomhrá",
     "youAcceptedTheInvitation": "👍 Ghlac tú leis an gcuireadh",
@@ -2898,7 +2898,7 @@
             }
         }
     },
-    "appIntroduction": "Ligeann FluffyChat duit comhrá a dhéanamh le do chairde thar theachtairí éagsúla. Foghlaim tuilleadh ag https://matrix.org nó tapáil *Ar aghaidh*.",
+    "appIntroduction": "Ligeann Turning Agent duit comhrá a dhéanamh le do chairde thar theachtairí éagsúla. Foghlaim tuilleadh ag https://aotsea.com nó tapáil *Ar aghaidh*.",
     "appWantsToUseForLoginDescription": "Ligeann tú leis seo don aip agus don suíomh Gréasáin faisnéis a roinnt fút.",
     "synchronizingPleaseWaitCounter": " Ag sioncronú… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
@@ -3147,9 +3147,9 @@
     "signInWithLabel": "Sínigh isteach le:",
     "signIn": "Sínigh isteach",
     "createNewAccount": "Cruthaigh cuntas nua",
-    "signUpGreeting": "Tá FluffyChat díláraithe! Roghnaigh freastalaí inar mian leat do chuntas a chruthú agus déanaimis é!",
+    "signUpGreeting": "Tá Turning Agent díláraithe! Roghnaigh freastalaí inar mian leat do chuntas a chruthú agus déanaimis é!",
     "signInGreeting": "An bhfuil cuntas agat i Matrix cheana féin? Fáilte ar ais! Roghnaigh do fhreastalaí baile agus sínigh isteach.",
-    "appIntro": "Le FluffyChat is féidir leat comhrá a dhéanamh le do chairde. Is teachtaire [maitrís] díláraithe slán é! Foghlaim tuilleadh ar https://matrix.org más maith leat nó cláraigh.",
+    "appIntro": "Le Turning Agent is féidir leat comhrá a dhéanamh le do chairde. Is teachtaire [maitrís] díláraithe slán é! Foghlaim tuilleadh ar https://aotsea.com más maith leat nó cláraigh.",
     "theProcessWasCanceled": "Cuireadh an próiseas ar ceal.",
     "join": "Téigh i"
 }

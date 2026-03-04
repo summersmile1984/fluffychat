@@ -10,7 +10,9 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
+import 'package:fluffychat/pages/dialer/livekit_call_page.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/livekit_plugin.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
 
@@ -19,6 +21,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Client get client => matrix.client;
   VoipPlugin(this.matrix) {
     voip = VoIP(client, this);
+    liveKitPlugin = LiveKitPlugin(client: client);
     if (!kIsWeb) {
       final wb = WidgetsBinding.instance;
       wb.addObserver(this);
@@ -28,6 +31,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   bool background = false;
   bool speakerOn = false;
   late VoIP voip;
+  late LiveKitPlugin liveKitPlugin;
   OverlayEntry? overlayEntry;
   BuildContext get context => matrix.context;
 
@@ -174,5 +178,45 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Future<void> registerListeners(CallSession session) {
     // TODO: implement registerListeners
     throw UnimplementedError();
+  }
+
+  // ---------------------------------------------------------------------------
+  // LiveKit 1:1 Call Integration
+  // ---------------------------------------------------------------------------
+
+  /// Start a 1:1 LiveKit call in the given Matrix [room].
+  /// Set [isVideo] to true for video, false for audio only.
+  Future<void> startLiveKitCall(Room room, {bool isVideo = true}) async {
+    if (liveKitPlugin.isInCall) {
+      Logs().w('[VoIP] Already in a LiveKit call');
+      return;
+    }
+    liveKitPlugin.reset();
+    addLiveKitCallingOverlay(room);
+    await liveKitPlugin.startCall(room.id, isVideo: isVideo);
+  }
+
+  /// Show the LiveKit call UI as an overlay.
+  void addLiveKitCallingOverlay(Room room) {
+    final ctx = kIsWeb ? ChatList.contextForVoip! : context;
+
+    if (overlayEntry != null) {
+      Logs().e('[VoIP] addLiveKitCallingOverlay: overlay already exists');
+      overlayEntry!.remove();
+    }
+
+    overlayEntry = OverlayEntry(
+      builder: (_) => LiveKitCallPage(
+        liveKitPlugin: liveKitPlugin,
+        client: client,
+        room: room,
+        onClear: () {
+          overlayEntry?.remove();
+          overlayEntry = null;
+          liveKitPlugin.reset();
+        },
+      ),
+    );
+    Overlay.of(ctx).insert(overlayEntry!);
   }
 }

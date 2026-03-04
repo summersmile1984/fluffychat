@@ -940,7 +940,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "@newMessageInFluffyChat": {
+  "@newMessageInTurningAgent": {
     "type": "String",
     "placeholders": {}
   },

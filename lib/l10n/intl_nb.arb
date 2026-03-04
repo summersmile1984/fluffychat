@@ -657,7 +657,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -824,7 +824,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: \n {link}",
+    "inviteText": "{username} har invitert deg til Turning Agent. \n1. Installer Turning Agent: https://aotsea.com \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -986,8 +986,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "Ny melding i FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "Ny melding i Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1472,7 +1472,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2188,9 +2188,9 @@
     "screenSharingTitle": "skjermdeling",
     "screenSharingDetail": "Du deler skjermen din i FuffyChat",
     "callingPermissions": "Anropstillatelser",
-    "callingAccountDetails": "Lar FluffyChat bruke den innebygde Android-oppringingsappen.",
+    "callingAccountDetails": "Lar Turning Agent bruke den innebygde Android-oppringingsappen.",
     "appearOnTop": "Vis øverst",
-    "otherCallingPermissions": "Mikrofon, kamera og andre FluffyChat-tillatelser",
+    "otherCallingPermissions": "Mikrofon, kamera og andre Turning Agent-tillatelser",
     "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
     "yourGlobalUserIdIs": "Din globale bruker-ID er: ",
     "searchChatsRooms": "Søk etter #chatter, @brukere...",
@@ -2617,7 +2617,7 @@
     "otherNotificationSettings": "Andre varslingsinnstillinger",
     "contentNotificationSettings": "Innstillinger for innholdsvarslinger",
     "generalNotificationSettings": "Generelle varslingsinnstillinger",
-    "appIntroduction": "Med FluffyChat kan du chatte med vennene dine på tvers av forskjellige meldingstjenester. Finn ut mer på https://matrix.org eller trykk bare på *Fortsett*.",
+    "appIntroduction": "Med Turning Agent kan du chatte med vennene dine på tvers av forskjellige meldingstjenester. Finn ut mer på https://aotsea.com eller trykk bare på *Fortsett*.",
     "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
     "hideMemberChangesInPublicChats": "Skjul medlemsendringer i offentlige chatter",
     "removeFromSpace": "Fjern fra området",
@@ -2658,12 +2658,12 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "homeserverDescription": "Alle dataene dine lagres på hjemmeserveren, akkurat som hos en e-postleverandør. Du kan velge hvilken hjemmeserver du vil bruke, samtidig som du fortsatt kan kommunisere med alle. Lær mer på https://matrix.org.",
+    "homeserverDescription": "Alle dataene dine lagres på hjemmeserveren, akkurat som hos en e-postleverandør. Du kan velge hvilken hjemmeserver du vil bruke, samtidig som du fortsatt kan kommunisere med alle. Lær mer på https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "Ser ikke ut til å være en kompatibel hjemmeserver. Feil URL?",
     "prepareSendingAttachment": "Forbered sending av vedlegg...",
     "generatingVideoThumbnail": "Genererer videominiatyrbilde ...",
     "compressVideo": "Komprimerer video...",
-    "welcomeText": "Hei, hei! 👋 Dette er FluffyChat. Du kan logge på hvilken som helst hjemmeserver som er kompatibel med https://matrix.org. Og deretter chatte med hvem som helst. Det er et stort desentralisert meldingsnettverk!",
+    "welcomeText": "Hei, hei! 👋 Dette er Turning Agent. Du kan logge på hvilken som helst hjemmeserver som er kompatibel med https://aotsea.com. Og deretter chatte med hvem som helst. Det er et stort desentralisert meldingsnettverk!",
     "notificationRuleIsUserMentionDescription": "Varsler brukeren når de er direkte nevnt i en melding.",
     "notificationRuleContainsDisplayName": "Inneholder visningsnavn",
     "notificationRuleContainsDisplayNameDescription": "Varsler brukeren når en melding inneholder ens visningsnavnet.",
@@ -2897,7 +2897,7 @@
     "storeInSecureStorageDescription": "Oppbevar gjenopprettingsnøkkelen på en sikker lagringsplass på denne enheten.",
     "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
     "callingAccount": "Ringekonto",
-    "appearOnTopDetails": "Lar appen vises øverst (ikke nødvendig hvis du allerede har Fluffychat konfigurert som en ringekonto)",
+    "appearOnTopDetails": "Lar appen vises øverst (ikke nødvendig hvis du allerede har Turning Agent konfigurert som en ringekonto)",
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
     "startedAPoll": "{username} startet en avstemning.",
     "@startedAPoll": {
@@ -3132,7 +3132,7 @@
         }
     },
     "confirmEventUnpin": "Er du sikker på at du vil løsne hendelsen permanent?",
-    "indexedDbErrorLong": "Lagring av meldinger er dessverre ikke aktivert i privat modus som standard.\nVennligst gå til:\n - about:config\n - Sett dom.indexedDB.privateBrowsing.enabled til true\nEllers er det ikke mulig å kjøre FluffyChat.",
+    "indexedDbErrorLong": "Lagring av meldinger er dessverre ikke aktivert i privat modus som standard.\nVennligst gå til:\n - about:config\n - Sett dom.indexedDB.privateBrowsing.enabled til true\nEllers er det ikke mulig å kjøre Turning Agent.",
     "saveKeyManuallyDescription": "Lagre denne nøkkelen manuelt ved å åpne systemets delingsmeny eller kopiere til utklippstavlen.",
     "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
     "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
@@ -3148,9 +3148,9 @@
     "newSubSpace": "Nytt underområde",
     "signIn": "Logg på",
     "createNewAccount": "Opprett ny konto",
-    "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
+    "signUpGreeting": "Turning Agent er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
     "signInGreeting": "Har du allerede en Matrix-konto? Velkommen tilbake! Velg hjemmeserveren din og logg inn.",
-    "appIntro": "Med FluffyChat kan du chatte med vennene dine. Det er en sikker, desentralisert [matrix]-meldingsapp! Les mer på https://matrix.org hvis du vil, eller bare registrer deg.",
+    "appIntro": "Med Turning Agent kan du chatte med vennene dine. Det er en sikker, desentralisert [Turning Agent]-meldingsapp! Les mer på https://aotsea.com hvis du vil, eller bare registrer deg.",
     "theProcessWasCanceled": "Prosessen ble avbrutt.",
     "join": "Bli med"
 }

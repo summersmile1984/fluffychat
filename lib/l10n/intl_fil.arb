@@ -953,7 +953,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "FluffyChat",
+  "fluffychat": "Turning Agent",
   "@fluffychat": {
     "type": "String",
     "placeholders": {}

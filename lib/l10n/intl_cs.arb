@@ -825,7 +825,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} vás pozval/a na FluffyChat.\n1. Navštivte fluffychat.im a nainstalujte si aplikaci.\n2. Zaregistrujte se nebo se přihlaste.\n3. Otevřte pozvánku: \n {link}",
+    "inviteText": "{username} vás pozval/a na Turning Agent.\n1. Navštivte aotsea.com a nainstalujte si aplikaci.\n2. Zaregistrujte se nebo se přihlaste.\n3. Otevřte pozvánku: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1169,8 +1169,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nová zpráva ve FluffyChatu",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Nová zpráva ve Turning Agentu",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1791,7 +1791,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2379,10 +2379,10 @@
     "recoveryKeyLost": "Ztracený klíč k obnovení?",
     "unlockOldMessages": "Odemknout staré zprávy",
     "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
-    "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
-    "callingAccountDetails": "Opravňuje FluffyChat používat Android systémovou aplikaci pro vytáčení.",
+    "screenSharingDetail": "Sdílíte svou obrazovku přes Turning Agent",
+    "callingAccountDetails": "Opravňuje Turning Agent používat Android systémovou aplikaci pro vytáčení.",
     "appearOnTop": "Zobrazovat nahoře",
-    "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění FluffyChat",
+    "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění Turning Agent",
     "encryptThisChat": "Zašifrovat tuto konverzaci",
     "sorryThatsNotPossible": "Omlouváme se… to není možné",
     "deviceKeys": "Klíče zařízení:",
@@ -2475,7 +2475,7 @@
         "placeholders": {}
     },
     "block": "Zablokovat",
-    "indexedDbErrorLong": "Ukládání zpráv bohužel není ve výchozím nastavení v soukromém režimu povoleno.\nNavštivte prosím\n - about:config\n - nastavte dom.indexedDB.privateBrowsing.enabled na true\nV opačném případě nebude možné FluffyChat spustit.",
+    "indexedDbErrorLong": "Ukládání zpráv bohužel není ve výchozím nastavení v soukromém režimu povoleno.\nNavštivte prosím\n - about:config\n - nastavte dom.indexedDB.privateBrowsing.enabled na true\nV opačném případě nebude možné Turning Agent spustit.",
     "youInvitedToBy": "📩 Prostřednictvím odkazu jste byli pozváni na:\n{alias}",
     "@youInvitedToBy": {
         "placeholders": {
@@ -2562,7 +2562,7 @@
     "invite": "Pozvánka",
     "inviteGroupChat": "📨 Skupinová pozvánka",
     "invitePrivateChat": "📨 Soukromá pozvánka",
-    "appearOnTopDetails": "Umožňuje zobrazit aplikaci nahoře (není nutné, pokud již máte Fluffychat nastaven jako účet volajícího)",
+    "appearOnTopDetails": "Umožňuje zobrazit aplikaci nahoře (není nutné, pokud již máte Turning Agent nastaven jako účet volajícího)",
     "noKeyForThisMessage": "K tomuto může dojít, pokud byla zpráva odeslána před přihlášením k účtu v tomto zařízení.\n\nJe také možné, že odesílatel zablokoval vaše zařízení nebo se něco pokazilo s internetovým připojením.\n\nJste schopni si zprávu přečíst v jiné relaci? Pak můžete zprávu přenést z něj! Přejděte do Nastavení > Zařízení a zkontrolujte, zda se Vaše zařízení vzájemně ověřila. Při příštím otevření místnosti, kdy budou obě relace v popředí, se klíče přenesou automaticky.\n\nNechcete klíče ztratit při odhlašování nebo přepínání zařízení? Ujistěte se, že jste v nastaveních povolili zálohování konverzací.",
     "invalidInput": "Nevhodný vstup!",
     "wrongPinEntered": "Nespravný PIN! Zkuste to znovu za {seconds} vteřin...",
@@ -2788,7 +2788,7 @@
     },
     "oneOfYourDevicesIsNotVerified": "Jedno z vašich zařízení není ověřeno",
     "continueText": "Pokračovat",
-    "welcomeText": "Ahoj, ahoj 👋 Tohle je FluffyChat. Můžete se přihlásit k jakémukoliv domácímu serveru, který je kompatibilní s https://matrix.org, a začít s kýmkoliv chatovat. Je to obří decentralizovaná chatovací síť!",
+    "welcomeText": "Ahoj, ahoj 👋 Tohle je Turning Agent. Můžete se přihlásit k jakémukoliv domácímu serveru, který je kompatibilní s https://aotsea.com, a začít s kýmkoliv chatovat. Je to obří decentralizovaná chatovací síť!",
     "setWallpaper": "Nastavit tapetu",
     "manageAccount": "Spravovat účet",
     "noContactInformationProvided": "Server neposkytl žádné platné kontaktní informace",
@@ -2820,7 +2820,7 @@
     "appWantsToUseForLoginDescription": "Pokračováním povolíte aplikaci a webové stránce sdílet mezi sebou informace o vás.",
     "open": "Otevřít",
     "waitingForServer": "Čekám na server...",
-    "appIntroduction": "FluffyChat vám umožňuje chatovat s přáteli napříč různými aplikacemi. Zjistěte více na https://matrix.org nebo prostě klepněte na *Pokračovat*.",
+    "appIntroduction": "Turning Agent vám umožňuje chatovat s přáteli napříč různými aplikacemi. Zjistěte více na https://aotsea.com nebo prostě klepněte na *Pokračovat*.",
     "newChatRequest": "📩 Nová žádost o konverzaci",
     "generalNotificationSettings": "Obecné nastavení oznámení",
     "roomNotificationSettings": "Nastavení oznámení pro místnost",
@@ -2979,9 +2979,9 @@
     "advancedConfigs": "Pokročilá nastavení",
     "signIn": "Přihlásit se",
     "createNewAccount": "Vytvořit nový účet",
-    "signUpGreeting": "FluffyChat je decentralizovaný! Vyberte server, kde si chcete vytvořit účet, a jdeme na věc!",
+    "signUpGreeting": "Turning Agent je decentralizovaný! Vyberte server, kde si chcete vytvořit účet, a jdeme na věc!",
     "signInGreeting": "Již máte účet na Matrixu? Vítejte zpět! Vyberte svůj domácí server a přihlaste se.",
-    "appIntro": "S FluffyChatem můžeme chatovat s přáteli. Je to decentralizovaná chatovací aplikace pro [matrix]! Zjistěte více na https://matrix.org nebo se zaregistrujte.",
+    "appIntro": "S Turning Agentem můžeme chatovat s přáteli. Je to decentralizovaná chatovací aplikace pro [Turning Agent]! Zjistěte více na https://aotsea.com nebo se zaregistrujte.",
     "theProcessWasCanceled": "Proces byl zrušen.",
     "sendImages": "Poslat {count} obrazků",
     "@sendImages": {

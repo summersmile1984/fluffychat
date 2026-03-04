@@ -624,7 +624,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -766,7 +766,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} t'ha convidat a FluffyChat.\n1. Visita fluffychat.im i instaŀla l'app\n2. Registra't o inicia sessió\n3. Obre l'enllaç d'invitació:\n{link}",
+    "inviteText": "{username} t'ha convidat a Turning Agent.\n1. Visita aotsea.com i instaŀla l'app\n2. Registra't o inicia sessió\n3. Obre l'enllaç d'invitació:\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -928,8 +928,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Missatge nou al FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Missatge nou al Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -953,7 +953,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Sembla que no teniu els Serveis de Google al telèfon. Això és una bona decisió respecte a la vostra privadesa! Per a rebre notificacions automàtiques del FluffyChat, us recomanem instaŀlar ntfy. Amb ntfy o qualsevol altre proveïdor de Unified Push, pots rebre notificacions de forma segura i lliure. Pots instaŀlar ntfy des de la PlayStore o des de F-Droid.",
+    "noGoogleServicesWarning": "Sembla que no teniu els Serveis de Google al telèfon. Això és una bona decisió respecte a la vostra privadesa! Per a rebre notificacions automàtiques del Turning Agent, us recomanem instaŀlar ntfy. Amb ntfy o qualsevol altre proveïdor de Unified Push, pots rebre notificacions de forma segura i lliure. Pots instaŀlar ntfy des de la PlayStore o des de F-Droid.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1393,7 +1393,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2047,7 +2047,7 @@
     "unsupportedAndroidVersion": "Aquesta versió d'Android és incompatible",
     "widgetJitsi": "Jitsi Meet",
     "messageType": "Tipus de missatge",
-    "indexedDbErrorLong": "L'emmagatzematge de missatges no està disponible per defecte en el mode privat.\nVisita\n - about:config\n - posa a true l'opció dom.indexedDB.privateBrowsing.enabled\nSi no ho fas, no podràs fer servir FluffyChat en mode privat.",
+    "indexedDbErrorLong": "L'emmagatzematge de missatges no està disponible per defecte en el mode privat.\nVisita\n - about:config\n - posa a true l'opció dom.indexedDB.privateBrowsing.enabled\nSi no ho fas, no podràs fer servir Turning Agent en mode privat.",
     "oneClientLoggedOut": "Una de les teves aplicacions ha tancat la sessió",
     "startFirstChat": "Comença el teu primer xat",
     "callingAccount": "Compte de la trucada",
@@ -2104,13 +2104,13 @@
     },
     "unbanUserDescription": "L'usuàrïi ja pot tornar a entrar al xat.",
     "youRejectedTheInvitation": "Has rebutjat la invitació",
-    "otherCallingPermissions": "Micròfon, càmera i altres permisos del FluffyChat",
+    "otherCallingPermissions": "Micròfon, càmera i altres permisos del Turning Agent",
     "messagesStyle": "Missatges:",
     "widgetUrlError": "La URL no és vàlida.",
     "emailOrUsername": "Email o nom d'usuàrïi",
     "newSpaceDescription": "Els espais et permeten consolidar els teus xats i construir comunitats públiques o privades.",
     "chatDescription": "Descripció del xat",
-    "callingAccountDetails": "Permet al FluffyChat de fer servir l'app de trucades nativa de l'Android.",
+    "callingAccountDetails": "Permet al Turning Agent de fer servir l'app de trucades nativa de l'Android.",
     "editRoomAliases": "Canvia els àlies de la sala",
     "@editRoomAliases": {
         "type": "String",
@@ -2251,7 +2251,7 @@
             }
         }
     },
-    "appearOnTopDetails": "Permet a l'app que aparegui sobre d'altres apps. No cal si ja has afegit FluffyChat com a compte de trucades",
+    "appearOnTopDetails": "Permet a l'app que aparegui sobre d'altres apps. No cal si ja has afegit Turning Agent com a compte de trucades",
     "enterRoom": "Entra a la sala",
     "reportUser": "Denuncia l'usuàrïi",
     "confirmEventUnpin": "Vols desfixar l'esdeveniment permanentment?",
@@ -2479,7 +2479,7 @@
     "indexedDbErrorTitle": "Problemes amb el mode privat",
     "unsupportedAndroidVersionLong": "Aquesta funcionalitat només funciona amb versions d'Android més noves.",
     "storeSecurlyOnThisDevice": "Desa de forma segura en aquest dispositiu",
-    "screenSharingDetail": "Estàs compartint la teva pantalla a FluffyChat",
+    "screenSharingDetail": "Estàs compartint la teva pantalla a Turning Agent",
     "placeCall": "Truca",
     "block": "Bloca",
     "blockUsername": "Ignora aquesti usuàrïi",
@@ -2794,7 +2794,7 @@
     "loginWithMatrixId": "Entra amb l'id de Matrix",
     "discoverHomeservers": "Descobreix servidors",
     "whatIsAHomeserver": "Què és un servidor de Matrix?",
-    "homeserverDescription": "Totes les teves dades s'emmagatzemen al servidor, com passa amb el e-mail. Pots triar quin servidor vols fer servir sense témer a no poder comunicar gent d'altres servidors. Llegeix-ne més a https://matrix.org.",
+    "homeserverDescription": "Totes les teves dades s'emmagatzemen al servidor, com passa amb el e-mail. Pots triar quin servidor vols fer servir sense témer a no poder comunicar gent d'altres servidors. Llegeix-ne més a https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "No sembla un servidor compatible. Pot ser que la URL estigui malament?",
     "countChatsAndCountParticipants": "{chats} xats i {participants} participants",
     "@countChatsAndCountParticipants": {
@@ -2865,7 +2865,7 @@
         }
     },
     "oneOfYourDevicesIsNotVerified": "Un dels teus dispositius no està verificat",
-    "welcomeText": "Hola hola! 👋 Això és FluffyChat. Pots iniciar sessió en qualsevol servidor compatible amb https://matrix.org. I llavors xatejar amb qualsevol. És una xarxa enorme de missatgeria descentralitzada !",
+    "welcomeText": "Hola hola! 👋 Això és Turning Agent. Pots iniciar sessió en qualsevol servidor compatible amb https://aotsea.com. I llavors xatejar amb qualsevol. És una xarxa enorme de missatgeria descentralitzada !",
     "blur": "Difumina:",
     "opacity": "Opacitat:",
     "manageAccount": "Gestiona el compte",
@@ -2974,7 +2974,7 @@
     },
     "appWantsToUseForLoginDescription": "Consenteixes que l'app i la web comparteixen informació sobre tu.",
     "open": "Obre",
-    "appIntroduction": "El FluffyChat et permet xatejar amb amiguis entre diverses aplicacions. Llegeix-ne més a https://matrix.org o pica \"Continua\".",
+    "appIntroduction": "El Turning Agent et permet xatejar amb amiguis entre diverses aplicacions. Llegeix-ne més a https://aotsea.com o pica \"Continua\".",
     "waitingForServer": "S'està esperant el servidor...",
     "shareKeysWith": "Comparteix les claus amb...",
     "crossVerifiedDevicesIfEnabled": "Els dispositius verificats mútuament, si està activat",
@@ -3139,8 +3139,8 @@
     "advancedConfigurations": "Configuracions avançades",
     "signIn": "Obre sessió",
     "createNewAccount": "Crea un compte nou",
-    "signUpGreeting": "El FluffyChat és descentralitzat! Tria un servidor on vulguis crear-t'hi un compte, i som-hi!",
+    "signUpGreeting": "El Turning Agent és descentralitzat! Tria un servidor on vulguis crear-t'hi un compte, i som-hi!",
     "signInGreeting": "Si ja tens un compte a Matrix, benvingudi! Tria el teu servidor i inicia-hi sessió.",
-    "appIntro": "Pots xatejar amb lis tevis amiguis amb Fluffychat. És una app de missatgeria [matrix] descentralitzada! Llegeix-ne més a https://matrix.org si vols, o inicia sessió.",
+    "appIntro": "Pots xatejar amb lis tevis amiguis amb Turning Agent. És una app de missatgeria [Turning Agent] descentralitzada! Llegeix-ne més a https://aotsea.com si vols, o inicia sessió.",
     "theProcessWasCanceled": "S'ha canceŀlat el procés."
 }

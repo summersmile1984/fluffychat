@@ -649,7 +649,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -811,7 +811,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} bjöd in dig till FluffyChat.\n1. Besök fluffychat.im och installera appen\n2. Registrera dig eller logga in\n3. Öppna inbjudningslänk:\n {link}",
+    "inviteText": "{username} bjöd in dig till Turning Agent.\n1. Besök aotsea.com och installera appen\n2. Registrera dig eller logga in\n3. Öppna inbjudningslänk:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -973,8 +973,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nya meddelanden i FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Nya meddelanden i Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1003,7 +1003,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få aviseringar i FluffyChat rekommenderar vi att använda https://microg.org/ eller https://unifiedpush.org/ .",
+    "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få aviseringar i Turning Agent rekommenderar vi att använda https://microg.org/ eller https://unifiedpush.org/ .",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1479,7 +1479,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2268,7 +2268,7 @@
     "pleaseEnterRecoveryKey": "Ange din återställningsnyckel:",
     "commandHint_markasdm": "Märk som rum för direktmeddelanden för det givante Matrix ID",
     "user": "Användare",
-    "indexedDbErrorLong": "Meddelandelagring är tyvärr inte aktiverat i privat läge som standard.\nGå till\n - about:config\n - sätt dom.indexedDB.privateBrowsing.enabled till true\nAnnars går det inte att använda FluffyChat.",
+    "indexedDbErrorLong": "Meddelandelagring är tyvärr inte aktiverat i privat läge som standard.\nGå till\n - about:config\n - sätt dom.indexedDB.privateBrowsing.enabled till true\nAnnars går det inte att använda Turning Agent.",
     "storeInSecureStorageDescription": "Lagra återställningsnyckeln på säker plats på denna enhet.",
     "storeInAppleKeyChain": "Lagra i Apples nyckelkedja (KeyChain)",
     "foregroundServiceRunning": "Denna avisering visas när förgrundstjänsten körs.",
@@ -2300,7 +2300,7 @@
         }
     },
     "hydrate": "Återställ från säkerhetskopia",
-    "screenSharingDetail": "Du delar din skärm i FluffyChat",
+    "screenSharingDetail": "Du delar din skärm i Turning Agent",
     "youRejectedTheInvitation": "Du avvisade inbjudan",
     "youBannedUser": "Du förbjöd {user}",
     "@youBannedUser": {
@@ -2338,10 +2338,10 @@
     "storeInAndroidKeystore": "Lagra i Androids nyckellagring (KeyStore)",
     "callingPermissions": "Samtalsbehörighet",
     "callingAccount": "Samtalskonto",
-    "callingAccountDetails": "Tillåt FluffyChat att använda Androids ring-app.",
+    "callingAccountDetails": "Tillåt Turning Agent att använda Androids ring-app.",
     "appearOnTop": "Visa ovanpå",
-    "appearOnTopDetails": "Tillåt att appen visas ovanpå (behövs inte om du redan har FluffyChat konfigurerat som ett samtalskonto)",
-    "otherCallingPermissions": "Mikrofon, kamera och andra behörigheter för FluffyChat",
+    "appearOnTopDetails": "Tillåt att appen visas ovanpå (behövs inte om du redan har Turning Agent konfigurerat som ett samtalskonto)",
+    "otherCallingPermissions": "Mikrofon, kamera och andra behörigheter för Turning Agent",
     "whyIsThisMessageEncrypted": "Varför kan inte detta meddelande läsas?",
     "newGroup": "Ny grupp",
     "enterRoom": "Gå till rummet",
@@ -2856,7 +2856,7 @@
     "loginWithMatrixId": "Logga in med Matrix-ID",
     "discoverHomeservers": "Upptäck hemservrar",
     "whatIsAHomeserver": "Vad är en hemserver?",
-    "homeserverDescription": "All din data lagras på hemservern, precis som en mailtjänst. Du kan välja vilken hemserver du vill använda, medans du fortfarande kan kommunicera med vemsomhelst. Lär dig met på https://matrix.org.",
+    "homeserverDescription": "All din data lagras på hemservern, precis som en mailtjänst. Du kan välja vilken hemserver du vill använda, medans du fortfarande kan kommunicera med vemsomhelst. Lär dig met på https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "Verkar inte vara en kompatibel hemserver. Fel URL?",
     "calculatingFileSize": "Beräknar filstorlek...",
     "prepareSendingAttachment": "Förbered skickar bilaga...",
@@ -2887,7 +2887,7 @@
     "oneOfYourDevicesIsNotVerified": "En av dina enheter är inte verifierade",
     "noticeChatBackupDeviceVerification": "Notis: När du ansluter alla dina enheter till chatt-backupen, är de automatiskt verifierade.",
     "continueText": "Fortsätt",
-    "welcomeText": "Hej Hej 👋 Det här är FluffyChat. Du kan logga in på vilken hemserver du vill, som är kompatibel med https://matrix.org. Och sen chatta med vemsomhelst. Det är ett enormt decentraliserat chatt-nätverk!",
+    "welcomeText": "Hej Hej 👋 Det här är Turning Agent. Du kan logga in på vilken hemserver du vill, som är kompatibel med https://aotsea.com. Och sen chatta med vemsomhelst. Det är ett enormt decentraliserat chatt-nätverk!",
     "blur": "Blurra:",
     "opacity": "Opacitet:",
     "setWallpaper": "Ställ in bakgrundsbild",
@@ -2922,7 +2922,7 @@
     "appWantsToUseForLoginDescription": "Du tillåter härmed appen och hemsidan att dela information om dig.",
     "open": "Öppna",
     "waitingForServer": "Väntar på server...",
-    "appIntroduction": "FluffyChat låter dig chatta med vänner över olika tjänster. Lär dig mer på https://matrix.org eller tryck *Fortsätt*.",
+    "appIntroduction": "Turning Agent låter dig chatta med vänner över olika tjänster. Lär dig mer på https://aotsea.com eller tryck *Fortsätt*.",
     "newChatRequest": "📩 Ny chatt förfrågan",
     "contentNotificationSettings": "Innehållsnotis-inställningar",
     "generalNotificationSettings": "Allmänna notis-inställningar",

@@ -1201,8 +1201,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 پیام جدید در فلافی‌چت",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 پیام جدید در فلافی‌چت",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1609,7 +1609,7 @@
         "placeholders": {}
     },
     "serverRequiresEmail": "برای ثبت‌نام، این سرور باید نشانی رایانامه شما را تأیید کند.",
-    "inviteText": "{username} شما را به فلافی‌چت دعوت کرد.\n۱. به fluffychat.im بروید و برنامه را نصب کنید\n۲. ثبت‌نام کنید یا وارد شوید\n۳. پیوند دعوت را باز کنید:\n {link}",
+    "inviteText": "{username} شما را به فلافی‌چت دعوت کرد.\n۱. به aotsea.com بروید و برنامه را نصب کنید\n۲. ثبت‌نام کنید یا وارد شوید\n۳. پیوند دعوت را باز کنید:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -2862,7 +2862,7 @@
     "loginWithMatrixId": "ورود با شناسه ماتریکس",
     "discoverHomeservers": "کشف سرورهای خانگی",
     "whatIsAHomeserver": "سرور خانگی چیست؟",
-    "homeserverDescription": "همه داده‌های شما روی سرور خانگی نگه‌داری میشوند، مانند یک فراهم‌کننده رایانامه. میتوانید سرور خانگی مورد نظر خود را انتخاب کنید، در حالی که همچنان میتوانید با هر کسی گفتگو کنید. اطلاعات بیشتر در https://matrix.org.",
+    "homeserverDescription": "همه داده‌های شما روی سرور خانگی نگه‌داری میشوند، مانند یک فراهم‌کننده رایانامه. میتوانید سرور خانگی مورد نظر خود را انتخاب کنید، در حالی که همچنان میتوانید با هر کسی گفتگو کنید. اطلاعات بیشتر در https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "به نظر نمیرسد سرور خانگی سازگاری داشته باشد. نشانی اشتباه است؟",
     "calculatingFileSize": "در حال محاسبه اندازه پرونده...",
     "prepareSendingAttachment": "آماده‌سازی برای فرستادن پیوست...",
@@ -2893,7 +2893,7 @@
     "oneOfYourDevicesIsNotVerified": "یکی از دستگاه‌های شما بازبینی نشده است",
     "noticeChatBackupDeviceVerification": "توجه: وقتی همه دستگاه‌های خود را به پشتیبان گپ متصل کنید، به‌صورت خودکار بازبینی میشوند.",
     "continueText": "ادامه",
-    "welcomeText": "درود درود 👋 این فلافی‌چت است. میتوانید به هر سرور خانگی سازگار با https://matrix.org وارد شوید و با هر کسی گپ بزنید. این یک شبکه پیام‌رسانی غیرمتمرکز بزرگ است!",
+    "welcomeText": "درود درود 👋 این فلافی‌چت است. میتوانید به هر سرور خانگی سازگار با https://aotsea.com وارد شوید و با هر کسی گپ بزنید. این یک شبکه پیام‌رسانی غیرمتمرکز بزرگ است!",
     "blur": "محو کردن:",
     "opacity": "شفافیت:",
     "setWallpaper": "تنظیم کاغذدیواری",
@@ -2928,7 +2928,7 @@
     "appWantsToUseForLoginDescription": "شما بدین‌وسیله به برنامه و وبگاه اجازه میدهید اطلاعات شما را هم‌رسانی کنند.",
     "open": "باز کردن",
     "waitingForServer": "در انتظار سرور...",
-    "appIntroduction": "فلافی‌چت به شما امکان گپ با دوستانتان در پیام‌رسان‌های مختلف را میدهد. اطلاعات بیشتر در https://matrix.org یا فقط روی *ادامه* بزنید.",
+    "appIntroduction": "فلافی‌چت به شما امکان گپ با دوستانتان در پیام‌رسان‌های مختلف را میدهد. اطلاعات بیشتر در https://aotsea.com یا فقط روی *ادامه* بزنید.",
     "newChatRequest": "📩 درخواست گپ جدید",
     "contentNotificationSettings": "تنظیمات آگاه‌ساز محتوا",
     "generalNotificationSettings": "تنظیمات آگاه‌ساز عمومی",

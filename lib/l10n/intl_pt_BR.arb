@@ -824,7 +824,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -996,7 +996,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} convidou você para o FluffyChat.\n1. Visite fluffychat.im e instale o aplicativo\n2. Entre ou crie uma conta\n3. Abra o link do convite:\n{link}",
+    "inviteText": "{username} convidou você para o Turning Agent.\n1. Visite aotsea.com e instale o aplicativo\n2. Entre ou crie uma conta\n3. Abra o link do convite:\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1168,8 +1168,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nova mensagem no FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Nova mensagem no Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1790,7 +1790,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2260,7 +2260,7 @@
         }
     },
     "pleaseEnterRecoveryKeyDescription": "Para desbloquear as suas mensagens antigas, digite a sua chave de recuperação gerada numa sessão prévia. Sua chave de recuperação NÃO é sua senha.",
-    "indexedDbErrorLong": "Infelizmente, o armazenamento de mensagens não é ativado por padrão no modo privado.\nVisite\n- about:config\n- atribua \"true\" a \"dom.indexedDB.privateBrowsing.enabled\"\nSe não fizer isto, não será possível executar o FluffyChat.",
+    "indexedDbErrorLong": "Infelizmente, o armazenamento de mensagens não é ativado por padrão no modo privado.\nVisite\n- about:config\n- atribua \"true\" a \"dom.indexedDB.privateBrowsing.enabled\"\nSe não fizer isto, não será possível executar o Turning Agent.",
     "users": "Usuários",
     "confirmMatrixId": "Confirme seu ID Matrix para apagar sua conta.",
     "supposedMxid": "Isto deveria ser {mxid}",
@@ -2313,10 +2313,10 @@
     "foregroundServiceRunning": "Esta notificação aparece quando o serviço de primeiro plano está sendo executado.",
     "callingPermissions": "Permissões de chamada",
     "callingAccount": "Conta para chamadas",
-    "callingAccountDetails": "Permitir que o FluffyChat use o app de chamadas nativo do Android.",
+    "callingAccountDetails": "Permitir que o Turning Agent use o app de chamadas nativo do Android.",
     "appearOnTop": "Aparecer no topo",
-    "appearOnTopDetails": "Permite que o app apareça no topo (desnecessário caso o FluffyChat já esteja configurado como conta para chamadas)",
-    "otherCallingPermissions": "Microfone, câmera e outras permissões do FluffyChat",
+    "appearOnTopDetails": "Permite que o app apareça no topo (desnecessário caso o Turning Agent já esteja configurado como conta para chamadas)",
+    "otherCallingPermissions": "Microfone, câmera e outras permissões do Turning Agent",
     "newGroup": "Novo grupo",
     "newSpace": "Novo espaço",
     "enterSpace": "Abrir espaço",
@@ -2338,7 +2338,7 @@
     "dehydrateTorLong": "Para usuários TOR, é recomendado exportar a sessão antes de fechar a janela.",
     "whyIsThisMessageEncrypted": "Por que não consigo ler esta mensagem?",
     "screenSharingTitle": "compartilhamento de tela",
-    "screenSharingDetail": "Você está compartilhando sua tela no FluffyChat",
+    "screenSharingDetail": "Você está compartilhando sua tela no Turning Agent",
     "numChats": "{number} conversas",
     "@numChats": {
         "type": "number",
@@ -2926,7 +2926,7 @@
     "notificationRuleSuppressNoticesDescription": "Omite notificações de clientes automatizados, como bots.",
     "notificationRuleInviteForMeDescription": "Notifica o usuário quando for convidado para uma sala.",
     "approve": "Aprovar",
-    "homeserverDescription": "Todos os seus dados são armazenados no servidor, parecido como um provedor de e-mail. Pode escolher qual servidor quer usar, enquanto ainda conversa com todo mundo. Aprenda mais em https://matrix.org.",
+    "homeserverDescription": "Todos os seus dados são armazenados no servidor, parecido como um provedor de e-mail. Pode escolher qual servidor quer usar, enquanto ainda conversa com todo mundo. Aprenda mais em https://aotsea.com.",
     "notificationRuleEncryptedRoomOneToOne": "Sala criptografada de 2 pessoas",
     "pleaseWaitUntilInvited": "Aguarde até que alguém da sala te convide.",
     "waitingForServer": "Aguardando o servidor...",
@@ -2944,9 +2944,9 @@
             }
         }
     },
-    "welcomeText": "Olá! 👋 Este é o FluffyChat. Você pode se conectar com qualquer servidor que é compatível com o https://matrix.org. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
+    "welcomeText": "Olá! 👋 Este é o Turning Agent. Você pode se conectar com qualquer servidor que é compatível com o https://aotsea.com. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
     "notificationRuleRoomServerAclDescription": "Omite notificações de listas de controle de acesso de servidor de uma sala (ACL).",
-    "appIntroduction": "O FluffyChat permite que você converse com os seus amigos entre mensageiros diferentes. Aprenda mais em https://matrix.org ou toque em *Continuar*.",
+    "appIntroduction": "O Turning Agent permite que você converse com os seus amigos entre mensageiros diferentes. Aprenda mais em https://aotsea.com ou toque em *Continuar*.",
     "notificationRuleIsUserMentionDescription": "Notifica o usuário quando é mencionado diretamente em uma mensagem.",
     "notificationRuleSuppressEdits": "Omitir edições",
     "shareKeysWithDescription": "Quais dispositivos devem ser confiados para que possam ler suas mensagens em conversas criptografas?",

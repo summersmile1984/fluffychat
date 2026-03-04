@@ -548,7 +548,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -902,8 +902,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Izen amaynut deg FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Izen amaynut deg Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1413,7 +1413,7 @@
         }
     },
     "noChatDescriptionYet": "Ulac aglam n udiwenni i d-yenulfan yakan.",
-    "inviteText": "{username} yeɛreḍ-ik·m ɣer FluffyChat.\n1. Rzu ɣer fluffychat.im syin sbedd asnas \n2. Jerred neɣ kcem \n3. Ldi aseɣwen n tinubga: \n {link}",
+    "inviteText": "{username} yeɛreḍ-ik·m ɣer Turning Agent.\n1. Rzu ɣer aotsea.com syin sbedd asnas \n2. Jerred neɣ kcem \n3. Ldi aseɣwen n tinubga: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1783,11 +1783,11 @@
     "custom": "Yugnen",
     "foregroundServiceRunning": "Alɣu-agi yettban-d ticki ameẓlu n uɣawas amezwaru iteddu.",
     "screenSharingTitle": "beṭṭu n ugdil",
-    "screenSharingDetail": "Tbeṭṭuḍ agdil-ik·im deg FluffyChat",
+    "screenSharingDetail": "Tbeṭṭuḍ agdil-ik·im deg Turning Agent",
     "callingPermissions": "Tisirag n usiwel",
     "callingAccount": "amiḍan n usiwel",
-    "callingAccountDetails": "Sireg FluffyChat ad iseqdec asnas aneṣli n Android i usɛeddi n usiwel.",
+    "callingAccountDetails": "Sireg Turning Agent ad iseqdec asnas aneṣli n Android i usɛeddi n usiwel.",
     "appearOnTop": "Sbeqeḍ deg uksawen",
-    "otherCallingPermissions": "Tisirag n umikrufun, takamiṛat akked tiyaḍ n FluffyChat",
+    "otherCallingPermissions": "Tisirag n umikrufun, takamiṛat akked tiyaḍ n Turning Agent",
     "whyIsThisMessageEncrypted": "Acuɣer izen-agi ur yettwaɣri ara?"
 }

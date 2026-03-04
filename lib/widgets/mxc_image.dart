@@ -52,7 +52,11 @@ class MxcImage extends StatefulWidget {
 
 class _MxcImageState extends State<MxcImage> {
   static final Map<String, Uint8List> _imageDataCache = {};
+  static final Set<String> _failedKeys = {};  // Track permanently failed images
   Uint8List? _imageDataNoCache;
+  bool _hasError = false;
+  int _retryCount = 0;
+  static const _maxRetries = 3;
 
   Uint8List? get _imageData => widget.cacheKey == null
       ? _imageDataNoCache
@@ -114,7 +118,17 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   Future<void> _tryLoad() async {
-    if (_imageData != null) {
+    if (_imageData != null || _hasError) {
+      return;
+    }
+    // Check if this image has permanently failed before
+    final cacheKey = widget.cacheKey;
+    if (cacheKey != null && _failedKeys.contains(cacheKey)) {
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+        });
+      }
       return;
     }
     try {
@@ -122,6 +136,15 @@ class _MxcImageState extends State<MxcImage> {
     } catch (e, s) {
       Logs().w('MxcImage: failed to load image', e, s);
       if (!mounted) return;
+      _retryCount++;
+      if (_retryCount >= _maxRetries) {
+        Logs().w('MxcImage: giving up after $_maxRetries retries');
+        if (cacheKey != null) _failedKeys.add(cacheKey);
+        setState(() {
+          _hasError = true;
+        });
+        return;
+      }
       await Future.delayed(widget.retryDuration);
       _tryLoad();
     }
@@ -138,6 +161,21 @@ class _MxcImageState extends State<MxcImage> {
     final data = _imageData;
     final hasData = data != null && data.isNotEmpty;
 
+    if (_hasError) {
+      return SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: Material(
+          color: Theme.of(context).colorScheme.surfaceContainer,
+          child: Icon(
+            Icons.broken_image_outlined,
+            size: min(widget.height ?? 64, 64),
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+      );
+    }
+
     return AnimatedSwitcher(
       duration: FluffyThemes.animationDuration,
       child: hasData
@@ -152,7 +190,19 @@ class _MxcImageState extends State<MxcImage> {
                     ? FilterQuality.low
                     : FilterQuality.medium,
                 errorBuilder: (context, e, s) {
-                  Logs().d('Unable to render mxc image', e, s);
+                  // Mark as failed to prevent infinite error rebuilds
+                  if (!_hasError) {
+                    Logs().d('Unable to render mxc image', e, s);
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (mounted) {
+                        final cacheKey = widget.cacheKey;
+                        if (cacheKey != null) _failedKeys.add(cacheKey);
+                        setState(() {
+                          _hasError = true;
+                        });
+                      }
+                    });
+                  }
                   return SizedBox(
                     width: widget.width,
                     height: widget.height,

@@ -1489,8 +1489,13 @@ class ChatController extends State<ChatPageWithRoom>
     if (callType == null) return;
 
     final voipPlugin = Matrix.of(context).voipPlugin;
+    if (voipPlugin == null) return;
     try {
-      await voipPlugin!.voip.inviteToCall(room, callType);
+      // Use LiveKit SFU-based call
+      await voipPlugin.startLiveKitCall(
+        room,
+        isVideo: callType == CallType.kVideo,
+      );
     } catch (e) {
       ScaffoldMessenger.of(
         context,

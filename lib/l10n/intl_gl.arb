@@ -825,7 +825,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} convidoute a FluffyChat.\n1. Visita fluffychat.im e instala a app\n2. Crea unha conta ou Accede\n3. Abre a ligazón do convite: \n {link}",
+    "inviteText": "{username} convidoute a Turning Agent.\n1. Visita aotsea.com e instala a app\n2. Crea unha conta ou Accede\n3. Abre a ligazón do convite: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1169,8 +1169,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nova mensaxe en FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Nova mensaxe en Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },
@@ -1791,7 +1791,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2278,7 +2278,7 @@
     "dehydrate": "Exportar sesión e eliminar dispositivo",
     "dehydrateTor": "Usuarias TOR: Exportar sesión",
     "indexedDbErrorTitle": "Problemas no modo privado",
-    "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar FluffyChat.",
+    "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar Turning Agent.",
     "user": "Usuaria",
     "custom": "Personal",
     "confirmMatrixId": "Confirma o teu ID Matrix para poder eliminar a conta.",
@@ -2296,19 +2296,19 @@
     "whyIsThisMessageEncrypted": "Por que non podo ler esta mensaxe?",
     "noKeyForThisMessage": "Pode ser que a mensaxe fose enviada antes de que ti accedeses á túa conta neste dispositivo.\n\nTamén é posible que a remitente non validase o teu dispositivo ou tamén que algo fallase na conexión a internet.\n\nPodes ler a mensaxe noutro dispositivo? Entón podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes tódolos dispositivos verificados. Entón cando abras a sala a próxima vez a sincronización realizarase e as chaves transmitiranse automáticamente.\n\nNon desexas perder as chaves cando pechas sesión ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas.",
     "appearOnTop": "Aparecer arriba",
-    "otherCallingPermissions": "Micrófono, cámara e outros permisos para FluffyChat",
+    "otherCallingPermissions": "Micrófono, cámara e outros permisos para Turning Agent",
     "newGroup": "Novo grupo",
     "newSpace": "Novo espazo",
     "foregroundServiceRunning": "Esta notificación aparece cando se está a executar o servizo en segundo plano.",
     "screenSharingTitle": "compartición da pantalla",
     "callingPermissions": "Permisos de chamada",
     "callingAccount": "Conta que chama",
-    "callingAccountDetails": "Permítelle a FluffyChat usar a app de telefonía nativa de android.",
-    "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
+    "callingAccountDetails": "Permítelle a Turning Agent usar a app de telefonía nativa de android.",
+    "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches Turning Agent como unha conta para chamadas)",
     "enterSpace": "Entrar no espazo",
     "enterRoom": "Entrar na sala",
     "allSpaces": "Todos os espazos",
-    "screenSharingDetail": "Estás a compartir a túa pantalla en FluffyChat",
+    "screenSharingDetail": "Estás a compartir a túa pantalla en Turning Agent",
     "numChats": "{number} conversas",
     "@numChats": {
         "type": "number",
@@ -2822,7 +2822,7 @@
     "discoverHomeservers": "Atopar servidores",
     "whatIsAHomeserver": "Que é un servidor de inicio?",
     "loginWithMatrixId": "Acceder co ID-Matrix",
-    "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://matrix.org.",
+    "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://aotsea.com.",
     "doesNotSeemToBeAValidHomeserver": "Non semella ser un servidor de inicio compatible. É o URL correcto?",
     "calculatingFileSize": "Calculando o tamaño do ficheiro…",
     "prepareSendingAttachment": "Preparando o envío…",
@@ -2864,7 +2864,7 @@
             }
         }
     },
-    "welcomeText": "Ola! 👋 Isto é FluffyChat. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
+    "welcomeText": "Ola! 👋 Isto é Turning Agent. Podes iniciar sesión en calquera servidor compatible con https://aotsea.com. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
     "setWallpaper": "Establecer fondo",
     "manageAccount": "Xestionar conta",
     "noContactInformationProvided": "O servidor non proporciona información de contacto válida",
@@ -2966,7 +2966,7 @@
     "crossVerifiedDevices": "Dispositivos verificados",
     "verifiedDevicesOnly": "Só dispositivos verificados",
     "waitingForServer": "Agardando polo servidor…",
-    "appIntroduction": "FluffyChat permíteche laretar coas túas amizades entre diferentes mensaxerías. Coñece máis en https://matrix.org ou toca en *Continuar*.",
+    "appIntroduction": "Turning Agent permíteche laretar coas túas amizades entre diferentes mensaxerías. Coñece máis en https://aotsea.com ou toca en *Continuar*.",
     "notificationRuleMasterDescription": "Sobrescribe todas as outras regras e desactiva todas as notificacións.",
     "appWantsToUseForLoginDescription": "Por tanto permites que a app e o sitio web compartan información sobre ti.",
     "notificationRuleMemberEventDescription": "Suprime as notificacións dos eventos de participación.",
@@ -3141,8 +3141,8 @@
     "signInWithLabel": "Acceder con:",
     "signIn": "Acceder",
     "createNewAccount": "Crear nova conta",
-    "signUpGreeting": "FluffyChat é descentralizada! Elixe un servidor para crear a conta e xa podes utilizar a app!",
+    "signUpGreeting": "Turning Agent é descentralizada! Elixe un servidor para crear a conta e xa podes utilizar a app!",
     "signInGreeting": "Xa tes unha conta en Matrix? Benvida! Selecciona o teu servidor de orixe e accede.",
-    "appIntro": "Con FluffyChat podes conversar coas amizades. É mensaxería segura e descentralizada en [matrix]! Coñece máis en https://matrix.org ou crea unha conta.",
+    "appIntro": "Con Turning Agent podes conversar coas amizades. É mensaxería segura e descentralizada en [Turning Agent]! Coñece máis en https://aotsea.com ou crea unha conta.",
     "theProcessWasCanceled": "Desbotouse o proceso."
 }

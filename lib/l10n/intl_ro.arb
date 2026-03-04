@@ -548,7 +548,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Turning Agent",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -706,7 +706,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Turning Agent",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -750,11 +750,11 @@
     "@callingAccount": {},
     "foregroundServiceRunning": "Această notificare apare când serviciul de foreground rulează.",
     "@foregroundServiceRunning": {},
-    "callingAccountDetails": "Permite FluffyChat să folosească aplicația de apeluri nativă android.",
+    "callingAccountDetails": "Permite Turning Agent să folosească aplicația de apeluri nativă android.",
     "@callingAccountDetails": {},
     "appearOnTop": "Apare deasupra",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Permite aplicația să apare deasupra (nu este necesar dacă aveți FluffyChat stabilit ca cont de apeluri)",
+    "appearOnTopDetails": "Permite aplicația să apare deasupra (nu este necesar dacă aveți Turning Agent stabilit ca cont de apeluri)",
     "@appearOnTopDetails": {},
     "currentlyActive": "Activ acum",
     "@currentlyActive": {
@@ -977,7 +977,7 @@
             }
         }
     },
-    "inviteText": "{username} v-a invitat la FluffyChat.\n1. Instalați FluffyChat: https://fluffychat.im\n2. Înregistrați-vă sau conectați-vă\n3. Deschideți invitația: {link}",
+    "inviteText": "{username} v-a invitat la Turning Agent.\n1. Instalați Turning Agent: https://aotsea.com\n2. Înregistrați-vă sau conectați-vă\n3. Deschideți invitația: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1351,11 +1351,11 @@
     "@user": {},
     "custom": "Personalizat",
     "@custom": {},
-    "screenSharingDetail": "Partajați ecranul în FluffyChat",
+    "screenSharingDetail": "Partajați ecranul în Turning Agent",
     "@screenSharingDetail": {},
     "storeSecurlyOnThisDevice": "Stoca sigur pe acest dispozitiv",
     "@storeSecurlyOnThisDevice": {},
-    "otherCallingPermissions": "Microfon, cameră și alte permisiuni lui FluffyChat",
+    "otherCallingPermissions": "Microfon, cameră și alte permisiuni lui Turning Agent",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "De ce este acest mesaj ilizibil?",
     "@whyIsThisMessageEncrypted": {},
@@ -1488,7 +1488,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Se pare că nu aveți serviciile google pe dispozitivul vostru. Această decizie este bună pentru confidențialitatea voastră! Să primiți notificari push în FluffyChat vă recomandăm https://microg.org/ sau https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Se pare că nu aveți serviciile google pe dispozitivul vostru. Această decizie este bună pentru confidențialitatea voastră! Să primiți notificari push în Turning Agent vă recomandăm https://microg.org/ sau https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1706,7 +1706,7 @@
             }
         }
     },
-    "indexedDbErrorLong": "Stocarea de mesaje nu este activat implicit în modul privat.\nVă rugăm să vizitați\n- about:config\n- stabiliți dom.indexedDB.privateBrowsing.enabled la true\nAstfel, nu este posibil să folosiți FluffyChat.",
+    "indexedDbErrorLong": "Stocarea de mesaje nu este activat implicit în modul privat.\nVă rugăm să vizitați\n- about:config\n- stabiliți dom.indexedDB.privateBrowsing.enabled la true\nAstfel, nu este posibil să folosiți Turning Agent.",
     "@indexedDbErrorLong": {},
     "addWidget": "Adăugați widget",
     "@addWidget": {},
@@ -1720,8 +1720,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Mesaj nou în FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInTurningAgent": "💬 Mesaj nou în Turning Agent",
+    "@newMessageInTurningAgent": {
         "type": "String",
         "placeholders": {}
     },

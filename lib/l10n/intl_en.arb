@@ -1201,7 +1201,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username} invited you to Turning Agent.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
+  "inviteText": "{username} invited you to Turning Agent.\n1. Visit aotsea.com and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {
@@ -1389,8 +1389,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 New message in Turning Agent",
-  "@newMessageInFluffyChat": {
+  "newMessageInTurningAgent": "💬 New message in Turning Agent",
+  "@newMessageInTurningAgent": {
     "type": "String",
     "placeholders": {}
   },
@@ -2647,7 +2647,7 @@
   "@callingAccountDetails": {},
   "appearOnTop": "Appear on top",
   "@appearOnTop": {},
-  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Turning Agent setup as a calling account)",
   "@appearOnTopDetails": {},
   "otherCallingPermissions": "Microphone, camera and other Turning Agent permissions",
   "@otherCallingPermissions": {},
@@ -3107,7 +3107,7 @@
   "@discoverHomeservers": {},
   "whatIsAHomeserver": "What is a homeserver?",
   "@whatIsAHomeserver": {},
-  "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
+  "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://aotsea.com.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
   "@doesNotSeemToBeAValidHomeserver": {},
@@ -3148,7 +3148,7 @@
   "@noticeChatBackupDeviceVerification": {},
   "continueText": "Continue",
   "@continueText": {},
-  "welcomeText": "Hey Hey 👋 This is Turning Agent. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
+  "welcomeText": "Hey Hey 👋 This is Turning Agent. You can sign in to any homeserver, which is compatible with https://aotsea.com. And then chat with anyone. It's a huge decentralized messaging network!",
   "@welcomeText": {},
   "blur": "Blur:",
   "@blur": {},
@@ -3209,7 +3209,7 @@
   "@open": {},
   "waitingForServer": "Waiting for server...",
   "@waitingForServer": {},
-  "appIntroduction": "Turning Agent lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
+  "appIntroduction": "Turning Agent lets you chat with your friends across different messengers. Learn more at https://aotsea.com or just tap *Continue*.",
   "@appIntroduction": {},
   "newChatRequest": "📩 New chat request",
   "@newChatRequest": {},
