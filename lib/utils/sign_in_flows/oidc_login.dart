@@ -28,30 +28,56 @@ Future<void> oidcLoginFlow(
   final urlScheme = redirectUrl.scheme;
 
   final clientUri = Uri.parse(AppConfig.website);
-  final supportWebPlatform =
-      kIsWeb &&
-      kReleaseMode &&
-      redirectUrl.scheme == 'https' &&
-      redirectUrl.host.contains(clientUri.host);
-  if (!supportWebPlatform) {
-    Logs().w(
-      'OIDC Application Type web is not supported. Using native now. Please use this instance not in production!',
+
+  // Use pre-registered OIDC client_id if configured, otherwise fall back
+  // to dynamic registration (creates a new client in the IDP each time)
+  final OidcClientData oidcClientData;
+  if (AppConfig.oidcClientId.isNotEmpty) {
+    Logs().i('Using pre-registered OIDC client: ${AppConfig.oidcClientId}');
+    oidcClientData = OidcClientData(
+      clientId: AppConfig.oidcClientId,
+      clientIdIssuedAt: null,
+      clientInformation: OidcClientInformation(
+        clientName: AppSettings.applicationName.value,
+        clientUri: clientUri,
+        logoUri: Uri.parse('https://aotsea.com/favicon.png'),
+        tosUri: null,
+        policyUri: AppConfig.privacyUrl,
+      ),
+      additionalProperties: {
+        'client_id': AppConfig.oidcClientId,
+        'client_name': AppSettings.applicationName.value,
+        'client_uri': clientUri.toString(),
+        'logo_uri': 'https://aotsea.com/favicon.png',
+        'policy_uri': AppConfig.privacyUrl.toString(),
+      },
+    );
+  } else {
+    final supportWebPlatform =
+        kIsWeb &&
+        kReleaseMode &&
+        redirectUrl.scheme == 'https' &&
+        redirectUrl.host.contains(clientUri.host);
+    if (!supportWebPlatform) {
+      Logs().w(
+        'OIDC Application Type web is not supported. Using native now. Please use this instance not in production!',
+      );
+    }
+
+    oidcClientData = await client.registerOidcClient(
+      redirectUris: [redirectUrl],
+      applicationType: supportWebPlatform
+          ? OidcApplicationType.web
+          : OidcApplicationType.native,
+      clientInformation: OidcClientInformation(
+        clientName: AppSettings.applicationName.value,
+        clientUri: clientUri,
+        logoUri: Uri.parse('https://aotsea.com/favicon.png'),
+        tosUri: null,
+        policyUri: AppConfig.privacyUrl,
+      ),
     );
   }
-
-  final oidcClientData = await client.registerOidcClient(
-    redirectUris: [redirectUrl],
-    applicationType: supportWebPlatform
-        ? OidcApplicationType.web
-        : OidcApplicationType.native,
-    clientInformation: OidcClientInformation(
-      clientName: AppSettings.applicationName.value,
-      clientUri: clientUri,
-      logoUri: Uri.parse('https://aotsea.com/favicon.png'),
-      tosUri: null,
-      policyUri: AppConfig.privacyUrl,
-    ),
-  );
 
   final session = await client.initOidcLoginSession(
     oidcClientData: oidcClientData,

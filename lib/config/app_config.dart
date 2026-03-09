@@ -42,6 +42,11 @@ abstract class AppConfig {
   // @brand:app_open_url_scheme
   static const String appOpenUrlScheme = 'com.aotsea';
 
+  // Pre-registered OIDC client_id. When set, skips dynamic client registration.
+  // Register this client in the IDP with: public=true, PKCE=required, no secret.
+  // @brand:oidc_client_id
+  static const String oidcClientId = 'b7e2c4a1f9d83056e1a4c7b2d5f098a3';
+
   // @brand:source_code_url
   static const String sourceCodeUrl = '';
   // @brand:support_url

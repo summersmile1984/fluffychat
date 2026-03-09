@@ -144,8 +144,23 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
 
   Future<Client> getLoginClient() async {
+    Logs().i('[getLoginClient] clients.length=${widget.clients.length}, isNotEmpty=${widget.clients.isNotEmpty}, client.isLogged=${widget.clients.isNotEmpty ? client.isLogged() : "N/A"}, _loginClientCandidate=${_loginClientCandidate?.clientName}');
     if (widget.clients.isNotEmpty && !client.isLogged()) {
-      return client;
+      final existingClient = client;
+      Logs().i('[getLoginClient] Reusing existing client: ${existingClient.clientName}');
+      // Re-register subscriptions (they were cancelled on logout)
+      _registerSubs(existingClient.clientName);
+      // Set up one-shot listener to navigate after login succeeds
+      existingClient.onLoginStateChanged.stream
+          .where((l) => l == LoginState.loggedIn)
+          .first
+          .then((_) {
+            Logs().i('[getLoginClient] Reused client logged in, navigating to /rooms');
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              FluffyChatApp.router.go('/rooms');
+            });
+          });
+      return existingClient;
     }
     final candidate = _loginClientCandidate ??=
         await ClientManager.createClient(
@@ -165,7 +180,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 );
                 _registerSubs(_loginClientCandidate!.clientName);
                 _loginClientCandidate = null;
-                // Navigation is handled by _registerSubs via onLoginStateChanged
+                // Navigate to /rooms after the dialog pop completes
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  FluffyChatApp.router.go('/rooms');
+                });
               });
     if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
@@ -256,31 +274,24 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           );
         });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
-      final loggedInWithMultipleClients = widget.clients.length > 1;
       if (state == LoginState.loggedOut) {
         _cancelSubs(c.clientName);
-        widget.clients.remove(c);
-        ClientManager.removeClientNameFromStore(c.clientName, store);
+        // Only remove client if there are other logged-in clients (multi-account).
+        // Keep the last client so getLoginClient() can reuse it for next login.
+        if (widget.clients.length > 1) {
+          widget.clients.remove(c);
+          ClientManager.removeClientNameFromStore(c.clientName, store);
+        }
         InitWithRestoreExtension.deleteSessionBackup(name);
       }
       // Defer navigation to next frame to avoid conflicts with
       // dialog pop() from OIDC webview that may be in progress
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
-          ScaffoldMessenger.of(
-            FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
-                context,
-          ).showSnackBar(
-            SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
-          );
-
-          if (state != LoginState.loggedIn) {
-            FluffyChatApp.router.go('/rooms');
-          }
-        } else {
-          final target = state == LoginState.loggedIn ? '/rooms' : '/home';
-          FluffyChatApp.router.go(target);
-        }
+        // Check if ANY client is currently logged in
+        final anyLoggedIn =
+            widget.clients.any((cl) => cl.isLogged());
+        final target = anyLoggedIn ? '/rooms' : '/home';
+        FluffyChatApp.router.go(target);
       });
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);

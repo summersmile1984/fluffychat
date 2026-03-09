@@ -237,6 +237,7 @@ B_APP_ID=$(jval '.identifiers.app_id')
 B_APP_URL_SCHEME=$(jval '.identifiers.app_open_url_scheme')
 B_CLIENT_NS=$(jval '.identifiers.client_namespace')
 B_DBUS=$(jval '.identifiers.dbus_name')
+B_OIDC_CLIENT_ID=$(jval '.identifiers.oidc_client_id // empty')
 
 # URLs
 B_WEBSITE=$(jval '.urls.website')
@@ -313,6 +314,9 @@ replace_brand_marker "$APP_CONFIG" "app_id" \
 
 replace_brand_marker "$APP_CONFIG" "app_open_url_scheme" \
     "  static const String appOpenUrlScheme = '${B_APP_URL_SCHEME}';"
+
+replace_brand_marker "$APP_CONFIG" "oidc_client_id" \
+    "  static const String oidcClientId = '${B_OIDC_CLIENT_ID}';"
 
 replace_brand_marker "$APP_CONFIG" "source_code_url" \
     "  static const String sourceCodeUrl = '${B_SOURCE_URL}';"

@@ -18,7 +18,8 @@
         "app_id": "com.example.app.MyApp",
         "app_open_url_scheme": "com.example",
         "client_namespace": "com.example.app.store.clients",
-        "dbus_name": "com.example.app"
+        "dbus_name": "com.example.app",
+        "oidc_client_id": ""
     },
     "urls": {
         "website": "https://example.com",

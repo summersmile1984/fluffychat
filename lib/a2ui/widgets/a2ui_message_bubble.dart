@@ -58,8 +58,28 @@ class _A2uiMessageBubbleState extends State<A2uiMessageBubble> {
       catalog: A2uiCatalogRegistry.catalog,
     );
 
+    // Debug: log raw a2ui_content to diagnose parsing issues
+    final rawA2ui = widget.event.content['a2ui_content'];
+    debugPrint('[A2UIBubble] eventId=${widget.event.eventId} rawType=${rawA2ui?.runtimeType}');
+    if (rawA2ui is List) {
+      debugPrint('[A2UIBubble] a2ui_content array length=${rawA2ui.length}');
+      for (var i = 0; i < rawA2ui.length; i++) {
+        final item = rawA2ui[i];
+        debugPrint('[A2UIBubble] item[$i] keys=${item is Map ? item.keys.toList() : "NOT A MAP: ${item.runtimeType}"}');
+        if (item is Map) {
+          final inner = item.values.firstOrNull;
+          if (inner is Map) {
+            debugPrint('[A2UIBubble] item[$i] inner keys=${inner.keys.toList()}');
+          }
+        }
+      }
+    } else if (rawA2ui != null) {
+      debugPrint('[A2UIBubble] a2ui_content is not a List: ${rawA2ui.runtimeType}');
+    }
+
     // Parse and process A2UI messages from the event
     _messages = A2uiEventParser.parseMessages(widget.event);
+    debugPrint('[A2UIBubble] parsed ${_messages.length} message(s)');
     _generator.processMessages(_messages);
 
     // Collect surface IDs for rendering
@@ -75,6 +95,7 @@ class _A2uiMessageBubbleState extends State<A2uiMessageBubble> {
           _surfaceIds.remove(message.surfaceId);
       }
     }
+    debugPrint('[A2UIBubble] surfaceIds=${_surfaceIds.toList()}');
   }
 
   @override

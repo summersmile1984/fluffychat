@@ -20,7 +20,8 @@
     "app_id": "com.aotsea.im.TurningAgent",
     "app_open_url_scheme": "com.aotsea",
     "client_namespace": "com.aotsea.im.store.clients",
-    "dbus_name": "com.aotsea.im"
+    "dbus_name": "com.aotsea.im",
+    "oidc_client_id": "b7e2c4a1f9d83056e1a4c7b2d5f098a3"
   },
   "urls": {
     "website": "https://aotsea.com",
