@@ -1,0 +1,63 @@
+{
+  "brand_name": "Turning Agent",
+  "brand_description": "Your AI-powered Matrix messenger",
+  "identifiers": {
+    "android_application_id": "com.aotsea.im",
+    "android_namespace": "com.aotsea.im",
+    "ios_bundle_id": "com.aotsea.im",
+    "ios_share_bundle_id": "com.aotsea.im.Share",
+    "ios_notification_bundle_id": "com.aotsea.im.Notification-Service-Extension",
+    "associated_domain": "aotsea.com",
+    "macos_bundle_id": "com.aotsea.im.macos",
+    "linux_application_id": "com.aotsea.im",
+    "linux_binary_name": "turning-agent",
+    "windows_binary_name": "turning-agent",
+    "snap_name": "turning-agent",
+    "url_scheme": "com.aotsea.im",
+    "deep_link_prefix": "com.aotsea.im://chat/",
+    "push_channel_id": "turning_agent_push",
+    "push_app_id": "com.aotsea.im",
+    "app_id": "com.aotsea.im.TurningAgent",
+    "app_open_url_scheme": "com.aotsea",
+    "client_namespace": "com.aotsea.im.store.clients",
+    "dbus_name": "com.aotsea.im"
+  },
+  "urls": {
+    "website": "https://aotsea.com",
+    "privacy_url_scheme": "https",
+    "privacy_url_host": "aotsea.com",
+    "privacy_url_path": "/privacy",
+    "source_code_url": "",
+    "support_url": "",
+    "changelog_url": "",
+    "donation_url": "",
+    "push_tutorial_url": "",
+    "encryption_tutorial_url": "",
+    "start_chat_tutorial_url": "",
+    "stickers_tutorial_url": "",
+    "push_gateway_url": "https://push.fluffychat.im/_matrix/push/v1/notify",
+    "homeserver_list_url": "",
+    "new_issue_url_host": "",
+    "new_issue_url_path": ""
+  },
+  "theme": {
+    "primary_color": "0xFF5625BA",
+    "primary_color_light": "0xFFCCBDEA",
+    "secondary_color": "0xFF41a2bc",
+    "color_scheme_seed": "0xFF5625BA",
+    "adaptive_icon_background": "#311B92",
+    "splash_color_light": "#ffffff",
+    "splash_color_dark": "#000000",
+    "web_theme_color": "#1a1145",
+    "web_background_color": "#1a1145"
+  },
+  "defaults": {
+    "default_homeserver": "aotsea.com",
+    "allow_other_homeservers": false,
+    "enable_registration": true
+  },
+  "legal": {
+    "copyright": "Copyright © 2025 Aotsea. All rights reserved.",
+    "company_name": "Aotsea"
+  }
+}

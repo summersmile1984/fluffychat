@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "chat.fluffy" "\0"
-            VALUE "FileDescription", "fluffychat" "\0"
+            VALUE "CompanyName", "Aotsea" "\0"
+            VALUE "FileDescription", "turning-agent" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "fluffychat" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 chat.fluffy. All rights reserved." "\0"
-            VALUE "OriginalFilename", "fluffychat.exe" "\0"
-            VALUE "ProductName", "fluffychat" "\0"
+            VALUE "InternalName", "turning-agent" "\0"
+            VALUE "LegalCopyright", "Copyright © 2025 Aotsea. All rights reserved." "\0"
+            VALUE "OriginalFilename", "turning-agent.exe" "\0"
+            VALUE "ProductName", "turning-agent" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

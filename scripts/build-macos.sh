@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-git apply ./scripts/enable-android-google-services.patch
-FLUFFYCHAT_ORIG_GROUP="im.fluffychat"
-FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
+# git apply ./scripts/enable-android-google-services.patch
+FLUFFYCHAT_ORIG_GROUP="com.aotsea"
+FLUFFYCHAT_ORIG_TEAM="YTY9KEWQC5"
 #FLUFFYCHAT_NEW_GROUP="com.example.fluffychat"
 #FLUFFYCHAT_NEW_TEAM="ABCDE12345"
 
@@ -30,4 +30,4 @@ FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
 ### Make release build ###
 flutter build macos --release
 
-echo "Build build/macos/Build/Products/Release/FluffyChat.app"
+echo "Build build/macos/Build/Products/Release/Turning Agent.app"

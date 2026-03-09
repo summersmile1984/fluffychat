@@ -1,7 +1,7 @@
-# FluffyChat (Matrix Client) 项目须知
+# Turning Agent (Matrix Client) 项目须知
 
 ## 项目概览
-这是一个基于 Flutter 的 Matrix 协议即时通信客户端，Fork 自 [krille-chan/fluffychat](https://github.com/krille-chan/fluffychat)。
+这是一个基于 Flutter 的 Matrix 协议即时通信客户端，Fork 自 [krille-chan/fluffychat](https://github.com/krille-chan/fluffychat)，已完成白牌改造为 **Turning Agent** 品牌。
 
 ## 核心架构（四层）
 
@@ -66,18 +66,57 @@ git merge main
 
 **减少合并冲突的原则**：自定义功能代码写在独立的新文件中，对官方文件的修改控制在最少的拦截行数内。
 
+## 白牌（White-Label）架构
+
+### 品牌目录结构
+```
+brands/
+├── turning_agent/          # 当前品牌
+│   ├── brand.json          # 所有品牌配置（标识符、URL、主题色、默认值）
+│   └── assets/             # icon.png, logo.png, banner.png, favicon.png
+└── _template/              # 新品牌模板
+    ├── brand.json
+    └── assets/.gitkeep
+```
+
+### 品牌切换命令
+```bash
+./scripts/apply-brand.sh turning_agent          # 应用品牌
+./scripts/apply-brand.sh turning_agent --dry-run # 预览变更
+./scripts/apply-brand.sh new_brand              # 切换到新品牌
+cat .current_brand                               # 查看当前品牌
+```
+
+### 工作原理
+- **`brand.json`**：品牌配置单一数据源（标识符、URL、主题色等）
+- **`// @brand:xxx` 标记**：Dart 源文件中的标记注释，脚本定位到标记后替换下一行
+- **`apply-brand.sh`**：读取 JSON → 替换 15+ 文件（8 个平台）→ 复制资源 → 运行 Flutter 再生
+
+### 标记文件
+| 文件 | 标记数 | 内容 |
+|------|--------|------|
+| `lib/config/app_config.dart` | 18 | 颜色、URL、标识符 |
+| `lib/config/setting_keys.dart` | 4 | 推送网关、应用名、默认服务器、主题色 |
+| `lib/utils/client_manager.dart` | 1 | 客户端命名空间 |
+
+### 保留的 FluffyChat 引用（内部代码，非用户可见）
+- `package:fluffychat` — Dart 包名（改动需全量重命名）
+- `FluffyChatApp` 等类名 — 内部标识符
+- `lib/l10n/l10n_*.dart` — 自动生成文件，key 名不影响显示
+
 ## 常用命令
 ```bash
-flutter run -d macos          # 运行 macOS 桌面版
-flutter run -d chrome          # 运行 Web 版
-flutter build apk --debug     # 构建 Android Debug APK
+flutter run -d macos                          # 运行 macOS 桌面版
+flutter run -d chrome                          # 运行 Web 版
+flutter build apk --debug                     # 构建 Android Debug APK
+./scripts/apply-brand.sh <brand> [--dry-run]   # 品牌切换
 ```
 
 ## 规划文档（plan/ 目录）
 
 | 文档 | 内容 |
 |------|------|
-| `plan/white_label_analysis.md` | 白牌改造深度分析（7 层），含所有 FluffyChat 品牌残留的定位和优先级清单 |
-| `plan/a2ui_integration_plan.md` | A2UI 自定义消息格式接入方案（两种实现路径） |
+| `plan/white_label_analysis.md` | 白牌改造深度分析（7 层），含所有品牌残留的定位和优先级清单 |
+| `plan/a2ui_integration_plan.md` | A2UI 自定义消息格式接入方案 |
 | `plan/architecture_overview.md` | 项目整体架构分析（四层结构、核心依赖） |
 | `plan/fork_workflow_guide.md` | Fork 与上游合并工作流指南 |

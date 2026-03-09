@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
@@ -12,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/oidc_session_json_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sign_in_flows/oidc_webview_dialog.dart';
 
 Future<void> oidcLoginFlow(
   Client client,
@@ -21,14 +21,11 @@ Future<void> oidcLoginFlow(
   Logs().i('Starting Matrix Native OIDC Flow...');
   final redirectUrl = kIsWeb
       ? Uri.parse(html.window.location.href.split('#').first.split('?').first)
-      : (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
+      : (PlatformInfos.isMobile || PlatformInfos.isMacOS)
       ? Uri.parse('${AppConfig.appOpenUrlScheme.toLowerCase()}:/login')
       : Uri.parse('http://localhost:3001/login');
 
-  final urlScheme =
-      (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
-      ? redirectUrl.scheme
-      : 'http://localhost:3001';
+  final urlScheme = redirectUrl.scheme;
 
   final clientUri = Uri.parse(AppConfig.website);
   final supportWebPlatform =
@@ -50,7 +47,7 @@ Future<void> oidcLoginFlow(
     clientInformation: OidcClientInformation(
       clientName: AppSettings.applicationName.value,
       clientUri: clientUri,
-      logoUri: Uri.parse('https://fluffy.chat/assets/favicon.png'),
+      logoUri: Uri.parse('https://aotsea.com/favicon.png'),
       tosUri: null,
       policyUri: AppConfig.privacyUrl,
     ),
@@ -76,15 +73,25 @@ Future<void> oidcLoginFlow(
     );
   }
 
-  final returnUrlString = await FlutterWebAuth2.authenticate(
-    url: session.authenticationUri.toString(),
-    callbackUrlScheme: urlScheme,
-    options: FlutterWebAuth2Options(
-      useWebview: PlatformInfos.isMobile,
-      windowName: '_self',
-    ),
-  );
-  if (kIsWeb) return; // On Web we return at intro page when app starts again!
+  // Use in-app webview for native platforms, system browser for web
+  final String? returnUrlString;
+  if (!kIsWeb && (PlatformInfos.isMobile || PlatformInfos.isDesktop)) {
+    returnUrlString = await OidcWebviewDialog.show(
+      context,
+      url: session.authenticationUri.toString(),
+      callbackScheme: urlScheme,
+    );
+    if (returnUrlString == null) {
+      Logs().w('OIDC login cancelled by user');
+      return;
+    }
+  } else {
+    // Web platform — redirect in same window
+    html.window.location.href = session.authenticationUri.toString();
+    return;
+  }
+
+  if (kIsWeb) return;
 
   final returnUrl = Uri.parse(returnUrlString);
   final queryParameters = returnUrl.hasFragment

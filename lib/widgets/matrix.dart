@@ -165,7 +165,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 );
                 _registerSubs(_loginClientCandidate!.clientName);
                 _loginClientCandidate = null;
-                FluffyChatApp.router.go('/backup');
+                // Navigation is handled by _registerSubs via onLoginStateChanged
               });
     if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
@@ -263,22 +263,25 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ClientManager.removeClientNameFromStore(c.clientName, store);
         InitWithRestoreExtension.deleteSessionBackup(name);
       }
-      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
-        ScaffoldMessenger.of(
-          FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
-              context,
-        ).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
-        );
+      // Defer navigation to next frame to avoid conflicts with
+      // dialog pop() from OIDC webview that may be in progress
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
+          ScaffoldMessenger.of(
+            FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+                context,
+          ).showSnackBar(
+            SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
+          );
 
-        if (state != LoginState.loggedIn) {
-          FluffyChatApp.router.go('/rooms');
+          if (state != LoginState.loggedIn) {
+            FluffyChatApp.router.go('/rooms');
+          }
+        } else {
+          final target = state == LoginState.loggedIn ? '/rooms' : '/home';
+          FluffyChatApp.router.go(target);
         }
-      } else {
-        FluffyChatApp.router.go(
-          state == LoginState.loggedIn ? '/backup' : '/home',
-        );
-      }
+      });
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {

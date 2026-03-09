@@ -15,6 +15,7 @@ class IntroPage extends StatelessWidget {
   final bool isLoading, hasPresetHomeserver;
   final String? loggingInToHomeserver, welcomeText;
   final VoidCallback login;
+  final TextEditingController? homeserverController;
 
   const IntroPage({
     required this.isLoading,
@@ -23,6 +24,7 @@ class IntroPage extends StatelessWidget {
     required this.hasPresetHomeserver,
     required this.welcomeText,
     required this.login,
+    this.homeserverController,
   });
 
   @override
@@ -141,7 +143,39 @@ class IntroPage extends StatelessWidget {
                               mainAxisSize: .min,
                               crossAxisAlignment: .stretch,
                               children: [
-                                // createNewAccount and loginWithMatrixId removed for our custom build
+                                if (homeserverController != null) ...[
+                                  TextField(
+                                    controller: homeserverController,
+                                    autocorrect: false,
+                                    keyboardType: TextInputType.url,
+                                    textInputAction: TextInputAction.done,
+                                    onSubmitted: (_) => login(),
+                                    decoration: InputDecoration(
+                                      prefixIcon: const Icon(Icons.dns_outlined),
+                                      labelText: 'Homeserver',
+                                      hintText: 'matrix.example.com',
+                                      filled: true,
+                                      fillColor: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: BorderSide(
+                                          color: theme.colorScheme.outline.withValues(alpha: 0.3),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: BorderSide(
+                                          color: theme.colorScheme.primary,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                ],
                                 ElevatedButton(
                                   onPressed: login,
                                   child: Text(L10n.of(context).signIn),
@@ -159,3 +193,4 @@ class IntroPage extends StatelessWidget {
     );
   }
 }
+

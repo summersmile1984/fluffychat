@@ -1,10 +1,9 @@
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
-import 'package:pdf_render/pdf_render.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfThumbnailBrowser extends StatefulWidget {
   final Event event;
@@ -27,38 +26,22 @@ class PdfThumbnailBrowser extends StatefulWidget {
 }
 
 class _PdfThumbnailBrowserState extends State<PdfThumbnailBrowser> {
-  Uint8List? _thumbnailBytes;
+  Uint8List? _pdfBytes;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadPdfThumbnail();
+    _loadPdf();
   }
 
-  Future<void> _loadPdfThumbnail() async {
-    PdfDocument? doc;
+  Future<void> _loadPdf() async {
     try {
       final file = await widget.event.downloadAndDecryptAttachment();
-      doc = await PdfDocument.openData(file.bytes);
-      if (doc.pageCount > 0) {
-        final page = await doc.getPage(1);
-        final pageImage = await page.render(
-          width: (widget.width * 2).toInt(),
-          height: (widget.height * 2).toInt(),
-        );
-        // Create the dart:ui Image and convert to PNG bytes
-        final image = await pageImage.createImageIfNotAvailable();
-        final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-        if (byteData != null) {
-          _thumbnailBytes = byteData.buffer.asUint8List();
-        }
-        pageImage.dispose();
-      }
+      _pdfBytes = file.bytes;
     } catch (e) {
-      Logs().w('Failed to load PDF thumbnail', e);
+      Logs().w('Failed to load PDF', e);
     } finally {
-      doc?.dispose();
       if (mounted) {
         setState(() {
           _isLoading = false;
@@ -79,7 +62,7 @@ class _PdfThumbnailBrowserState extends State<PdfThumbnailBrowser> {
       );
     }
 
-    if (_thumbnailBytes == null) {
+    if (_pdfBytes == null) {
       return SizedBox(
         width: widget.width,
         height: widget.height,
@@ -95,11 +78,21 @@ class _PdfThumbnailBrowserState extends State<PdfThumbnailBrowser> {
 
     return ClipRRect(
       borderRadius: widget.borderRadius,
-      child: Image.memory(
-        _thumbnailBytes!,
+      child: SizedBox(
         width: widget.width,
         height: widget.height,
-        fit: widget.fit,
+        child: IgnorePointer(
+          child: SfPdfViewer.memory(
+            _pdfBytes!,
+            canShowScrollHead: false,
+            canShowScrollStatus: false,
+            enableDoubleTapZooming: false,
+            enableTextSelection: false,
+            canShowPaginationDialog: false,
+            pageLayoutMode: PdfPageLayoutMode.single,
+            scrollDirection: PdfScrollDirection.horizontal,
+          ),
+        ),
       ),
     );
   }

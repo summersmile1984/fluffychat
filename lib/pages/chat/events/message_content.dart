@@ -27,6 +27,9 @@ import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
 import 'url_preview.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:fluffychat/a2ui/widgets/a2ui_message_bubble.dart';
+import 'streaming_message_content.dart';
 
 class MessageContent extends StatelessWidget {
   static final _urlRegex = RegExp(
@@ -256,6 +259,112 @@ class MessageContent extends StatelessWidget {
                 fontSize: fontSize,
               );
             }
+            // ── Format-based routing ──
+            final format = event.content['format'] as String?;
+
+            // 1. Streaming: real-time delta rendering (takes priority)
+            if (event.content['streaming'] == true) {
+              return StreamingMessageContent(
+                event: event,
+                timeline: timeline,
+                textColor: textColor,
+                linkColor: linkColor,
+              );
+            }
+
+            // 2. A2UI: dynamic UI components
+            if (format == 'org.matrix.custom.a2ui') {
+              return A2uiMessageBubble(
+                event: event,
+                textColor: textColor,
+                linkColor: linkColor,
+              );
+            }
+
+            // 3. Markdown: render body as markdown
+            if (format == 'org.matrix.custom.markdown') {
+              final urlMatch = _urlRegex.firstMatch(event.body);
+              final previewUrl = urlMatch?.group(0);
+              final showPreview = previewUrl != null;
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    MarkdownBody(
+                      data: event.body,
+                      selectable: true,
+                      styleSheet: MarkdownStyleSheet(
+                        p: TextStyle(
+                            color: textColor, fontSize: fontSize),
+                        h1: TextStyle(
+                          color: textColor,
+                          fontSize: fontSize * 1.6,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        h2: TextStyle(
+                          color: textColor,
+                          fontSize: fontSize * 1.4,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        h3: TextStyle(
+                          color: textColor,
+                          fontSize: fontSize * 1.2,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        h4: TextStyle(
+                          color: textColor,
+                          fontSize: fontSize * 1.1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        code: TextStyle(
+                          color: textColor,
+                          backgroundColor:
+                              textColor.withAlpha(20),
+                          fontSize: fontSize * 0.9,
+                        ),
+                        codeblockDecoration: BoxDecoration(
+                          color: textColor.withAlpha(15),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        a: TextStyle(
+                          color: linkColor,
+                          decoration: TextDecoration.underline,
+                          decorationColor: linkColor,
+                        ),
+                        listBullet: TextStyle(
+                            color: textColor, fontSize: fontSize),
+                        blockquoteDecoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                                color: textColor, width: 4),
+                          ),
+                        ),
+                        blockquotePadding:
+                            const EdgeInsets.only(left: 8),
+                        tableBorder: TableBorder.all(
+                          color: textColor.withAlpha(80),
+                        ),
+                      ),
+                      onTapLink: (text, href, title) {
+                        if (href != null) {
+                          UrlLauncher(context, href).launchUrl();
+                        }
+                      },
+                    ),
+                    if (showPreview)
+                      UrlPreviewWidget(
+                        url: previewUrl,
+                        client: event.room.client,
+                      ),
+                  ],
+                ),
+              );
+            }
+
+            // 4. HTML / plain text (original path)
             var html = AppSettings.renderHtml.value && event.isRichMessage
                 ? event.formattedText
                 : event.body.replaceAll('<', '&lt;').replaceAll('>', '&gt;');

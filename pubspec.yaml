@@ -10,6 +10,8 @@ environment:
   sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
+  genui: ^0.7.0
+  json_schema_builder: ^0.1.3
   animations: ^2.1.1
   app_links: ^6.4.1
   archive: ^4.0.7
@@ -37,6 +39,7 @@ dependencies:
   flutter_map: ^8.2.2
   flutter_new_badger: ^1.1.1
   flutter_secure_storage: ^10.0.0
+  flutter_svg: ^2.2.3
   flutter_shortcuts_new: ^2.0.0
   flutter_vodozemac: ^0.5.0
   flutter_web_auth_2: ^5.0.1
@@ -62,7 +65,6 @@ dependencies:
   particles_network: ^1.9.3
   path: ^1.9.0
   path_provider: ^2.1.2
-  pdf_render: ^1.4.12
   permission_handler: ^12.0.1
   pretty_qr_code: ^3.6.0
   provider: ^6.0.2
@@ -87,6 +89,9 @@ dependencies:
   video_player: ^2.10.1
   wakelock_plus: ^1.3.3
   webrtc_interface: ^1.3.0
+  livekit_client: ^2.6.4
+  flutter_markdown: ^0.7.7+1
+  flutter_inappwebview: ^6.1.5
 
 dev_dependencies:
   dart_code_linter: ^3.2.1
@@ -108,7 +113,7 @@ import_sorter:
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#000000"
-  image: "assets/turning_agent_icon.png"
+  image: "assets/app_icon.png"
 
 flutter:
   generate: true
@@ -127,19 +132,19 @@ dependency_overrides:
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/turning_agent_icon.png"
+  image_path: "assets/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   adaptive_icon_background: "#311B92"
-  adaptive_icon_foreground: "assets/turning_agent_icon.png"
+  adaptive_icon_foreground: "assets/app_icon.png"
   web:
     generate: true
-    image_path: "assets/turning_agent_icon.png"
+    image_path: "assets/app_icon.png"
     background_color: "#hex_color"
     theme_color: "#hex_color"
   windows:
     generate: true
-    image_path: "assets/turning_agent_icon.png"
+    image_path: "assets/app_icon.png"
     icon_size: 48 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "assets/turning_agent_icon.png"
+    image_path: "assets/app_icon.png"

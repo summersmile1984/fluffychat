@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-git apply ./scripts/enable-android-google-services.patch
-FLUFFYCHAT_ORIG_GROUP="im.fluffychat"
-FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
+# git apply ./scripts/enable-android-google-services.patch
+FLUFFYCHAT_ORIG_GROUP="com.aotsea"
+FLUFFYCHAT_ORIG_TEAM="YTY9KEWQC5"
 #FLUFFYCHAT_NEW_GROUP="com.example.fluffychat"
 #FLUFFYCHAT_NEW_TEAM="ABCDE12345"
 
@@ -73,6 +73,6 @@ flutter build ipa --release
   echo '{"compileBitcode":false,"method":"development"}' | plutil -convert xml1 -o "${TMPDIR}/options.plist" -
   xcodebuild -exportArchive -archivePath ./build/ios/archive/Runner.xcarchive -exportPath "${TMPDIR}" -exportOptionsPlist "${TMPDIR}/options.plist"
   # 2. ...and install it on your connected devices
-  cfgutil --foreach install-app "${TMPDIR}/fluffychat.ipa"
+  cfgutil --foreach install-app "${TMPDIR}/turning-agent.ipa"
   rm -rf "${TMPDIR}"
 }

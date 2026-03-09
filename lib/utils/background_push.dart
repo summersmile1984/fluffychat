@@ -301,8 +301,13 @@ class BackgroundPush {
     if (upAction) {
       return;
     }
-    if (!PlatformInfos.isIOS &&
-        (await UnifiedPush.getDistributors()).isNotEmpty) {
+    if (PlatformInfos.isIOS) {
+      // Skip push setup on iOS — Google Services / FCM are not compiled in,
+      // so setupFirebase() would always fail and show an error dialog.
+      Logs().i('[Push] Skipping push setup on iOS (no FCM support compiled)');
+      return;
+    }
+    if ((await UnifiedPush.getDistributors()).isNotEmpty) {
       await setupUp();
     } else {
       await setupFirebase();

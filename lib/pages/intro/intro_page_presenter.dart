@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:matrix/msc_extensions/msc_2964_oidc_login_flow/msc_2964_oidc_login_flow.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,12 +26,21 @@ class IntroPagePresenter extends StatefulWidget {
 class _IntroPagePresenterState extends State<IntroPagePresenter> {
   bool isLoading = kIsWeb;
   String? loggingInToHomeserver;
+  late final TextEditingController homeserverController;
 
   @override
   void initState() {
     super.initState();
-
+    homeserverController = TextEditingController(
+      text: AppSettings.defaultHomeserver.value,
+    );
     if (kIsWeb) _finishOidcLogin();
+  }
+
+  @override
+  void dispose() {
+    homeserverController.dispose();
+    super.dispose();
   }
 
   Future<void> _finishOidcLogin() async {
@@ -94,16 +102,19 @@ class _IntroPagePresenterState extends State<IntroPagePresenter> {
   }
 
   void _login() {
-    final presetHomeserver = AppSettings.presetHomeserver.value;
-    if (presetHomeserver.isEmpty) {
-      context.go('${GoRouterState.of(context).uri.path}/sign_in');
-      return;
-    }
+    final homeserverInput = homeserverController.text.trim();
+    if (homeserverInput.isEmpty) return;
 
     connectToHomeserverFlow(
-      PublicHomeserverData(name: presetHomeserver),
+      PublicHomeserverData(name: homeserverInput),
       context,
-      (snapshot) {},
+      (snapshot) {
+        if (mounted) {
+          setState(() {
+            isLoading = snapshot.connectionState == ConnectionState.waiting;
+          });
+        }
+      },
       false,
     );
   }
@@ -113,11 +124,12 @@ class _IntroPagePresenterState extends State<IntroPagePresenter> {
     return IntroPage(
       isLoading: isLoading,
       loggingInToHomeserver: loggingInToHomeserver,
-      hasPresetHomeserver: AppSettings.presetHomeserver.value.isNotEmpty,
+      hasPresetHomeserver: true,
       welcomeText: AppSettings.welcomeText.value.isEmpty
           ? null
           : AppSettings.welcomeText.value,
       login: _login,
+      homeserverController: homeserverController,
     );
   }
 }

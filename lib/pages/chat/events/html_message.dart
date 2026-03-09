@@ -137,6 +137,39 @@ class HtmlMessage extends StatelessWidget {
     ];
   }
 
+  /// Builds a [TableRow] from an HTML `<tr>` element.
+  TableRow _buildTableRow(
+    dom.Element tr,
+    BuildContext context,
+    int depth,
+  ) {
+    return TableRow(
+      children: tr.children
+          .where((cell) =>
+              cell.localName == 'td' || cell.localName == 'th')
+          .map((cell) {
+        final isHeader = cell.localName == 'th';
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          child: Text.rich(
+            TextSpan(
+              children: _renderWithLineBreaks(
+                cell.nodes,
+                context,
+                depth: depth,
+              ),
+              style: TextStyle(
+                fontSize: fontSize,
+                color: textColor,
+                fontWeight: isHeader ? FontWeight.bold : null,
+              ),
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
   InlineSpan _renderCodeBlockNode(dom.Node node) {
     if (node is! dom.Element) {
       return TextSpan(text: node.text);
@@ -347,7 +380,7 @@ class HtmlMessage extends StatelessWidget {
                 )
                 ?.split('language-')
                 .last ??
-            'md';
+            'plaintext';
         final highlightedHtml = highlight
             .parse(node.text, language: lang)
             .toHtml();
@@ -371,6 +404,36 @@ class HtmlMessage extends StatelessWidget {
                 TextSpan(children: [_renderCodeBlockNode(element)]),
                 selectionColor: hightlightTextColor.withAlpha(128),
               ),
+            ),
+          ),
+        );
+      case 'table':
+        final rows = <TableRow>[];
+        for (final child in node.children) {
+          // Handle <thead>, <tbody>, or direct <tr>
+          if (child.localName == 'tr') {
+            rows.add(_buildTableRow(child, context, depth));
+          } else if (child.localName == 'thead' ||
+              child.localName == 'tbody') {
+            for (final tr in child.children) {
+              if (tr.localName == 'tr') {
+                rows.add(_buildTableRow(tr, context, depth));
+              }
+            }
+          }
+        }
+        if (rows.isEmpty) continue block;
+        return WidgetSpan(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: Table(
+              border: TableBorder.all(
+                color: textColor.withAlpha(80),
+                width: 1,
+              ),
+              defaultVerticalAlignment:
+                  TableCellVerticalAlignment.middle,
+              children: rows,
             ),
           ),
         );
@@ -489,7 +552,7 @@ class HtmlMessage extends StatelessWidget {
             'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
             'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
             'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
-            'span' => TextStyle(
+            'span' || 'font' => TextStyle(
               color:
                   node.attributes['color']?.hexToColor ??
                   node.attributes['data-mx-color']?.hexToColor ??

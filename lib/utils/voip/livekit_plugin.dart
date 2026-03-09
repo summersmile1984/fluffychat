@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:matrix/matrix.dart';
 
@@ -32,10 +31,14 @@ enum LiveKitCallState {
 /// - State and track change notifications for the UI
 class LiveKitPlugin {
   final Client client;
+  final VoIP? voip;
   late final MatrixRTCManager _rtcManager;
 
   lk.Room? _livekitRoom;
   lk.EventsListener<lk.RoomEvent>? _listener;
+
+  /// SDK GroupCallSession for MatrixRTC signaling.
+  GroupCallSession? _groupCallSession;
 
   /// The current call state.
   LiveKitCallState _callState = LiveKitCallState.idle;
@@ -68,7 +71,7 @@ class LiveKitPlugin {
   /// Error message if the call failed.
   String? lastError;
 
-  LiveKitPlugin({required this.client}) {
+  LiveKitPlugin({required this.client, this.voip}) {
     _rtcManager = MatrixRTCManager(client: client);
   }
 
@@ -101,6 +104,9 @@ class LiveKitPlugin {
       if (wsUrl == null || wsUrl.isEmpty) {
         throw Exception('LiveKit WS URL not returned by server');
       }
+
+      // 1.5 SDK signaling: send member state event via GroupCallSession
+      await _enterGroupCallSignaling(roomId, wsUrl);
 
       // 2. Create and connect to the LiveKit Room
       Logs().i('[LiveKit] Connecting to $wsUrl...');
@@ -135,6 +141,7 @@ class LiveKitPlugin {
       Logs().e('[LiveKit] Failed to start call', e, stack);
       lastError = e.toString();
       _setCallState(LiveKitCallState.ended);
+      await _leaveGroupCallSignaling();
       await _cleanupRoom();
     }
   }
@@ -147,6 +154,7 @@ class LiveKitPlugin {
     }
     _setCallState(LiveKitCallState.ending);
     await _cleanupRoom();
+    await _leaveGroupCallSignaling();
     _setCallState(LiveKitCallState.ended);
   }
 
@@ -237,6 +245,7 @@ class LiveKitPlugin {
   void reset() {
     _callState = LiveKitCallState.idle;
     _currentRoomId = null;
+    _groupCallSession = null;
     lastError = null;
   }
 
@@ -312,5 +321,52 @@ class LiveKitPlugin {
       Logs().w('[LiveKit] Cleanup error: $e');
     }
     _livekitRoom = null;
+  }
+
+  // ---------------------------------------------------------------------------
+  // SDK MatrixRTC signaling helpers
+  // ---------------------------------------------------------------------------
+
+  /// Enter the GroupCallSession to send member state event to the room.
+  Future<void> _enterGroupCallSignaling(
+    String roomId,
+    String livekitServiceUrl,
+  ) async {
+    if (voip == null) return;
+    final room = client.getRoomById(roomId);
+    if (room == null) {
+      Logs().w('[LiveKit] Cannot find room $roomId for signaling');
+      return;
+    }
+    try {
+      _groupCallSession = await voip!.fetchOrCreateGroupCall(
+        roomId,
+        room,
+        LiveKitBackend(
+          livekitServiceUrl: livekitServiceUrl,
+          livekitAlias: roomId,
+          e2eeEnabled: false,
+        ),
+        'm.call',
+        'm.room',
+      );
+      await _groupCallSession!.enter();
+      Logs().i('[LiveKit] SDK signaling: entered group call for $roomId');
+    } catch (e, s) {
+      Logs().e('[LiveKit] SDK signaling: failed to enter group call', e, s);
+      // Non-fatal: call can still work without signaling
+    }
+  }
+
+  /// Leave the GroupCallSession to remove member state event.
+  Future<void> _leaveGroupCallSignaling() async {
+    if (_groupCallSession == null) return;
+    try {
+      await _groupCallSession!.leave();
+      Logs().i('[LiveKit] SDK signaling: left group call');
+    } catch (e, s) {
+      Logs().e('[LiveKit] SDK signaling: failed to leave group call', e, s);
+    }
+    _groupCallSession = null;
   }
 }

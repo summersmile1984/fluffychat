@@ -10,8 +10,10 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
+import 'package:fluffychat/pages/dialer/group_call_page.dart';
 import 'package:fluffychat/pages/dialer/livekit_call_page.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/group_call_plugin.dart';
 import 'package:fluffychat/utils/voip/livekit_plugin.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
@@ -21,7 +23,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Client get client => matrix.client;
   VoipPlugin(this.matrix) {
     voip = VoIP(client, this);
-    liveKitPlugin = LiveKitPlugin(client: client);
+    liveKitPlugin = LiveKitPlugin(client: client, voip: voip);
+    groupCallPlugin = GroupCallPlugin(client: client);
     if (!kIsWeb) {
       final wb = WidgetsBinding.instance;
       wb.addObserver(this);
@@ -32,6 +35,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   bool speakerOn = false;
   late VoIP voip;
   late LiveKitPlugin liveKitPlugin;
+  late GroupCallPlugin groupCallPlugin;
   OverlayEntry? overlayEntry;
   BuildContext get context => matrix.context;
 
@@ -152,12 +156,21 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   Future<void> handleGroupCallEnded(GroupCallSession groupCall) async {
-    // TODO: implement handleGroupCallEnded
+    Logs().i('[VoIP] Group call ended in ${groupCall.room.id}');
+    if (groupCallPlugin.isInCall) {
+      await groupCallPlugin.hangUp();
+    }
+    if (overlayEntry != null) {
+      overlayEntry!.remove();
+      overlayEntry = null;
+    }
   }
 
   @override
   Future<void> handleNewGroupCall(GroupCallSession groupCall) async {
-    // TODO: implement handleNewGroupCall
+    // SDK detected a new group call in a room (another user started it)
+    // Currently logged for awareness. Could show a "join call" banner.
+    Logs().i('[VoIP] New group call detected in ${groupCall.room.id}');
   }
 
   @override
@@ -214,6 +227,45 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
           overlayEntry?.remove();
           overlayEntry = null;
           liveKitPlugin.reset();
+        },
+      ),
+    );
+    Overlay.of(ctx).insert(overlayEntry!);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Group Call Integration
+  // ---------------------------------------------------------------------------
+
+  /// Start or join a multi-participant group call in the given [room].
+  Future<void> startGroupCall(Room room, {bool isVideo = true}) async {
+    if (groupCallPlugin.isInCall) {
+      Logs().w('[VoIP] Already in a group call');
+      return;
+    }
+    groupCallPlugin.reset();
+    _addGroupCallOverlay(room);
+    await groupCallPlugin.startCall(room, voip, isVideo: isVideo);
+  }
+
+  /// Show the group call UI as a full-screen overlay.
+  void _addGroupCallOverlay(Room room) {
+    final ctx = kIsWeb ? ChatList.contextForVoip! : context;
+
+    if (overlayEntry != null) {
+      Logs().e('[VoIP] _addGroupCallOverlay: overlay already exists');
+      overlayEntry!.remove();
+    }
+
+    overlayEntry = OverlayEntry(
+      builder: (_) => GroupCallPage(
+        plugin: groupCallPlugin,
+        client: client,
+        room: room,
+        onClear: () {
+          overlayEntry?.remove();
+          overlayEntry = null;
+          groupCallPlugin.reset();
         },
       ),
     );

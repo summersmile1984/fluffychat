@@ -598,7 +598,10 @@ class Message extends StatelessWidget {
                                                               timeline,
                                                               RelationshipTypes
                                                                   .edit,
-                                                            ))
+                                                            ) &&
+                                                            displayEvent.content[
+                                                                    'streaming'] !=
+                                                                true)
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsets.only(

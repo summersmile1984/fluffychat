@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:fluffychat/utils/room_send_extension.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -295,7 +297,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
     for (final item in shareItems) {
       if (item is FileShareItem) continue;
-      if (item is TextShareItem) room.sendTextEvent(item.value);
+      if (item is TextShareItem) room.sendTextWithCapabilities(item.value);
       if (item is ContentShareItem) room.sendEvent(item.value);
     }
     final files = shareItems
@@ -629,7 +631,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // ignore: unawaited_futures
-    room.sendTextEvent(
+    room.sendTextWithCapabilities(
       sendController.text,
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
@@ -675,7 +677,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // ignore: unawaited_futures
-    room.sendTextEvent(
+    room.sendTextWithCapabilities(
       threadSendController.text,
       inReplyTo: threadReplyEvent,
       editEventId: threadEditEvent?.eventId,
@@ -1468,7 +1470,8 @@ class ChatController extends State<ChatPageWithRoom>
         }
       });
     }
-    final callType = await showModalActionPopup<CallType>(
+    final isGroupRoom = !room.isDirectChat;
+    final choice = await showModalActionPopup<String>(
       context: context,
       title: L10n.of(context).warning,
       message: L10n.of(context).videoCallsBetaWarning,
@@ -1477,25 +1480,35 @@ class ChatController extends State<ChatPageWithRoom>
         AdaptiveModalAction(
           label: L10n.of(context).voiceCall,
           icon: const Icon(Icons.phone_outlined),
-          value: CallType.kVoice,
+          value: 'voice',
         ),
         AdaptiveModalAction(
           label: L10n.of(context).videoCall,
           icon: const Icon(Icons.video_call_outlined),
-          value: CallType.kVideo,
+          value: 'video',
         ),
+        if (isGroupRoom)
+          AdaptiveModalAction(
+            label: '多人会议',
+            icon: const Icon(Icons.groups_outlined),
+            value: 'group',
+          ),
       ],
     );
-    if (callType == null) return;
+    if (choice == null) return;
 
     final voipPlugin = Matrix.of(context).voipPlugin;
     if (voipPlugin == null) return;
     try {
-      // Use LiveKit SFU-based call
-      await voipPlugin.startLiveKitCall(
-        room,
-        isVideo: callType == CallType.kVideo,
-      );
+      if (choice == 'group') {
+        await voipPlugin.startGroupCall(room, isVideo: true);
+      } else {
+        // Use LiveKit SFU-based 1:1 call
+        await voipPlugin.startLiveKitCall(
+          room,
+          isVideo: choice == 'video',
+        );
+      }
     } catch (e) {
       ScaffoldMessenger.of(
         context,

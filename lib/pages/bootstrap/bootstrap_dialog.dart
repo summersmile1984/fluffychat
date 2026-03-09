@@ -111,6 +111,14 @@ class BootstrapDialogState extends State<BootstrapDialog> {
   }
 
   Future<void> _createBootstrap(bool wipe) async {
+    // Skip bootstrap entirely if encryption is not available (E2EE disabled)
+    if (client.encryption == null) {
+      Logs().i('Encryption not available, skipping bootstrap');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _goBackAction(false);
+      });
+      return;
+    }
     await client.roomsLoading;
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;

@@ -2,8 +2,11 @@ import 'dart:ui';
 
 abstract class AppConfig {
   // Const and final configuration values (immutable)
+  // @brand:primary_color
   static const Color primaryColor = Color(0xFF5625BA);
+  // @brand:primary_color_light
   static const Color primaryColorLight = Color(0xFFCCBDEA);
+  // @brand:secondary_color
   static const Color secondaryColor = Color(0xFF41a2bc);
 
   static const Color chatColor = primaryColor;
@@ -13,51 +16,62 @@ abstract class AppConfig {
   static const bool hideTypingUsernames = false;
 
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
-  static const String deepLinkPrefix = 'im.fluffychat://chat/';
+  // @brand:deep_link_prefix
+  static const String deepLinkPrefix = 'com.aotsea.im://chat/';
   static const String schemePrefix = 'matrix:';
-  static const String pushNotificationsChannelId = 'fluffychat_push';
-  static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
+  // @brand:push_channel_id
+  static const String pushNotificationsChannelId = 'turning_agent_push';
+  // @brand:push_app_id
+  static const String pushNotificationsAppId = 'com.aotsea.im';
   static const double borderRadius = 18.0;
   static const double spaceBorderRadius = 11.0;
   static const double columnWidth = 360.0;
 
-  static const String website = 'https://fluffy.chat';
-  static const String enablePushTutorial =
-      'https://fluffy.chat/faq/#push_without_google_services';
-  static const String encryptionTutorial =
-      'https://fluffy.chat/faq/#how_to_use_end_to_end_encryption';
-  static const String startChatTutorial =
-      'https://fluffy.chat/faq/#how_do_i_find_other_users';
-  static const String howDoIGetStickersTutorial =
-      'https://fluffy.chat/faq/#how_do_i_get_stickers';
-  static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'chat.fluffy';
+  // @brand:website
+  static const String website = 'https://aotsea.com';
+  // @brand:push_tutorial_url
+  static const String enablePushTutorial = '';
+  // @brand:encryption_tutorial_url
+  static const String encryptionTutorial = '';
+  // @brand:start_chat_tutorial_url
+  static const String startChatTutorial = '';
+  // @brand:stickers_tutorial_url
+  static const String howDoIGetStickersTutorial = '';
+  // @brand:app_id
+  static const String appId = 'com.aotsea.im.TurningAgent';
+  // @brand:app_open_url_scheme
+  static const String appOpenUrlScheme = 'com.aotsea';
 
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
-  static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
-  static const String changelogUrl = 'https://fluffy.chat/en/changelog/';
-  static const String donationUrl = 'https://ko-fi.com/krille';
+  // @brand:source_code_url
+  static const String sourceCodeUrl = '';
+  // @brand:support_url
+  static const String supportUrl = '';
+  // @brand:changelog_url
+  static const String changelogUrl = '';
+  // @brand:donation_url
+  static const String donationUrl = '';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
+  // @brand:new_issue_url
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
-    host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    host: 'aotsea.com',
+    path: '/support',
   );
 
+  // @brand:homeserver_list_url
   static final Uri homeserverList = Uri(
     scheme: 'https',
-    host: 'raw.githubusercontent.com',
-    path: 'krille-chan/fluffychat/refs/heads/main/recommended_homeservers.json',
+    host: 'aotsea.com',
+    path: '/homeservers.json',
   );
 
+  // @brand:privacy_url
   static final Uri privacyUrl = Uri(
     scheme: 'https',
-    host: 'fluffy.chat',
-    path: '/en/privacy',
+    host: 'aotsea.com',
+    path: '/privacy',
   );
 
   static const String mainIsolatePortName = 'main_isolate';

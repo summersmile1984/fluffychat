@@ -23,21 +23,35 @@ Future<void> connectToHomeserverFlow(
   try {
     final homeserverInput = homeserverData.name!;
     var homeserver = Uri.parse(homeserverInput);
-    if (homeserver.scheme.isEmpty) {
-      // Use HTTP for localhost/127.0.0.1 (local dev), HTTPS for everything else
+    if (homeserver.scheme != 'http' && homeserver.scheme != 'https') {
+      // Uri.parse('localhost:8787') incorrectly puts 'localhost' as scheme.
+      // Treat the entire input as a host (with optional port) and construct properly.
+      // Use HTTP for local/private network addresses, HTTPS for everything else.
       if (homeserverInput.startsWith('localhost') ||
-          homeserverInput.startsWith('127.0.0.1')) {
-        homeserver = Uri.http(homeserverInput, '');
+          homeserverInput.startsWith('127.0.0.1') ||
+          homeserverInput.startsWith('192.168.')) {
+        homeserver = Uri.parse('http://$homeserverInput');
       } else {
-        homeserver = Uri.https(homeserverInput, '');
+        homeserver = Uri.parse('https://$homeserverInput');
       }
     }
     final l10n = L10n.of(context);
     final client = await Matrix.of(context).getLoginClient();
-    final (_, _, loginFlows, authMetadata) = await client.checkHomeserver(
-      homeserver,
-      fetchAuthMetadata: true,
-    );
+
+    List loginFlows;
+    dynamic authMetadata;
+    try {
+      final result = await client.checkHomeserver(
+        homeserver,
+        fetchAuthMetadata: true,
+      );
+      (_, _, loginFlows, authMetadata) = result;
+    } catch (_) {
+      // Some homeservers don't support auth metadata (e.g. no OIDC),
+      // causing the SDK to throw. Retry without fetchAuthMetadata.
+      final result = await client.checkHomeserver(homeserver);
+      (_, _, loginFlows, authMetadata) = result;
+    }
 
     final regLink = homeserverData.regLink;
     final supportsSso = loginFlows.any((flow) => flow.type == 'm.login.sso');
@@ -61,12 +75,12 @@ Future<void> connectToHomeserverFlow(
       if (signUp && regLink != null) {
         await launchUrlString(regLink);
       }
-      final pathSegments = List.of(
-        GoRouter.of(context).routeInformationProvider.value.uri.pathSegments,
-      );
-      pathSegments.removeLast();
-      pathSegments.add('login');
-      context.go('/${pathSegments.join('/')}', extra: client);
+      final currentUri =
+          GoRouter.of(context).routeInformationProvider.value.uri;
+      final currentPath = currentUri.path.endsWith('/')
+          ? currentUri.path.substring(0, currentUri.path.length - 1)
+          : currentUri.path;
+      context.go('$currentPath/login', extra: client);
       setState(AsyncSnapshot.withData(ConnectionState.done, true));
       return;
     }

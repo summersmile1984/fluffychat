@@ -1,0 +1,58 @@
+{
+    "brand_name": "CHANGE_ME",
+    "brand_description": "CHANGE_ME",
+    "identifiers": {
+        "android_application_id": "com.example.app",
+        "android_namespace": "com.example.app",
+        "ios_bundle_id": "com.example.app",
+        "ios_share_bundle_id": "com.example.app.share",
+        "macos_bundle_id": "com.example.app.macos",
+        "linux_application_id": "com.example.app",
+        "linux_binary_name": "my-app",
+        "windows_binary_name": "my-app",
+        "snap_name": "my-app",
+        "url_scheme": "com.example.app",
+        "deep_link_prefix": "com.example.app://chat/",
+        "push_channel_id": "my_app_push",
+        "push_app_id": "com.example.app",
+        "app_id": "com.example.app.MyApp",
+        "app_open_url_scheme": "com.example",
+        "client_namespace": "com.example.app.store.clients",
+        "dbus_name": "com.example.app"
+    },
+    "urls": {
+        "website": "https://example.com",
+        "privacy_url_scheme": "https",
+        "privacy_url_host": "example.com",
+        "privacy_url_path": "/privacy",
+        "source_code_url": "",
+        "support_url": "",
+        "changelog_url": "",
+        "donation_url": "",
+        "push_tutorial_url": "",
+        "encryption_tutorial_url": "",
+        "start_chat_tutorial_url": "",
+        "stickers_tutorial_url": "",
+        "push_gateway_url": "",
+        "homeserver_list_url": "",
+        "new_issue_url_host": "",
+        "new_issue_url_path": ""
+    },
+    "theme": {
+        "primary_color": "0xFF5625BA",
+        "primary_color_light": "0xFFCCBDEA",
+        "secondary_color": "0xFF41a2bc",
+        "color_scheme_seed": "0xFF5625BA",
+        "adaptive_icon_background": "#311B92",
+        "splash_color_light": "#ffffff",
+        "splash_color_dark": "#000000"
+    },
+    "defaults": {
+        "default_homeserver": "matrix.org",
+        "allow_other_homeservers": true,
+        "enable_registration": true
+    },
+    "legal": {
+        "copyright": "Copyright © 2025 CHANGE_ME. All rights reserved."
+    }
+}

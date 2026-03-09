@@ -34,7 +34,7 @@ configurations.all {
 
 
 android {
-    namespace = "chat.fluffy.fluffychat"
+    namespace = "com.aotsea.im"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -50,10 +50,10 @@ android {
 
     signingConfigs {
        create("release") {
-            keyAlias = "dummyAlias"
-            keyPassword = "dummyPassword"
+            keyAlias = "android"
+            keyPassword = "android"
             storeFile = file("dummy.keystore")
-            storePassword = "dummyStorePassword"
+            storePassword = "android"
         }
     }
 
@@ -70,7 +70,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "chat.fluffy.fluffychat"
+        applicationId = "com.aotsea.im"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
