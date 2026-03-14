@@ -35,7 +35,21 @@ class LoginView extends StatelessWidget {
               children: <Widget>[
                 Hero(
                   tag: 'info-logo',
-                  child: Image.asset('assets/banner_transparent.png'),
+                  child: Column(
+                    children: [
+                      Image.asset('assets/TuringLogo.jpg', height: 64),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'TuringFlow Client',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          // Not strictly Inter, but appropriate generic system font
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Padding(
