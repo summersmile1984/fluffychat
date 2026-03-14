@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
@@ -42,18 +44,22 @@ class A2uiHapticButton {
 
       return ElevatedButton(
         onPressed: () {
-          // Trigger haptic feedback
-          switch (data.hapticType) {
-            case 'light':
-              HapticFeedback.lightImpact();
-            case 'heavy':
-              HapticFeedback.heavyImpact();
-            case 'selection':
-              HapticFeedback.selectionClick();
-            case 'vibrate':
-              HapticFeedback.vibrate();
-            default:
-              HapticFeedback.mediumImpact();
+          // Only trigger haptic feedback on supported platforms
+          final bool supportsHaptics = !kIsWeb &&
+              (Platform.isIOS || Platform.isAndroid);
+          if (supportsHaptics) {
+            switch (data.hapticType) {
+              case 'light':
+                HapticFeedback.lightImpact();
+              case 'heavy':
+                HapticFeedback.heavyImpact();
+              case 'selection':
+                HapticFeedback.selectionClick();
+              case 'vibrate':
+                HapticFeedback.vibrate();
+              default:
+                HapticFeedback.mediumImpact();
+            }
           }
           // Dispatch action
           itemContext.dispatchEvent(

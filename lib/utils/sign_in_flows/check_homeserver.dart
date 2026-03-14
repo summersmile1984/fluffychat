@@ -48,8 +48,12 @@ Future<void> connectToHomeserverFlow(
       (_, _, loginFlows, authMetadata) = result;
     } catch (_) {
       // Some homeservers don't support auth metadata (e.g. no OIDC),
-      // causing the SDK to throw. Retry without fetchAuthMetadata.
-      final result = await client.checkHomeserver(homeserver);
+      // or return incomplete metadata that the SDK can't parse.
+      // Retry without fetchAuthMetadata.
+      final result = await client.checkHomeserver(
+        homeserver,
+        fetchAuthMetadata: false,
+      );
       (_, _, loginFlows, authMetadata) = result;
     }
 

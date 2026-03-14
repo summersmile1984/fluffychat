@@ -11,6 +11,8 @@ import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/universal_html.dart' as web;
 
+import 'dart:io';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
@@ -19,9 +21,21 @@ import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = ((X509Certificate cert, String host, int port) {
+        if (host.endsWith('.localhost') || host == 'localhost') return true;
+        return false;
+      });
+  }
+}
+
 ReceivePort? mainIsolateReceivePort;
 
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   if (PlatformInfos.isAndroid) {
     final port = mainIsolateReceivePort = ReceivePort();
     IsolateNameServer.removePortNameMapping(AppConfig.mainIsolatePortName);

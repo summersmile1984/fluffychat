@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
 
@@ -40,9 +42,20 @@ class A2uiQrScanner {
           icon: const Icon(Icons.qr_code_scanner),
           label: Text(label),
           onPressed: () {
+            // Check platform support for camera/QR scanning
+            final bool supportsCamera = !kIsWeb &&
+                (Platform.isIOS || Platform.isAndroid);
+            if (!supportsCamera) {
+              ScaffoldMessenger.of(itemContext.buildContext).showSnackBar(
+                const SnackBar(
+                  content: Text('QR scanning is not available on this platform'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
+              return;
+            }
             // Dispatch action — the app's navigation layer handles
-            // opening the QR scanner page. The scanned result can be
-            // sent back via the action event context.
+            // opening the QR scanner page.
             itemContext.dispatchEvent(
               UserActionEvent(
                 name: actionData['name'] as String,

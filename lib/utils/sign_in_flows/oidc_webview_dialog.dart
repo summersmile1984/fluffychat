@@ -103,6 +103,18 @@ class _OidcWebviewDialogState extends State<OidcWebviewDialog> {
                   _popWithResult(url.toString());
                 }
               },
+              onReceivedServerTrustAuthRequest: (controller, challenge) async {
+                // Trust self-signed certificates for local development (*.localhost)
+                final host = challenge.protectionSpace.host;
+                if (host.endsWith('.localhost') || host == 'localhost') {
+                  return ServerTrustAuthResponse(
+                    action: ServerTrustAuthResponseAction.PROCEED,
+                  );
+                }
+                return ServerTrustAuthResponse(
+                  action: ServerTrustAuthResponseAction.CANCEL,
+                );
+              },
             ),
             if (_isLoading)
               const Center(

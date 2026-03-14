@@ -29,7 +29,8 @@ class A2uiActionSender {
     }
     await room.sendEvent({
       'msgtype': 'm.text',
-      'body': '[$action]',
+      'body': '🎛️ [User tapped: $action]',
+      'format': 'org.aotsea.a2ui_action',
       'a2ui_action': actionPayload,
     });
   }

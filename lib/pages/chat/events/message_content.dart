@@ -273,7 +273,8 @@ class MessageContent extends StatelessWidget {
             }
 
             // 2. A2UI: dynamic UI components
-            if (format == 'org.matrix.custom.a2ui') {
+            if (format == 'org.matrix.custom.a2ui' ||
+                event.content['a2ui_content'] != null) {
               return A2uiMessageBubble(
                 event: event,
                 textColor: textColor,

@@ -64,9 +64,21 @@ class A2uiLocationPicker {
                 child: OutlinedButton.icon(
                   icon: const Icon(Icons.map_outlined),
                   label: const Text('Open in Maps'),
-                  onPressed: () {
-                    final uri = Uri.parse('geo:$lat,$lng');
-                    launchUrl(uri);
+                  onPressed: () async {
+                    try {
+                      final uri = Uri.parse('geo:$lat,$lng');
+                      await launchUrl(uri);
+                    } catch (e) {
+                      // Fallback if no maps app available
+                      if (itemContext.buildContext.mounted) {
+                        ScaffoldMessenger.of(itemContext.buildContext).showSnackBar(
+                          SnackBar(
+                            content: Text('📍 $address ($lat, $lng)'),
+                            duration: const Duration(seconds: 4),
+                          ),
+                        );
+                      }
+                    }
                     // Also dispatch action if provided
                     if (data['action'] != null) {
                       final actionData = data['action'] as JsonMap;

@@ -79,11 +79,24 @@ Future<void> oidcLoginFlow(
     );
   }
 
+  Logs().i('Calling initOidcLoginSession with redirectUrl=$redirectUrl...');
+  // Generate deviceId before passing to initOidcLoginSession so we can include
+  // it in custom scopes (SDK default scopes don't include email/profile)
+  final deviceId = generateRandomDeviceId();
   final session = await client.initOidcLoginSession(
     oidcClientData: oidcClientData,
     redirectUri: redirectUrl,
     prompt: signUp ? 'create' : null,
+    deviceId: deviceId,
+    scopes: {
+      'openid',
+      'email',
+      'profile',
+      'urn:matrix:org.matrix.msc2967.client:api:*',
+      'urn:matrix:org.matrix.msc2967.client:device:$deviceId',
+    },
   );
+  Logs().i('initOidcLoginSession completed. authUri=${session.authenticationUri}');
 
   if (!context.mounted) return;
 
@@ -102,11 +115,13 @@ Future<void> oidcLoginFlow(
   // Use in-app webview for native platforms, system browser for web
   final String? returnUrlString;
   if (!kIsWeb && (PlatformInfos.isMobile || PlatformInfos.isDesktop)) {
+    Logs().i('Opening OidcWebviewDialog with scheme=$urlScheme...');
     returnUrlString = await OidcWebviewDialog.show(
       context,
       url: session.authenticationUri.toString(),
       callbackScheme: urlScheme,
     );
+    Logs().i('OidcWebviewDialog returned: $returnUrlString');
     if (returnUrlString == null) {
       Logs().w('OIDC login cancelled by user');
       return;

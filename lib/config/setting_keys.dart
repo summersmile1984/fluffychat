@@ -51,7 +51,7 @@ enum AppSettings<T> {
   // @brand:application_name
   applicationName<String>('chat.fluffy.application_name', 'Turning Agent'),
   // @brand:default_homeserver
-  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'localhost:8787'),
+  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'hs.localhost'),
   // @brand:color_scheme_seed
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),

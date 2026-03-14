@@ -32,9 +32,18 @@ class CustomHttpClient {
     return HttpClient(context: context);
   }
 
-  static http.Client createHTTPClient() => retry.RetryClient(
-    PlatformInfos.isAndroid
-        ? IOClient(customHttpClient(ISRG_X1))
-        : http.Client(),
-  );
+  static http.Client createHTTPClient() {
+    HttpClient ioClient;
+    if (PlatformInfos.isAndroid) {
+      ioClient = customHttpClient(ISRG_X1);
+    } else {
+      ioClient = HttpClient();
+    }
+    // Trust self-signed certificates for local development (*.localhost)
+    ioClient.badCertificateCallback = (X509Certificate cert, String host, int port) {
+      if (host.endsWith('.localhost') || host == 'localhost') return true;
+      return false;
+    };
+    return retry.RetryClient(IOClient(ioClient));
+  }
 }

@@ -24,19 +24,28 @@ class MatrixContentGenerator {
     // Forward user UI interactions to the Agent Bot via Matrix
     _submitSub = _processor.onSubmit.listen((message) {
       final actionText = message.text;
-      Map<String, dynamic>? parsedData;
+      String actionName = actionText;
+      String surfaceId = 'default';
+      Map<String, dynamic>? dataModel;
       try {
-        parsedData = json.decode(actionText) as Map<String, dynamic>?;
+        final parsed = json.decode(actionText) as Map<String, dynamic>?;
+        if (parsed != null && parsed.containsKey('userAction')) {
+          final userAction = parsed['userAction'] as Map<String, dynamic>;
+          actionName = userAction['name'] as String? ?? actionText;
+          surfaceId = userAction['surfaceId'] as String? ?? 'default';
+          // Pass action context as data model (contains resolved data bindings)
+          final context = userAction['context'] as Map<String, dynamic>?;
+          if (context != null && context.isNotEmpty) {
+            dataModel = context;
+          }
+        }
       } catch (_) {
-        // text isn't valid JSON, use as plain action
+        // text isn't valid JSON, use as plain action name
       }
-      // TODO(a2ui): GenUI's UserUiInteractionMessage (v0.7.0) does not expose
-      // surfaceId. All interactions are sent as 'default'. When the library
-      // adds surfaceId support, pass message.surfaceId here instead.
       _actionSender.sendAction(
-        action: actionText,
-        surfaceId: 'default',
-        dataModel: parsedData,
+        action: actionName,
+        surfaceId: surfaceId,
+        dataModel: dataModel,
       );
     });
   }

@@ -83,22 +83,34 @@ class A2uiNotificationTrigger {
                   icon: const Icon(Icons.alarm_add),
                   label: const Text('Set Reminder'),
                   onPressed: () async {
-                    final plugin = FlutterLocalNotificationsPlugin();
-                    // Show immediately or after delay
-                    if (delaySeconds <= 0) {
-                      await plugin.show(
-                        id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
-                        title: title,
-                        body: body,
-                        notificationDetails: const NotificationDetails(
-                          android: AndroidNotificationDetails(
-                            'a2ui_reminders',
-                            'A2UI Reminders',
-                            importance: Importance.high,
+                    try {
+                      final plugin = FlutterLocalNotificationsPlugin();
+                      // Show immediately or after delay
+                      if (delaySeconds <= 0) {
+                        await plugin.show(
+                          id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+                          title: title,
+                          body: body,
+                          notificationDetails: const NotificationDetails(
+                            android: AndroidNotificationDetails(
+                              'a2ui_reminders',
+                              'A2UI Reminders',
+                              importance: Importance.high,
+                            ),
+                            iOS: DarwinNotificationDetails(),
                           ),
-                          iOS: DarwinNotificationDetails(),
-                        ),
-                      );
+                        );
+                      }
+                    } catch (e) {
+                      // Fallback: show SnackBar if notification API unavailable
+                      if (itemContext.buildContext.mounted) {
+                        ScaffoldMessenger.of(itemContext.buildContext).showSnackBar(
+                          SnackBar(
+                            content: Text('⏰ Reminder set: $title'),
+                            duration: const Duration(seconds: 4),
+                          ),
+                        );
+                      }
                     }
                     // Dispatch action back to Agent
                     itemContext.dispatchEvent(
