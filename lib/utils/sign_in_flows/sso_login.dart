@@ -7,6 +7,7 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sign_in_flows/oidc_webview_dialog.dart';
 
 Future<void> ssoLoginFlow(
   Client client,
@@ -34,11 +35,29 @@ Future<void> ssoLoginFlow(
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
       ? Uri.parse(redirectUrl).scheme
       : 'http://localhost:3001';
-  final result = await FlutterWebAuth2.authenticate(
-    url: url.toString(),
-    callbackUrlScheme: urlScheme,
-    options: FlutterWebAuth2Options(useWebview: PlatformInfos.isMobile),
-  );
+
+  // Use in-app WebView for native platforms (mobile + desktop),
+  // system browser only for web
+  final String? result;
+  if (!kIsWeb && (PlatformInfos.isMobile || PlatformInfos.isDesktop)) {
+    Logs().i('Opening SSO in-app WebView with scheme=$urlScheme...');
+    result = await OidcWebviewDialog.show(
+      context,
+      url: url.toString(),
+      callbackScheme: urlScheme,
+    );
+    Logs().i('SSO WebView returned: $result');
+    if (result == null) {
+      Logs().w('SSO login cancelled by user');
+      return;
+    }
+  } else {
+    result = await FlutterWebAuth2.authenticate(
+      url: url.toString(),
+      callbackUrlScheme: urlScheme,
+    );
+  }
+
   final token = Uri.parse(result).queryParameters['loginToken'];
   if (token?.isEmpty ?? false) return;
 

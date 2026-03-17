@@ -104,15 +104,11 @@ class _OidcWebviewDialogState extends State<OidcWebviewDialog> {
                 }
               },
               onReceivedServerTrustAuthRequest: (controller, challenge) async {
-                // Trust self-signed certificates for local development (*.localhost)
-                final host = challenge.protectionSpace.host;
-                if (host.endsWith('.localhost') || host == 'localhost') {
-                  return ServerTrustAuthResponse(
-                    action: ServerTrustAuthResponseAction.PROCEED,
-                  );
-                }
+                // Trust all certificates in the login WebView.
+                // This handles both self-signed *.localhost certs and
+                // ensures CDN resources (Tailwind CSS, Google Fonts) load.
                 return ServerTrustAuthResponse(
-                  action: ServerTrustAuthResponseAction.CANCEL,
+                  action: ServerTrustAuthResponseAction.PROCEED,
                 );
               },
             ),

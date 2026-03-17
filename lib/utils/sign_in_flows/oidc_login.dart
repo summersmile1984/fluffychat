@@ -83,15 +83,28 @@ Future<void> oidcLoginFlow(
   // Generate deviceId before passing to initOidcLoginSession so we can include
   // it in custom scopes (SDK default scopes don't include email/profile)
   final deviceId = generateRandomDeviceId();
+  // RFC 8707: request JWT access_token with audience for both HS and Hub
+  // This lets the IDP issue a JWT (instead of opaque token) that both
+  // the homeserver and gbrainhub can verify directly via JWKS.
+  final hsHost = AppSettings.defaultHomeserver.value; // e.g. hs.localhost
+  final domain = hsHost.replaceFirst('hs.', ''); // e.g. localhost
+  final oidcResource = [
+    'https://$hsHost',        // homeserver audience
+    'https://hub.$domain',    // gbrainhub audience
+  ];
+  client.oidcResource = oidcResource;
+
   final session = await client.initOidcLoginSession(
     oidcClientData: oidcClientData,
     redirectUri: redirectUrl,
     prompt: signUp ? 'create' : null,
     deviceId: deviceId,
+    resource: oidcResource,
     scopes: {
       'openid',
       'email',
       'profile',
+      'offline_access',
       'urn:matrix:org.matrix.msc2967.client:api:*',
       'urn:matrix:org.matrix.msc2967.client:device:$deviceId',
     },

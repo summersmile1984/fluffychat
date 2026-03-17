@@ -19,7 +19,7 @@ import 'e2e_config.dart';
 /// Prerequisites:
 ///   - Matrix HS at E2E_HOMESERVER (default: http://localhost:8787)
 ///   - matrix-agent-bridge running at :9090
-///   - GBrainHub agent-server running at :4111
+///   - GBrainHub agent API running at hub.localhost (port 10000)
 ///
 /// Run:
 ///   flutter test test/e2e/message_e2e_test.dart \

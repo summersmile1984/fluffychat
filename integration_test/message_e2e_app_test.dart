@@ -25,7 +25,7 @@ import 'users.dart';
 /// Prerequisites:
 ///   - Matrix HS running (default: localhost:8787)
 ///   - matrix-agent-bridge running (:9090)
-///   - GBrainHub agent-server running (:4111)
+///   - GBrainHub agent API running at hub.localhost (port 10000)
 ///   - Run on a device or simulator (macOS, iOS, Android)
 ///
 /// Run:

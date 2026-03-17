@@ -128,6 +128,8 @@ flutter:
 # 2. Always link an (upstream?) issue
 # 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
+  matrix:
+    path: packages/matrix
 
 flutter_launcher_icons:
   android: "ic_launcher"

@@ -37,7 +37,7 @@ class LoginView extends StatelessWidget {
                   tag: 'info-logo',
                   child: Column(
                     children: [
-                      Image.asset('assets/TuringLogo.jpg', height: 64),
+                      Image.asset('assets/TuringLogo.png', height: 64),
                       const SizedBox(height: 8),
                       const Text(
                         'TuringFlow Client',
