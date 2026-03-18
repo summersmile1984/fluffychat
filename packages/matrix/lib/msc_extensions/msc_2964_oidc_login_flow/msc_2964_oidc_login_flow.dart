@@ -116,6 +116,13 @@ extension Msc2964OidcLoginFlow on Client {
       headers: {'content-type': 'application/x-www-form-urlencoded'},
     );
     if (response.statusCode != 200) {
+      final errorBody = utf8.decode(response.bodyBytes);
+      Logs().e(
+        'OIDC token exchange failed! '
+        'Status: ${response.statusCode}, '
+        'TokenEndpoint: ${authMetadata.tokenEndpoint}, '
+        'Body: $errorBody',
+      );
       unexpectedResponse(
         response,
         response.bodyBytes,

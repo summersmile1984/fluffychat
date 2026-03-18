@@ -86,8 +86,9 @@ Future<void> oidcLoginFlow(
   // RFC 8707: request JWT access_token with audience for both HS and Hub
   // This lets the IDP issue a JWT (instead of opaque token) that both
   // the homeserver and gbrainhub can verify directly via JWKS.
-  final hsHost = AppSettings.defaultHomeserver.value; // e.g. hs.localhost
-  final domain = hsHost.replaceFirst('hs.', ''); // e.g. localhost
+  // Use the actual connected homeserver, not the default setting.
+  final hsHost = client.homeserver?.host ?? AppSettings.defaultHomeserver.value;
+  final domain = hsHost.replaceFirst('hs.', ''); // e.g. aotsea.com
   final oidcResource = [
     'https://$hsHost',        // homeserver audience
     'https://hub.$domain',    // gbrainhub audience

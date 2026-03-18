@@ -266,24 +266,18 @@ class GetAuthMetadataResponse {
       : authorizationEndpoint =
             Uri.parse(json['authorization_endpoint'] as String),
         codeChallengeMethodsSupported =
-            (json['code_challenge_methods_supported'] as List)
-                .map((v) => v as String)
-                .toList(),
-        grantTypesSupported = (json['grant_types_supported'] as List)
-            .map((v) => v as String)
-            .toList(),
+            ((v) => v != null ? (v as List).map((v) => v as String).toList() : <String>[])(json['code_challenge_methods_supported']),
+        grantTypesSupported = ((v) => v != null ? (v as List).map((v) => v as String).toList() : <String>[])(json['grant_types_supported']),
         issuer = Uri.parse(json['issuer'] as String),
         promptValuesSupported = ((v) => v != null
             ? (v as List).map((v) => v as String).toList()
             : null)(json['prompt_values_supported']),
         registrationEndpoint =
             Uri.parse(json['registration_endpoint'] as String),
-        responseModesSupported = (json['response_modes_supported'] as List)
-            .map((v) => v as String)
-            .toList(),
-        responseTypesSupported = (json['response_types_supported'] as List)
-            .map((v) => v as String)
-            .toList(),
+        responseModesSupported =
+            ((v) => v != null ? (v as List).map((v) => v as String).toList() : <String>[])(json['response_modes_supported']),
+        responseTypesSupported =
+            ((v) => v != null ? (v as List).map((v) => v as String).toList() : <String>[])(json['response_types_supported']),
         revocationEndpoint = Uri.parse(json['revocation_endpoint'] as String),
         tokenEndpoint = Uri.parse(json['token_endpoint'] as String);
   Map<String, Object?> toJson() {

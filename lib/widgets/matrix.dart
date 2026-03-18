@@ -21,11 +21,13 @@ import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sign_in_flows/oidc_webview_dialog.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
@@ -275,23 +277,64 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       if (state == LoginState.loggedOut) {
+        Logs().w('IDP_TRACE: Intercepted loggedOut event for ${c.clientName}');
         _cancelSubs(c.clientName);
-        // Only remove client if there are other logged-in clients (multi-account).
-        // Keep the last client so getLoginClient() can reuse it for next login.
         if (widget.clients.length > 1) {
           widget.clients.remove(c);
           ClientManager.removeClientNameFromStore(c.clientName, store);
         }
         InitWithRestoreExtension.deleteSessionBackup(name);
       }
-      // Defer navigation to next frame to avoid conflicts with
-      // dialog pop() from OIDC webview that may be in progress
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        // Check if ANY client is currently logged in
-        final anyLoggedIn =
-            widget.clients.any((cl) => cl.isLogged());
+      
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        Logs().w('IDP_TRACE: addPostFrameCallback started. state=$state');
+        final anyLoggedIn = widget.clients.any((cl) => cl.isLogged());
         final target = anyLoggedIn ? '/rooms' : '/home';
+        Logs().w('IDP_TRACE: Navigating to target=$target');
         FluffyChatApp.router.go(target);
+
+        if (state == LoginState.loggedOut) {
+          Logs().w('IDP_TRACE: Starting IDP True Logout delay...');
+          await Future.delayed(const Duration(milliseconds: 300));
+          Logs().w('IDP_TRACE: Delay finished.');
+          try {
+            final hsHost = c.homeserver?.host ?? AppSettings.defaultHomeserver.value;
+            final domain = hsHost.replaceFirst('hs.', '');
+            final idpLogoutUrl = 'https://idp.$domain/logout';
+            final redirectUrl = kIsWeb
+                ? Uri.parse(html.window.location.href.split('#').first.split('?').first)
+                : (PlatformInfos.isMobile || PlatformInfos.isMacOS)
+                ? Uri.parse('${AppConfig.appOpenUrlScheme.toLowerCase()}:/login')
+                : Uri.parse('http://localhost:3001/login');
+            final callbackUrl = Uri.encodeComponent(redirectUrl.toString());
+            final fullLogoutUrl = '$idpLogoutUrl?callbackUrl=$callbackUrl';
+
+            Logs().w('IDP_TRACE: fullLogoutUrl=$fullLogoutUrl');
+
+            if (!kIsWeb && (PlatformInfos.isMobile || PlatformInfos.isMacOS || PlatformInfos.isDesktop)) {
+              Logs().w('IDP_TRACE: Resolving navigatorKey.currentContext...');
+              final dialogContext = FluffyChatApp.router.routerDelegate.navigatorKey.currentContext;
+              if (dialogContext != null) {
+                Logs().w('IDP_TRACE: Context found. Showing OidcWebviewDialog...');
+                await OidcWebviewDialog.show(
+                  dialogContext,
+                  url: fullLogoutUrl,
+                  callbackScheme: redirectUrl.scheme,
+                );
+                Logs().w('IDP_TRACE: OidcWebviewDialog finished!');
+              } else {
+                Logs().w('IDP_TRACE: No Navigator context available for IDP logout dialog');
+              }
+            } else if (kIsWeb) {
+              Logs().w('IDP_TRACE: Executing Web redirect...');
+              html.window.location.href = fullLogoutUrl;
+            } else {
+              Logs().w('IDP_TRACE: Platform not matched for webview or redirect.');
+            }
+          } catch (e, stack) {
+            Logs().e('IDP_TRACE: Exception thrown', e, stack);
+          }
+        }
       });
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);

@@ -886,14 +886,17 @@ class Client extends MatrixApi {
     if (enableEncryption) {
       initialState ??= [];
       if (!initialState.any((s) => s.type == EventTypes.Encryption)) {
-        initialState.add(
-          StateEvent(
-            content: {
-              'algorithm': supportedGroupEncryptionAlgorithms.first,
-            },
-            type: EventTypes.Encryption,
-          ),
-        );
+        final algo = supportedGroupEncryptionAlgorithms.firstOrNull;
+        if (algo != null) {
+          initialState.add(
+            StateEvent(
+              content: {
+                'algorithm': algo,
+              },
+              type: EventTypes.Encryption,
+            ),
+          );
+        }
       }
     }
 
